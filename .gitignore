@@ -1,5 +1,4 @@
 
-thesis/.env
 thesis/*.lock
 thesis/node_modules
 thesis/public/hot
