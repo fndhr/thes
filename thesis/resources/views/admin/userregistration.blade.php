@@ -1,51 +1,6 @@
-<?php
-    session_start();
-    include('connect.php');
-    if(!isset($_SESSION['login'])) {
-        echo "You need to login first!";
-        header('Location: index.php');  
-    }
-?>
-<!doctype html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>President University</title>
-</head>
-
-<body style="background-color: rgb(126, 129, 119);">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="">
-            <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-512.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            001201600001 - Admin
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">User Registration</a>
-            <a class="nav-item nav-link" href="#">Set Session</a>
-            <a class="nav-item nav-link" href="#">Student</a>
-            <a class="nav-item nav-link" href="#">Defense Schedule</a>
-          </div>
-        </div>
-        <div class="dropdown">
-            <a class="navbar-brand"><img src="https://cdn4.iconfinder.com/data/icons/integral/128/message-512.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Hi, Fiqa
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Account</a>
-              <a class="dropdown-item" href="#">Change Password</a>
-              <a class="dropdown-item" href="#">Sign Out</a>
-            </div>
-        </div>
-    </nav>
+@section('content')
     <div class="container bg-light my-5 px-5" style="border-radius: 10px; box-shadow: 3px 3px 10px grey;">
         <div class="row py-4">
             <div class="col-4">
@@ -189,36 +144,4 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('.dataTable').hide();
-        $('.btnSubmit').click(function() {
-            $('.dataTable').show();
-        }); 
-    });
-    $(document).ready(function() {
-        $('.entry').hide(); 
-        $('.type').change(function() {
-            if($('.type').val() == 'student') {
-                $('.entryStudent').show();
-                $('.entryLecturer').hide();
-                $('.entryLecturer form').get(0).reset();
-            } else if ($('.type').val() == 'lecturer') {
-                $('.entryLecturer').show();
-                $('.entryStudent').hide();
-                $('.entryStudent form').get(0).reset();
-            } else {
-                $('.entryLecturer').hide();
-                $('.entryStudent').hide();
-                $('.entry input').val('');
-                $('.entryLecturer form').get(0).reset();
-                $('.entryStudent form').get(0).reset();
-            }
-        });
-    });
-    </script>
-</body>
-</html>
+    @endsection
