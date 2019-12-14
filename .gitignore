@@ -1,3 +1,17 @@
 
 thesis/.env
-*.lock
+thesis/*.lock
+thesis/node_modules
+thesis/public/hot
+thesis/public/storage
+thesis/storage/*.key
+thesis/vendor
+thesis/.env
+thesis/composer.lock
+thesis/.env.backup
+thesis/.phpunit.result.cache
+thesis/Homestead.json
+thesis/Homestead.yaml
+thesis/npm-debug.log
+thesis/yarn-error.log
+thesis/storage/framework
