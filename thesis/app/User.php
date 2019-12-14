@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeName($query,$param){
+        return $query->WhereName($param);         
+    }
+
+    public function student(){
+        return $this->belongsTo('App\student','usr_id');
+    }
 }

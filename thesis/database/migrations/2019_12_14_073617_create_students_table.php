@@ -22,7 +22,7 @@ class CreateStudentsTable extends Migration
             $table->timestamps();
             $table->foreign('major_id')->references('major_id')->on('majors');
             $table->foreign('title_id')->references('title_id')->on('titles');
-            $table->foreign('lec_id')->references('lec_id')->on('lectures');
+            $table->foreign('lec_id')->references('lec_id')->on('lecturers');
             $table->foreign('usr_id')->references('id')->on('users');
         });
     }
