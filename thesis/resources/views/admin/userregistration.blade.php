@@ -29,7 +29,7 @@
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Last Name</label>
                     <input type="text" class="form-control col-9" for="last_name" placeholder="example">
-                    @error('first_name')
+                    @error('last_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -57,11 +57,11 @@
                     <label class="col-3 col-form-label">Role</label>
                     <div class="col-9 pt-2 pl-0" id="roleLecturer">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="advisor" value="option1">
+                            <input class="form-check-input" type="checkbox" for="isAdv" name="isAdv" id="advisor" value="option1">
                             <label class="form-check-label" for="advisor">Advisor</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="examiner" value="option2">
+                            <input class="form-check-input" type="checkbox" for="isExm" name="isExm" id="examiner" value="option2">
                             <label class="form-check-label" for="examiner">Examiner</label>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                 @csrf
                 <div class="form-group row">
                     <label class="col-3 col-form-label">First Name</label>
-                    <input type="text" class="form-control col-9" for="first_name" name="first_name" placeholder="example">
+                    <input type="text" class="form-control col-9 @error('user_name') is-invalid @enderror" for="first_name" name="first_name" placeholder="example" value="{{old('first_name')}}">
                     @error('first_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Username</label>
-                    <input type="text" class="form-control col-9" for="username" name="username" placeholder="example">
+                    <input type="text" class="form-control col-9 @error('username') is-invalid @enderror" for="username" name="username" placeholder="example" value="{{old('username')}}">
                     @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

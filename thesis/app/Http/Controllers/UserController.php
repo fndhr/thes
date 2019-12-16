@@ -16,7 +16,8 @@ class UserController extends Controller
             'username' => 'required|unique:users|min:8|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'std_id' => 'required|string|unique:students'
         ]);
         if ($validator->fails()) {
             $validator->validate();
@@ -29,14 +30,26 @@ class UserController extends Controller
         $user->email = request('email');
         $user->phone = request('phone');
         $user->save();
+
+        $student = new student;
+        $student->std_id = request('std_id');
+        $student->usr_id = $user->id;
+        $student->save();
     }
 
-    public function lecturerRegister(){
+    public function lecturerRegister(Request $request){
+        if(is_null($request->input('isExm')))
+            dd($request->input('isExm'));
+        else{
+            echo $request->input('isExm');
+        }
+        /*
         $validator = Validator::make(request(), [
             'username' => 'required|unique:users|min:8|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'lec_id' => 'required|unique:lecturers'
         ]);
         if ($validator->fails()) {
             $validator->validate();
@@ -49,6 +62,7 @@ class UserController extends Controller
         $user->email = request('email');
         $user->phone = request('phone');
         $user->save();
+        */
     }
 
     
