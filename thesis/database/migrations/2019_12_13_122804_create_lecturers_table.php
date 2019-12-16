@@ -14,7 +14,7 @@ class CreateLecturersTable extends Migration
     public function up()
     {
         Schema::create('lecturers', function (Blueprint $table) {
-            $table->bigIncrements('lec_id');
+            $table->bigIncrements('lec_id')->index();
             $table->boolean('isAdv');
             $table->boolean('isExm');
             $table->unsignedBigInteger('usr_id');

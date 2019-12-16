@@ -14,10 +14,10 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->bigIncrements('std_id');
-            $table->unsignedBigInteger('major_id');
-            $table->unsignedBigInteger('title_id');
-            $table->unsignedBigInteger('lec_id');
+            $table->string('std_id')->index();
+            $table->unsignedBigInteger('major_id')->nullable();
+            $table->unsignedBigInteger('title_id')->nullable();
+            $table->unsignedBigInteger('lec_id')->nullable();
             $table->unsignedBigInteger('usr_id');
             $table->timestamps();
             $table->foreign('major_id')->references('major_id')->on('majors');
