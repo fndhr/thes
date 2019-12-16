@@ -17,6 +17,14 @@
         <div class="entry entryLecturer">
             <form>
                 <div class="form-group row">
+                    <label for="firstNameLecturer" class="col-3 col-form-label">First Name</label>
+                    <input type="text" class="form-control col-9" id="firstNameLecturer" placeholder="example">
+                </div>
+                <div class="form-group row">
+                    <label for="lastNameLecturer" class="col-3 col-form-label">Last Name</label>
+                    <input type="text" class="form-control col-9" id="lastNameLecturer" placeholder="example">
+                </div>
+                <div class="form-group row">
                     <label for="nameLecturer" class="col-3 col-form-label">Name</label>
                     <input type="text" class="form-control col-9" id="nameLecturer" placeholder="example">
                 </div>
@@ -84,7 +92,15 @@
         <div class="entry entryStudent">
             <form>
                 <div class="form-group row">
-                    <label for="nameStudent" class="col-3 col-form-label">Name</label>
+                    <label for="firstNameStudent" class="col-3 col-form-label">First Name</label>
+                    <input type="text" class="form-control col-9" id="firstNameStudent" placeholder="example">
+                </div>
+                <div class="form-group row">
+                    <label for="lastNameStudent" class="col-3 col-form-label">Last Name</label>
+                    <input type="text" class="form-control col-9" id="lastNameStudent" placeholder="example">
+                </div>
+                <div class="form-group row">
+                    <label for="nameStudent" class="col-3 col-form-label">Username</label>
                     <input type="text" class="form-control col-9" id="nameStudent" placeholder="example">
                 </div>
                 <div class="form-group row">
