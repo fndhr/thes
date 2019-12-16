@@ -15,3 +15,4 @@ thesis/Homestead.yaml
 thesis/npm-debug.log
 thesis/yarn-error.log
 thesis/storage/framework
+*.lock
