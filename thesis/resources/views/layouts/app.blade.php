@@ -15,9 +15,10 @@
 <body style="background-color: rgb(126, 129, 119);">
     @auth
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            @if($role == 3)
             <a class="navbar-brand" href="">
                 <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-512.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                001201600001 - {{Auth::user()->username}}
+                {{$student->std_id}} - {{Auth::user()->username}}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,6 +44,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                 </div>
             </div>
+            @endif
         </nav>
     @endauth
     @yield('content')

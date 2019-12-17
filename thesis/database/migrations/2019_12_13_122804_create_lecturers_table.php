@@ -15,8 +15,8 @@ class CreateLecturersTable extends Migration
     {
         Schema::create('lecturers', function (Blueprint $table) {
             $table->string('lec_id')->primary();
-            $table->boolean('isAdv');
-            $table->boolean('isExm');
+            $table->boolean('isAdv')->default(0);
+            $table->boolean('isExm')->default(0);
             $table->unsignedBigInteger('usr_id');
             $table->foreign('usr_id')->references('id')->on('users');
             $table->timestamps();

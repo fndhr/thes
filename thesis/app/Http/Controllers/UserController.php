@@ -38,12 +38,7 @@ class UserController extends Controller
     }
 
     public function lecturerRegister(Request $request){
-        if(is_null($request->input('isExm')))
-            dd($request->input('isExm'));
-        else{
-            echo $request->input('isExm');
-        }
-        /*
+        
         $validator = Validator::make(request(), [
             'username' => 'required|unique:users|min:8|max:255',
             'first_name' => 'required|max:255',
@@ -62,7 +57,17 @@ class UserController extends Controller
         $user->email = request('email');
         $user->phone = request('phone');
         $user->save();
-        */
+        
+        $lec = new lecturer;
+        $lec->lec_id = request('lec_id');
+        $lec->usr_id = $user->id;
+        if(!is_null($request->input('isExm'))){
+            $lec->isExm = 1;
+        }
+        if(!is_null($request->input('isAdv'))){
+            $lec->isAdv = 1;
+        }
+        $lec->save();
     }
 
     
