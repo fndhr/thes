@@ -5,7 +5,7 @@ $(document).ready(function() {
     }); 
 });
 $(document).ready(function() {
-    $('.entry').hide(); 
+    // $('.entry').hide(); 
     $('.type').change(function() {
         if($('.type').val() == 'student') {
             $('.entryStudent').show();
