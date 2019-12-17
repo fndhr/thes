@@ -30,13 +30,13 @@
                 <tbody>
                     <tr>
                         <td>1.</td>
-                        <td><a href="">Fiqa Nadhira Luthfia Taufik</a></td>
+                        <td><a href="/admin/studentDetail/1">Fiqa Nadhira Luthfia Taufik</a></td>
                         <td>Interim</td>
                         <td>Rikip Ginanjar</td>
                     </tr>
                     <tr>
                         <td>2.</td>
-                        <td><a href="">Cindy Grace Zebua</a></td>
+                        <td><a href="/admin/studentDetail/1">Cindy Grace Zebua</a></td>
                         <td>Final Draft</td>
                         <td>Rikip Ginanjar</td>
                     </tr>

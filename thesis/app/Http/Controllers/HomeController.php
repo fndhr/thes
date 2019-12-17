@@ -31,15 +31,15 @@ class HomeController extends Controller
         else if($isLecturer)
             $this->role = 2;
         else
-            $this->role = 1;
+            $this->role = 1;   
         //ambil role harusnya ga disini pepe, di construct.. cman ada masalah tuh asw, jadi gue taruh sini 
 
         if($this->role == 1)
-            return view('admin.userregistration',[
+            return view('admin.admindashboard',[
                 'role'=> $this->role
             ]);
         else
-            return view('home',[
+            return view('student.studentdashboard',[
                 'role' => $this->role,
                 'student' =>student::whereUsrId(auth()->id())->first(),
                 'lecturer' =>lecturer::whereUsrId(auth()->id())->first()

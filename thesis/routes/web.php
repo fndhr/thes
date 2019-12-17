@@ -19,8 +19,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/register', function(){
-    return view('admin/userregistration');
+
+
+Route::prefix('admin')->group(function (){
+    Route::get('/sessionSet','AdminController@sessionSet');
+    Route::get('/studentProposal','AdminController@studentProposal');
+    Route::get('/setDefenseSchedule','AdminController@setDefenseSchedule');
+    Route::get('/getDefenseSchedule','AdminController@getDefenseSchedule');
+    Route::get('/registerStudent','AdminController@studentViewRegister');
+    Route::get('/registerLecturer','AdminController@lecturerViewRegister');
+    Route::get('/studentSearch','AdminController@studentSearch');
+    Route::get('/getDefenseScheduleDetail/{id}','AdminController@getDefenseScheduleDetail');
+    Route::get('/studentDetail/{id}','AdminController@studentDetail');
+    
+
+    Route::post('/register/student','UserController@studentRegister');
+    Route::post('/register/lecturer','UserController@lecturerRegister');
+
 });
-Route::post('/register/student','UserController@studentRegister');
-Route::post('/register/lecturer','UserController@lecturerRegister');

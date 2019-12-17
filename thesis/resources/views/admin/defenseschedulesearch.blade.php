@@ -30,7 +30,7 @@
                 <tbody>
                     <tr>
                         <td>1.</td>
-                        <td><a href="">Fiqa Nadhira Luthfia Taufik</a></td>
+                        <td><a href="/admin/getDefenseScheduleDetail/1">Fiqa Nadhira Luthfia Taufik</a></td>
                         <td>Rikip Ginanjar</td>
                         <td>06-01-2020</td>
                     </tr>
