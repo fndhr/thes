@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container bg-light my-5 px-5 py-4" style="border-radius: 10px; box-shadow: 3px 3px 10px grey;">
+<div class="container">
     <div class="row my-4">
         <div class="col-12">
             <h1>Student Dashboard</h1>

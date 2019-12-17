@@ -16,7 +16,7 @@
     <div class="site-wrap">
         <div class="intro-section" id="home-section">
             <div class="slide-1" data-stellar-background-ratio="0.5">
-                <div class="container">
+                <div class="container" style="background: none;">
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="row align-items-center">

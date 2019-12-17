@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #808080;
+    background-color: rgb(126, 129, 119);
+}
+
+/* a {
+    display: block;
+    color: #808080;
+}
+
+a:hover {
+    opacity: 0.5;
+    color: #808080;
+    text-decoration: none;
+} */
+
+.container {
+    background-color: #F8F9FA;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px grey;
+    padding: 1.5rem;
+    margin: 3rem auto;
+}
