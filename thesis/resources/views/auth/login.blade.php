@@ -11,14 +11,17 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 mb-4">
                                     <h1 data-aos="fade-up" data-aos-delay="100">Thesis and Defense Manager</h1>
-                                    <p class="mb-4" data-aos="fade-up" data-aos-delay="200">President University - Faculty of Computer Science</p>
+                                    <h6 class="text-white mb-4" data-aos="fade-up" data-aos-delay="200">President University - Faculty of Computer Science</h6>
                                 </div>
                                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
                                     <form method="post"  action="{{ route('login') }}" class="form-box">
                                     @csrf
-                                        <h3 class="h4 text-black mb-4">Sign In</h3>
+                                        <div class="text-center mb-5">
+                                            <img src="/assets/image/user_navbar.png" width="50" height="50" class="" alt="">
+                                            <h4 class="text-black">SIGN IN</h4>
+                                        </div>
                                         <div class="form-group">
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Please Input Your Email" autofocus>
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -26,15 +29,15 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Please Input Your Password" autocomplete="current-password">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <input type="submit" class="btn btn-primary btn-pill" value="Sign In"></input>
+                                        <div class="form-group text-center mt-5">
+                                            <input type="submit" class="btn btn-success btn-pill px-5" value="Sign In"></input>
                                         </div>
                                     </form>
                                 </div>

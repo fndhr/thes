@@ -20,7 +20,7 @@
             <a href="/admin/studentSearch">
                 <div class="text-center">
                     <img src="/assets/image/admin_studentsearch.png" width="100" height="100" class="d-inline-block align-top my-4" alt="">
-                    <h4>Search Student</h4>
+                    <h4>Student Search</h4>
                 </div>
             </a>
         </div>

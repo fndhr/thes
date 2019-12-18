@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-            <form  method="POST" action="/register/student">
+            <form  method="POST" action="/admin/register/student">
                 @csrf
                 <div class="form-group row">
                     <label class="col-3 col-form-label">First Name</label>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Password</label>
-                    <input type="password" class="form-control col-9" for="password" name="password" placeholder="name@example.com">
+                    <input type="password" class="form-control col-9" for="password" name="password" placeholder="example1234">
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Major</label>
@@ -105,4 +105,11 @@
         </table>
     </div>
 </div>
+<script>
+	var msg = '{{Session::get('alert')}}';
+	var success = '{{Session::get('alert')}}';
+	if(success){
+		alert(msg);
+	}
+</script>
 @endsection

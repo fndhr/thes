@@ -35,6 +35,8 @@ class UserController extends Controller
         $student->std_id = request('std_id');
         $student->usr_id = $user->id;
         $student->save();
+		
+		return redirect()->back()->with('alert','successfull add student');
     }
 
     public function lecturerRegister(Request $request){
@@ -68,6 +70,9 @@ class UserController extends Controller
             $lec->isAdv = 1;
         }
         $lec->save();
+		
+		
+		return redirect()->back()->with('alert','successfull add lecturer');
     }
 
     
