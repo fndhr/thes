@@ -29,3 +29,13 @@ $(document).ready(function() {
     $("#datepicker7").datepicker();
     $("#datepicker8").datepicker();
 });
+
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+}
+
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(".alert").remove(); 
+    });
+}, 2000);

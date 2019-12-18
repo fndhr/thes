@@ -71,6 +71,11 @@
             @endif
         </nav>
     @endauth
+    @if (session('alert'))
+        <div class="alert alert-success">
+            {{ session('alert') }}
+        </div>
+    @endif
     @yield('content')
     <script src="/assets/js/jquery-3.4.1.slim.min.js"></script>
     <script src="/assets/js/jquery-1.12.4.js"></script>

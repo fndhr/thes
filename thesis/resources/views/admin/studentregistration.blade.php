@@ -109,11 +109,4 @@
         </table>
     </div>
 </div>
-<script>
-	var msg = '{{Session::get('alert')}}';
-	var success = '{{Session::has('alert')}}';
-	if(success){
-		alert(msg);
-	}
-</script>
 @endsection
