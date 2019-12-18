@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProposedAdvisorsTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateProposedAdvisorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('proposed_advisors', function (Blueprint $table) {
-            $table->bigIncrements('advisor_id');
-            $table->string('lec_id');
-            $table->string('std_id');
+        Schema::create('statuses', function (Blueprint $table) {
+            $table->bigIncrements('sts_id');
+            $table->string('sts_name');
             $table->timestamps();
             
-            $table->foreign('std_id')->references('std_id')->on('students');
             $table->foreign('lec_id')->references('lec_id')->on('lecturers');
         });
     }
@@ -31,6 +29,6 @@ class CreateProposedAdvisorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proposed_advisors');
+        Schema::dropIfExists('statuses');
     }
 }

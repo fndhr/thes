@@ -23,7 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
-    Route::get('/studentProposal','AdminController@studentProposal');
     Route::get('/setDefenseSchedule','AdminController@setDefenseSchedule');
     Route::get('/getDefenseSchedule','AdminController@getDefenseSchedule');
     Route::get('/registerStudent','AdminController@studentViewRegister');
@@ -36,4 +35,9 @@ Route::prefix('admin')->group(function (){
     Route::post('/register/student','UserController@studentRegister');
     Route::post('/register/lecturer','UserController@lecturerRegister');
 
+});
+
+
+Route::prefix('student')->group(function(){
+    Route::post('/submitTitleAndAdvisor','StudentController@submitTitleAndAdvisor');
 });
