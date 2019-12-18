@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\major;
+use App\student;
+use App\lecturer;
 
 class AdminController extends Controller
 {
@@ -10,6 +13,15 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');   
+    }
+    public function getStudents(){
+        return student::paginate(10);
+    }
+    public function getLecturers(){
+        return lecturer::all();
+    }
+    public function getMajor(){
+        return major::all();
     }
     public function sessionSet(){
         return view('admin.sessionset',[
@@ -33,12 +45,16 @@ class AdminController extends Controller
     }
     public function studentViewRegister(){
         return view('admin.studentregistration',[
-            'role' => $this->role
+            'role' => $this->role,
+            'majors'=>$this->getMajor(),
+            'students'=>$this->getStudents()
         ]);
     }
     public function lecturerViewRegister(){
         return view('admin.lecturerregistration',[
-            'role' => $this->role
+            'role' => $this->role,
+            'majors' =>$this->getMajor(),
+            'lecturers' =>$this->getLecturers()
         ]);
     }
     public function studentSearch(){

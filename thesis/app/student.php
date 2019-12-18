@@ -15,6 +15,6 @@ class student extends Model
     }
     
     public function major(){
-        return $this->hasOne('App\major','major_id');
+        return $this->hasOne('App\major','major_id','major_id');
     }
 }

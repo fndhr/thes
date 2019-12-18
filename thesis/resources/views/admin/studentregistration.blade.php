@@ -21,8 +21,8 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Last Name</label>
-                    <input type="text" class="form-control col-9" for="last_name" name="last_name" placeholder="example">
+                    <label class="col-3 col-form-label ">Last Name</label>
+                    <input type="text" class="form-control col-9 @error('last_name') is-invalid @enderror" for="last_name" name="last_name" placeholder="example" value="{{old('last_name')}}">
                     @error('last_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -40,15 +40,25 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Student ID</label>
-                    <input type="text" class="form-control col-9" for="std_id" name="std_id" placeholder="123456789">
+                    <input type="text" class="form-control col-9 @error('std_id') is-invalid @enderror" for="std_id" name="std_id" placeholder="123456789" value="{{old('std_id')}}">
+                    @error('std_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="text" class="form-control col-9" for="phone" name="phone" placeholder="081234567890">
+                    <input type="text" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="081234567890" value="{{old('phone')}}">
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror                
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Email Address</label>
-                    <input type="email" class="form-control col-9" for="email" name="email" placeholder="name@example.com">
+                    <input type="email" class="form-control col-9 @error('email') is-invalid @enderror" for="email" name="email" placeholder="name@example.com"  value="{{old('email')}}">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -62,10 +72,9 @@
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Major</label>
                     <select class="form-control col-3" for="major_id" name="major_id">
-                        <option selected>Choose...</option>
-                        <option value="1">Information System</option>
-                        <option value="2">Information Technology</option>
-                        <option value="3">Visual Design Graphic</option>
+                        @foreach($majors as $major)
+                            <option value="{{$major->major_id}}">{{$major->major_name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="text-center">
@@ -87,27 +96,22 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($students as $student)
                 <tr>
-                    <td>Fiqa Nadhira</td>
-                    <td>001201600001</td>
-                    <td>Information System</td>
-                    <td>081234567890</td>
-                    <td>fiqa.nadhira@gmail.com</td>
+                    <td>{{$student->user->first_name}} {{$student->user->last_name}}</td>
+                    <td>{{$student->std_id}}</td>
+                    <td>{{$student->major->major_name}}</td>
+                    <td>{{$student->user->phone ?? 'no phone number'}}</td>
+                    <td>{{$student->user->email ?? 'please fill the email'}}</td>
                 </tr>
-                <tr>
-                    <td>Muhammad Fadrean</td>
-                    <td>001201600002</td>
-                    <td>Information System</td>
-                    <td>081234567890</td>
-                    <td>muhammad.fadrean@gmail.com</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
 <script>
 	var msg = '{{Session::get('alert')}}';
-	var success = '{{Session::get('alert')}}';
+	var success = '{{Session::has('alert')}}';
 	if(success){
 		alert(msg);
 	}

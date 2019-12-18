@@ -10,6 +10,6 @@ class major extends Model
     protected $primaryKey = 'major_id';
     
     public function student(){
-        $this->belongsTo('App\student','major_id');
+        $this->belongsTo('App\student','major_id','major_id');
     }
 }

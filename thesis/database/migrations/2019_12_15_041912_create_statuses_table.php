@@ -18,7 +18,6 @@ class CreateStatusesTable extends Migration
             $table->string('sts_name');
             $table->timestamps();
             
-            $table->foreign('lec_id')->references('lec_id')->on('lecturers');
         });
     }
 

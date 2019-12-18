@@ -17,7 +17,9 @@ class UserController extends Controller
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|unique:users',
-            'std_id' => 'required|string|unique:students'
+            'std_id' => 'required|string|unique:students',
+            'phone' => request('phone')!=null ? 'sometimes|min:10|regex:/(01)[0-9]{9}/' : '',
+            'major_id' =>'required'
         ]);
         if ($validator->fails()) {
             $validator->validate();
@@ -34,6 +36,7 @@ class UserController extends Controller
         $student = new student;
         $student->std_id = request('std_id');
         $student->usr_id = $user->id;
+        $student->major_id = request('major_id');
         $student->save();
 		
 		return redirect()->back()->with('alert','successfull add student');
@@ -46,6 +49,7 @@ class UserController extends Controller
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|unique:users',
+            'phone' =>  request('phone')!=null ? 'sometimes|min:10|regex:/(01)[0-9]{9}/' : '',
             'lec_id' => 'required|unique:lecturers'
         ]);
         if ($validator->fails()) {
