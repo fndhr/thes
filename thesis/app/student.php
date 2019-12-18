@@ -17,4 +17,10 @@ class student extends Model
     public function major(){
         return $this->hasOne('App\major','major_id','major_id');
     }
+    public function proposedTitle(){
+        return $this->belongsTo('App\proposedTitle','std_id','std_id');
+    }
+    public function proposedAdvisor(){
+        return $this->belongsTo('App\proposedAdvisor','std_id','std_id');
+    }
 }

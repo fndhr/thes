@@ -48,15 +48,17 @@
                         <div class="col-3"><h5>Status: null</h5></div>
                     </div>
                     <div class="px-4">
-                        <form class="mt-5 mb-3">
+                        <form class="mt-5 mb-3" action="/student/submitTitle" method="POST">
+                            @csrf
                             <div class="form-group row">
-                                <label for="firstNameLecturer" class="col-3 col-form-label">Title</label>
-                                <input type="text" class="form-control col-9" id="firstNameLecturer" placeholder="Title Name">
+                                <label class="col-3 col-form-label">Title</label>
+                                <input type="text" class="form-control col-9" for="title_name" name="title_name" placeholder="Title Name">
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary px-5 my-3 btnSubmit">Submit</button>
+                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                             </div>
                         </form>
+                        @if(count($proposedTitle)>0)
                         <div class="py-3">
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
@@ -67,32 +69,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @for($counter = 0 ; $counter < count($proposedTitle) ;$counter++)
                                     <tr>
-                                        <td>1.</td>
-                                        <td>Thesis Title</td>
-                                        <td>Rejected</td>
+                                        <td>{{$counter+1}}.</td>
+                                        <td>{{$proposedTitle[$counter]->title_name}}</td>
+                                        <td>{{$proposedTitle[$counter]->statuses[0]->sts_name}}</td>
                                     </tr>
+                                    @endfor
                                 </tbody>
                             </table>
                         </div>
-                        <form class="mt-5 mb-3">
+                        @endif
+                        <form class="mt-5 mb-3" action="/student/submitAdvisor" method="POST"> 
+                            @csrf   
                             <div class="form-group row">
-                                <label for="firstNameLecturer" class="col-3 col-form-label">Advisor</label>
-                                <input type="text" class="form-control col-9" id="firstNameLecturer" placeholder="Advisor Name">
-                            </div>
-                            <div class="form-group row">
-                                <label for="majorStudent" class="col-3 col-form-label">Major</label>
-                                <select class="form-control col-3" id="majorStudent">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Lecture Name 1</option>
-                                    <option value="2">Lecture Name 2</option>
-                                    <option value="3">Lecture Name 3</option>
+                                <label for="majorStudent" class="col-3 col-form-label">Advisor</label>
+                                <select class="form-control col-9 @error('advisor') is-invalid @enderror" for="advisor" name="advisor">
+                                    <option value="">Choose...</option>
+                                    @foreach($lecturers as $lecturer)
+                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
+                            <div class="row">
+                                <div class="col-3"></div>
+                                <div class="col-9 px-0">
+                                    @error('advisor')
+                                        <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary px-5 my-3 btnSubmit">Submit</button>
+                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                             </div>
                         </form>
+                        @if(count($proposedLecturers)>0)
                         <div class="py-3">
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
@@ -103,14 +116,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @for($counter = 0 ; $counter < count($proposedLecturers) ;$counter++)
                                     <tr>
-                                        <td>1.</td>
-                                        <td>Advisor Name</td>
-                                        <td>Rejected</td>
+                                        <td>{{$counter+1}}.</td>
+                                        <td>{{$proposedLecturers[$counter]->lecturers[0]->user->first_name}} {{$proposedLecturers[$counter]->lecturers[0]->user->last_name}}</td>
+                                        <td>{{$proposedLecturers[$counter]->statuses[0]->sts_name}}</td>
                                     </tr>
+                                    @endfor
                                 </tbody>
                             </table>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -242,7 +258,7 @@
 
         <div class="card">
             <div class="card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                <h4 class="text-black">Upload your signed final draft</h4>
+                <h4 class="text-black">Your Defense Schedule</h4>
             </div>
             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
                 <div class="card-body">

@@ -44,10 +44,10 @@ class User extends Authenticatable
     }
 
     public function student(){
-        return $this->belongsTo('App\student','usr_id','id');
+        return $this->belongsTo('App\student','id','usr_id');
     }
 
     public function lecturer(){
-        return $this->belongsTo('App\lecturer','usr_id','id');
+        return $this->belongsTo('App\lecturer','id','usr_id');
     }
 }

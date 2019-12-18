@@ -17,10 +17,12 @@ class CreateProposedAdvisorsTable extends Migration
             $table->bigIncrements('advisor_id');
             $table->string('lec_id');
             $table->string('std_id');
+            $table->unsignedBigInteger('sts_id')->default(1);
             $table->timestamps();
             
             $table->foreign('std_id')->references('std_id')->on('students');
             $table->foreign('lec_id')->references('lec_id')->on('lecturers');
+            $table->foreign('sts_id')->references('sts_id')->on('statuses');
         });
     }
 

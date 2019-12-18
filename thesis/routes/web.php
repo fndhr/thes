@@ -39,5 +39,6 @@ Route::prefix('admin')->group(function (){
 
 
 Route::prefix('student')->group(function(){
-    Route::post('/submitTitleAndAdvisor','StudentController@submitTitleAndAdvisor');
+    Route::post('/submitTitle','StudentController@submitTitle');
+    Route::post('/submitAdvisor','StudentController@submitAdvisor');
 });
