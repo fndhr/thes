@@ -19,13 +19,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             @if(!is_null($role ?? null))
                 <a class="navbar-brand" href="/home">
-                    <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-512.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    <img src="/assets/image/user_navbar.png" width="30" height="30" class="d-inline-block align-top" alt="">
                     @if($role == 3)
                     {{$student->std_id}} - {{Auth::user()->username}}
                     @elseif($role == 2)
                     {{$lecturer->lec_id}} - {{Auth::user()->username}}
                     @else
-                    {{Auth::user()->username}}
+                    Admin - {{Auth::user()->username}}
                     @endif
                 </a>
                 @if($role ==1)
@@ -44,15 +44,7 @@
                             </div>
                         </div>
                         <a class="nav-item nav-link" href="/admin/sessionSet">Set Session</a>
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Student
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/admin/studentSearch">Search Student</a>
-                                <a class="dropdown-item" href="#">Title and Advisor Proposal</a>
-                            </div>
-                        </div>
+                        <a class="nav-item nav-link" href="/admin/studentSearch">Student Search</a>
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Defense
@@ -66,7 +58,7 @@
                 </div>
                 @endif
                 <div class="dropdown">
-                    <a class="navbar-brand"><img src="https://cdn4.iconfinder.com/data/icons/integral/128/message-512.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+                    <a class="navbar-brand"><img src="/assets/image/admin_message.png" width="30" height="30" class="" alt=""></a>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Hi, {{Auth::user()->username}}
                     </button>

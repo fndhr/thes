@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row my-5">
         <div class="col-12 text-center">
-            <h1>Student Search</h1>
+            <h1>Set Defense Schedule</h1>
         </div>
     </div>
     <div class="row justify-content-center">
