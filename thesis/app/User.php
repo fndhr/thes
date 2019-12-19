@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function lecturer(){
         return $this->belongsTo('App\lecturer','id','usr_id');
     }
+
+    public function defense(){
+        return $this->belongsTo('App\defense','id','usr_id');
+    }
 }

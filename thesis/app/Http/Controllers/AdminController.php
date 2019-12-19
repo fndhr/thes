@@ -59,7 +59,8 @@ class AdminController extends Controller
     }
     public function studentSearch(){
         return view('admin.studentsearch',[
-            'role' => $this->role
+            'role' => $this->role,
+            'students' =>$this->getStudents()
         ]);
     }
     public function getDefenseScheduleDetail($param){
