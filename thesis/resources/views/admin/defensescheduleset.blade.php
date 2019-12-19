@@ -23,19 +23,19 @@
             </div>
             <form method="POST" action="/register/lecturer">
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Date</label>
+                    <label class="col-3 col-form-label inputRequired">Date*</label>
                     <input type="text" id="datepicker" class="form-control col-9" for="create_at" placeholder="01/01/2020">
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Time</label>
+                    <label class="col-3 col-form-label inputRequired">Time*</label>
                     <input type="text" class="form-control col-9" for="create_at" placeholder="09:00">
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Room</label>
+                    <label class="col-3 col-form-label inputRequired">Room*</label>
                     <input type="text" class="form-control col-9" for="create_at" placeholder="A000">
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Chairman</label>
+                    <label class="col-3 col-form-label inputRequired">Chairman*</label>
                     <select class="form-control col-3" for="chairman_id" name="major_id">
                         <option selected>Choose...</option>
                         <option value="1">Ronny</option>
@@ -44,7 +44,7 @@
                     </select>
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Examiner</label>
+                    <label class="col-3 col-form-label inputRequired">Examiner*</label>
                     <select class="form-control col-3" for="examiner_id" name="major_id">
                         <option selected>Choose...</option>
                         <option value="1">Tjong Wan Sen</option>
@@ -53,7 +53,7 @@
                     </select>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary px-5 my-4 btnSubmit">Save</button>
+                    <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
                 </div>
             </form>
         </div>

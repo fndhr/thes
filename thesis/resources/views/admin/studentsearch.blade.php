@@ -11,7 +11,7 @@
         <div class="col-11">
             <form method="POST" action="/register/lecturer">
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Student</label>
+                    <label class="col-3 col-form-label inputRequired">Student*</label>
                     <input type="text" class="form-control col-9" for="std_id" placeholder="Input Student Name or ID">
                 </div>
                 <div class="text-center">

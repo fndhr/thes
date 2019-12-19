@@ -12,8 +12,8 @@
             <form  method="POST" action="/admin/register/student">
                 @csrf
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">First Name</label>
-                    <input type="text" class="form-control col-9 @error('user_name') is-invalid @enderror" for="first_name" name="first_name" placeholder="example" value="{{old('first_name')}}">
+                    <label class="col-3 col-form-label inputRequired">First Name*</label>
+                    <input type="text" class="form-control col-9 @error('user_name') is-invalid @enderror" for="first_name" name="first_name" placeholder="Please Input Your First Name" value="{{old('first_name')}}">
                     @error('first_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -21,8 +21,8 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label ">Last Name</label>
-                    <input type="text" class="form-control col-9 @error('last_name') is-invalid @enderror" for="last_name" name="last_name" placeholder="example" value="{{old('last_name')}}">
+                    <label class="col-3 col-form-label inputRequired">Last Name*</label>
+                    <input type="text" class="form-control col-9 @error('last_name') is-invalid @enderror" for="last_name" name="last_name" placeholder="Please Input Your Last Name" value="{{old('last_name')}}">
                     @error('last_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -30,17 +30,8 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Username</label>
-                    <input type="text" class="form-control col-9 @error('username') is-invalid @enderror" for="username" name="username" placeholder="example" value="{{old('username')}}">
-                    @error('username')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group row">
-                    <label class="col-3 col-form-label">Student ID</label>
-                    <input type="text" class="form-control col-9 @error('std_id') is-invalid @enderror" for="std_id" name="std_id" placeholder="123456789" value="{{old('std_id')}}">
+                    <label class="col-3 col-form-label inputRequired">Student ID*</label>
+                    <input type="text" class="form-control col-9 @error('std_id') is-invalid @enderror" for="std_id" name="std_id" placeholder="Please Input Your Student ID" value="{{old('std_id')}}">
                     @error('std_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -49,7 +40,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="text" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="081234567890" value="{{old('phone')}}">
+                    <input type="text" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
                     @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -57,8 +48,8 @@
                     @enderror                
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Email Address</label>
-                    <input type="email" class="form-control col-9 @error('email') is-invalid @enderror" for="email" name="email" placeholder="name@example.com"  value="{{old('email')}}">
+                    <label class="col-3 col-form-label inputRequired">Email Address*</label>
+                    <input type="email" class="form-control col-9 @error('email') is-invalid @enderror" for="email" name="email" placeholder="Please Input Your Email Address"  value="{{old('email')}}">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -66,11 +57,11 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Password</label>
-                    <input type="password" class="form-control col-9" for="password" name="password" placeholder="example1234">
+                    <label class="col-3 col-form-label inputRequired">Password*</label>
+                    <input type="password" class="form-control col-9" for="password" name="password" placeholder="Please Input Your Password">
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Major</label>
+                    <label class="col-3 col-form-label inputRequired">Major*</label>
                     <select class="form-control col-3" for="major_id" name="major_id">
                         @foreach($majors as $major)
                             <option value="{{$major->major_id}}">{{$major->major_name}}</option>
@@ -78,7 +69,7 @@
                     </select>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary px-5 my-4 btnSubmit">Save</button>
+                    <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
                 </div>
             </form>
         </div>

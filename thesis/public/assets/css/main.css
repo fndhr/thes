@@ -23,3 +23,7 @@ a:hover {
     padding: 1.5rem;
     margin: 3rem auto;
 }
+
+.inputRequired {
+    font-weight: bold;
+}
