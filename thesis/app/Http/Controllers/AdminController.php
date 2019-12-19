@@ -70,7 +70,8 @@ class AdminController extends Controller
     }
     public function studentDetail($param){
         return view('admin.studentdetail',[
-            'role' => $this->role
+            'role' => $this->role,
+            'student' => student::whereStdId($param)->first()
         ]);
     }
 }
