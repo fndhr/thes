@@ -28,18 +28,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php($count = 1)
+                    @foreach($students as $student)
                     <tr>
                         <td>1.</td>
                         <td><a href="/admin/studentDetail/1">Fiqa Nadhira Luthfia Taufik</a></td>
                         <td>Interim</td>
                         <td>Rikip Ginanjar</td>
                     </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td><a href="/admin/studentDetail/1">Cindy Grace Zebua</a></td>
-                        <td>Final Draft</td>
-                        <td>Rikip Ginanjar</td>
-                    </tr>
+                    @endfor
                 </tbody>
             </table>
         </div>
