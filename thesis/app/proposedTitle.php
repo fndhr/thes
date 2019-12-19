@@ -8,9 +8,9 @@ class proposedTitle extends Model
 {
     //
     public function students(){
-        return $this->hasMany('App\student','std_id','std_id');
+        return $this->belongsTo('App\student','std_id','std_id');
     }
     public function statuses(){
-        return $this->hasMany('App\status','sts_id','sts_id');
+        return $this->hasOne('App\status','sts_id','sts_id');
     }
 }

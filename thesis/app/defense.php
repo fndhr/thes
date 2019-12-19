@@ -10,10 +10,10 @@ class defense extends Model
     public function user(){
         return $this->hasOne('App\User','id','usr_id');
     }
-    public function chairmans(){
-        return $this->hasMany('App\lecturer','lec_id','chairman');
+    public function chairman(){
+        return $this->belongsTo('App\lecturer','lec_id','chairman');
     }
-    public function examiners(){
-        return $this->hasMany('App\lecturer','lec_id','examiner');
+    public function examiner(){
+        return $this->belongsTo('App\lecturer','lec_id','examiner');
     }
 }

@@ -31,12 +31,13 @@
                     @php($count = 1)
                     @foreach($students as $student)
                     <tr>
-                        <td>1.</td>
-                        <td><a href="/admin/studentDetail/1">Fiqa Nadhira Luthfia Taufik</a></td>
-                        <td>Interim</td>
-                        <td>Rikip Ginanjar</td>
+                        <td>{{$count}}</td>
+                        <td><a href="/admin/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
+                        <td></td>
+                        <td>{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</td>
+                        @php($count++)
                     </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>

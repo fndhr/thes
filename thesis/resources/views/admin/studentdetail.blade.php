@@ -11,13 +11,16 @@
         <div class="col-11">
             <div class="row py-2 mb-2">
                 <div class="col-3">Name</div>
-                <div class="col-9">:&nbsp;&nbsp;Cindy Grace Zebua</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->user->first_name}} {{$student->user->last_name}}</div>
             </div>
+            @if(!is_null($student->title_id))
             <div class="row py-2 mb-2">
                 <div class="col-3">Title</div>
                 <div class="col-7">:&nbsp;&nbsp;Restourant Management System for Bubble Tea Stall</div>
                 <div class="col-1">&#10003;</div>
             </div>
+            @endif
+            @if(count($student->proposedTitle)>0)
             <div class="row py-2 mb-2">
                 <div class="col">
                     <table class="table table-sm table-bordered table-hover">
@@ -29,20 +32,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php($num = 1)
+                            @foreach($student->proposedTitle as $title)
                             <tr>
-                                <td>1.</td>
-                                <td>Restourant Management System for Bubble Tea Stall</td>
+                                <td>{{$num}}.</td>
+                                <td>{{$title->title_name}}</td>
                                 <td><span class="text-success">YES</span>&emsp;<span class="text-danger">NO</span></td>
+                                @php($num++)
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            @endif
             <div class="row py-2 mb-2">
                 <div class="col-3">Advisor</div>
-                <div class="col-7">:&nbsp;&nbsp;Rikip Ginanjar, M.Sc</div>
-                <div class="col-1">&#10003;</div>
+                <div class="col-7">:&nbsp;&nbsp;{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : 'unconfirmed'}}</div>
+                <div class="col-1">@if(!is_null($student->lecturer))&#10003;@endif</div>
             </div>
+            @if(count($student->proposedAdvisor)>0)
             <div class="row py-2 mb-2">
                 <div class="col">
                     <table class="table table-sm table-bordered table-hover">
@@ -54,20 +63,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php($num = 1)
+                            @foreach($student->proposedAdvisor as $advisor)
                             <tr>
-                                <td>1.</td>
-                                <td>Rila Mandala Ph.D</td>
+                                <td>{{$num}}.</td>
+                                <td>{{$advisor->lecturer->user->first_name.' '.$advisor->lecturer->user->last_name}}</td>
                                 <td><span class="text-success">YES</span>&emsp;<span class="text-danger">NO</span></td>
                             </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Rikip Ginanjar M.Sc</td>
-                                <td><span class="text-success">YES</span>&emsp;<span class="text-danger">NO</span></td>
-                            </tr>
+                            @php($num++)
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            @endif
             <div class="row py-2 mb-2">
                 <div class="col-3">Proposal</div>
                 <div class="col-5">:&nbsp;&nbsp;Fiqa Nadhira - Proposal.pdf</div>
