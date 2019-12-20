@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-            <form method="POST" action="">
+            <form method="POST" action="" class="submit">
                 <h3>Thesis Title and Advisor Proposal</h3>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Start Date</label>

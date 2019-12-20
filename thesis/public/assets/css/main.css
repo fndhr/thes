@@ -27,3 +27,23 @@ a:hover {
 .inputRequired {
     font-weight: bold;
 }
+
+.ui-datepicker .ui-datepicker-prev {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid black;
+    top: 8px;
+    left: 10px;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid black;
+    top: 8px;
+    right: 10px;
+}

@@ -21,7 +21,7 @@
                 <div class="col-3">Advisor</div>
                 <div class="col-9">:&nbsp;&nbsp;Rikip Ginanjar</div>
             </div>
-            <form method="POST" action="/register/lecturer">
+            <form method="POST" action="/register/lecturer" class="submit">
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Date*</label>
                     <input type="text" id="datepicker" class="form-control col-9" for="create_at" placeholder="01/01/2020">

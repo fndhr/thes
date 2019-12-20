@@ -14,7 +14,7 @@
                                     <h6 class="text-white mb-4" data-aos="fade-up" data-aos-delay="200">President University - Faculty of Computer Science</h6>
                                 </div>
                                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                                    <form method="post"  action="{{ route('login') }}" class="form-box">
+                                    <form method="post" action="{{ route('login') }}" class="form-box">
                                     @csrf
                                         <div class="text-center mb-5">
                                             <img src="/assets/image/user_navbar.png" width="50" height="50" class="" alt="">
