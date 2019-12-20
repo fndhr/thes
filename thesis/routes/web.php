@@ -38,6 +38,8 @@ Route::prefix('admin')->group(function (){
     Route::post('/approve/title','AdminController@approveTitle');
     Route::post('/disapprove/advisor','AdminController@disapproveAdvisor');
     Route::post('/disapprove/title','AdminController@disapproveTitle');
+    Route::post('/studentSearch','AdminController@studentSearchFilter');
+
 });
 
 
