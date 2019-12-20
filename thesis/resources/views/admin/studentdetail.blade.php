@@ -13,10 +13,16 @@
                 <div class="col-3">Name</div>
                 <div class="col-9">:&nbsp;&nbsp;{{$student->user->first_name}} {{$student->user->last_name}}</div>
             </div>
+            @php($sts_title = NULL)
+            @foreach($student->proposedTitle as $title)
+                @if($title->sts_id == 2)
+                    @php($sts_title = $title->title_name)
+                @endif
+            @endforeach
             <div class="row py-2 mb-2">
                 <div class="col-3">Title</div>
-                <div class="col-7">:&nbsp;&nbsp;{{$student->title ? $student->title_name : 'unconfirmed'}}</div>
-                <div class="col-1">@if(!is_null($student->title))&#10003;@endif</div>
+                <div class="col-7">:&nbsp;&nbsp;{{$sts_title ?? 'unconfirmed'}}</div>
+                <div class="col-1">@if(!is_null($sts_title))&#10003;@endif</div>
             </div>
             @if($numberPropTitle>0)
             <div class="row py-2 mb-2">
