@@ -7,6 +7,7 @@ use App\major;
 use App\student;
 use App\lecturer;
 use App\proposedAdvisor;
+use App\proposedTitle;
 class AdminController extends Controller
 {
     private $role = 1;
@@ -71,11 +72,26 @@ class AdminController extends Controller
     public function studentDetail($param){
         return view('admin.studentdetail',[
             'role' => $this->role,
-            'student' => student::whereStdId($param)->first()
+            'student' => student::whereStdId($param)->first(),
+            'numberPropTitle' => count(proposedTitle::whereStdId($param)->whereStsId(1)->get()),
+            'numberPropAdv' => count(proposedAdvisor::whereStdId($param)->whereStsId(1)->get()),
         ]);
     }
     public function approveTitle(Request $request){
+        $proposedTitles = proposedTitle::whereStdId(request('std'))->get();
+        foreach ($proposedTitles as $proposedTitle) {
+            if($proposedTitle->title_id == request('title')){
+                $proposedTitle->sts_id = 2;
+                $proposedTitle->students->title_id = $proposedTitle->title_id;
+                $proposedTitle->students->save();
+            }
+            else{
+                $proposedTitle->sts_id = 3;
+            }
+            $proposedTitle->save();
+        }
 
+        return redirect()->back()->with('alert','successfully approved title');
     }
     public function approveAdvisor(Request $request){
         $proposedAdvisors = proposedAdvisor::whereStdId(request('std'))->get();

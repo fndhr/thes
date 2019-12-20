@@ -13,14 +13,12 @@
                 <div class="col-3">Name</div>
                 <div class="col-9">:&nbsp;&nbsp;{{$student->user->first_name}} {{$student->user->last_name}}</div>
             </div>
-            @if(!is_null($student->title_id))
             <div class="row py-2 mb-2">
                 <div class="col-3">Title</div>
-                <div class="col-7">:&nbsp;&nbsp;Restourant Management System for Bubble Tea Stall</div>
-                <div class="col-1">&#10003;</div>
+                <div class="col-7">:&nbsp;&nbsp;{{$student->title ? $student->title_name : 'unconfirmed'}}</div>
+                <div class="col-1">@if(!is_null($student->title))&#10003;@endif</div>
             </div>
-            @endif
-            @if(count($student->proposedTitle)>0)
+            @if($numberPropTitle>0)
             <div class="row py-2 mb-2">
                 <div class="col">
                     <table class="table table-sm table-bordered table-hover">
@@ -34,12 +32,19 @@
                         <tbody>
                             @php($num = 1)
                             @foreach($student->proposedTitle as $title)
+                            @if($title->sts_id == 1)
                             <tr>
                                 <td>{{$num}}.</td>
                                 <td>{{$title->title_name}}</td>
-                                <td><span class="text-success">YES</span>&emsp;<span class="text-danger">NO</span></td>
+                                <td>
+                                    <span class="text-success" onclick="event.preventDefault(); document.getElementById('button-yes-title{{$title->title_id}}').submit();">YES</span>&emsp;
+                                    <span class="text-danger" onclick="event.preventDefault(); document.getElementById('button-no-title{{$title->title_id}}').submit();">NO</span>
+                                </td>    
+                                <form id="button-yes-title{{$title->title_id}}" action="/admin/approve/title" method="POST" style="display: none;">@csrf<input for="title" name="title" value="{{$title->title_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                <form id="button-no-title{{$title->title_id}}" action="/admin/disapprove/title" method="POST" style="display: none;">@csrf<input for="title" name="title" value="{{$title->title_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                                 @php($num++)
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -51,7 +56,7 @@
                 <div class="col-7">:&nbsp;&nbsp;{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : 'unconfirmed'}}</div>
                 <div class="col-1">@if(!is_null($student->lecturer))&#10003;@endif</div>
             </div>
-            @if(count($student->proposedAdvisor)>0)
+            @if($numberPropAdv>0)
             <div class="row py-2 mb-2">
                 <div class="col">
                     <table class="table table-sm table-bordered table-hover">
@@ -65,16 +70,18 @@
                         <tbody>
                             @php($num = 1)
                             @foreach($student->proposedAdvisor as $advisor)
-                            <tr>
-                                <td>{{$num}}.</td>
-                                <td>{{$advisor->lecturer->user->first_name.' '.$advisor->lecturer->user->last_name}}</td>
-                                <td>
-                                    <span class="text-success" onclick="event.preventDefault(); document.getElementById('button-yes-advisor').submit();">YES</span>&emsp;
-                                    <span class="text-danger" onclick="event.preventDefault(); document.getElementById('button-no-advisor').submit();">NO</span></td>
-                                <form id="button-yes-advisor" action="/admin/approve/advisor" method="POST" style="display: none;">@csrf<input for="advisor" name="advisor" value="{{$advisor->advisor_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                <form id="button-no-advisor" action="/admin/disapprove/advisor" method="POST" style="display: none;">@csrf<input for="advisor" name="advisor" value="{{$advisor->advisor_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                            </tr>
-                            @php($num++)
+                                @if($advisor->sts_id == 1)
+                                <tr>
+                                    <td>{{$num}}.</td>
+                                    <td>{{$advisor->lecturer->user->first_name.' '.$advisor->lecturer->user->last_name}}</td>
+                                    <td>
+                                        <span class="text-success" onclick="event.preventDefault(); document.getElementById('button-yes-advisor{{$advisor->advisor_id}}').submit();">YES</span>&emsp;
+                                        <span class="text-danger" onclick="event.preventDefault(); document.getElementById('button-no-advisor{{$advisor->advisor_id}}').submit();">NO</span></td>
+                                    <form id="button-yes-advisor{{$advisor->advisor_id}}" action="/admin/approve/advisor" method="POST" style="display: none;">@csrf<input for="advisor" name="advisor" value="{{$advisor->advisor_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no-advisor{{$advisor->advisor_id}}" action="/admin/disapprove/advisor" method="POST" style="display: none;">@csrf<input for="advisor" name="advisor" value="{{$advisor->advisor_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                </tr>
+                                @php($num++)
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
