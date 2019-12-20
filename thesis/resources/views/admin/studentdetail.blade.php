@@ -109,7 +109,7 @@
             <div class="row py-2 mb-2">
                 <div class="col-3">Defense Date</div>
                 <div class="col-5">:&nbsp;&nbsp;Not set</div>
-                <div class="col-2"><a href="">View</a>&nbsp;|&nbsp;<a href="">Set</a></div>
+                <div class="col-2"><a href="">View</a>&nbsp;|&nbsp;<a href="/admin/setDefenseSchedule">Set</a></div>
                 <div class="col-1"></div>
             </div>
             <div class="row py-2 mb-2">

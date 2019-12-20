@@ -135,7 +135,7 @@
 
         <div class="card">
             <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                <h4 class="text-black">Upload your signed thesis proposal</h4>
+                <h4 class="text-black">Upload Your Signed Thesis Proposal</h4>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
@@ -181,7 +181,7 @@
 
         <div class="card">
             <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                <h4 class="text-black">Upload your signed interim report</h4>
+                <h4 class="text-black">Upload Your Signed Interim Report</h4>
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
@@ -227,7 +227,7 @@
 
         <div class="card">
             <div class="card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                <h4 class="text-black">Upload your signed final draft</h4>
+                <h4 class="text-black">Upload Your Signed Final Draft</h4>
             </div>
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                 <div class="card-body">
@@ -312,7 +312,7 @@
 
         <div class="card">
             <div class="card-header" id="headingSeven" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                <h4 class="text-black">Upload your signed revised document</h4>
+                <h4 class="text-black">Upload Your Signed Revised Document</h4>
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
                 <div class="card-body">
@@ -353,7 +353,7 @@
 
         <div class="card">
             <div class="card-header" id="headingEight" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                <h4 class="text-black">Upload your signed revised document</h4>
+                <h4 class="text-black">Upload Your Finalized Documents</h4>
             </div>
             <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
                 <div class="card-body">

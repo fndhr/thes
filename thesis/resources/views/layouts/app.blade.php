@@ -45,15 +45,7 @@
                         </div>
                         <a class="nav-item nav-link" href="/admin/sessionSet">Set Session</a>
                         <a class="nav-item nav-link" href="/admin/studentSearch">Student Search</a>
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Defense
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/admin/setDefenseSchedule">Set Defense Schedule</a>
-                                <a class="dropdown-item" href="/admin/getDefenseSchedule">Upcoming Defense Schedule</a>
-                            </div>
-                        </div>
+                        <a class="nav-item nav-link" href="/admin/getDefenseSchedule">Upcoming Defense Schedule</a>
                     </div>
                 </div>
                 @else
