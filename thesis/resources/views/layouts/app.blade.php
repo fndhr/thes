@@ -62,7 +62,7 @@
                 <div class="dropdown">
                     <a class="navbar-brand"><img src="/assets/image/admin_message.png" width="30" height="30" class="" alt=""></a>
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hi, {{Auth::user()->username}}
+                    Hi, {{Auth::user()->first_name}}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="" data-toggle="modal" data-target="#AccountModal">Account Profile</a>

@@ -4,7 +4,7 @@
 <div data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <div class="site-wrap">
         <div class="intro-section" id="home-section">
-            <div class="slide-1" style="background-image: url('images/hero_1.jpg');" data-stellar-background-ratio="0.5">
+            <div class="slide-1" data-stellar-background-ratio="0.5">
                 <div class="container" style="background: none;">
                     <div class="row align-items-center">
                         <div class="col-12">

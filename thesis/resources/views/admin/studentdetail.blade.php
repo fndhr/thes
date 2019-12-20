@@ -95,7 +95,7 @@
                 <div class="col-1">&#10003;</div>
             </div>
             <div class="row py-2 mb-2">
-                <div class="col-3">Inteirm</div>
+                <div class="col-3">Interim</div>
                 <div class="col-5">:&nbsp;&nbsp;Fiqa Nadhira - Interim.pdf</div>
                 <div class="col-2"><a href="">Download</a></div>
                 <div class="col-1">&#10003;</div>
