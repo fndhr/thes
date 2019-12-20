@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class documentUpload extends Model
 {
-    public function user(){
-        return $this->hasOne('App\User','id','usr_id');
+    public function student(){
+        return $this->belongsTo('App\student','std_id','std_id');
     }
 }

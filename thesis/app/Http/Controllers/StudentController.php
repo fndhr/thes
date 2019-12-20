@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\proposedTitle;
 use App\proposedAdvisor;
 use App\student;
+use App\documentUpload;
 use Validator;
 class StudentController extends Controller
 {
@@ -24,7 +25,7 @@ class StudentController extends Controller
 		$title->save();
 		return redirect()->back()->with('alert','successfull submit title');
 	}
-	
+
 	
 	public function submitAdvisor(Request $request){
 		
@@ -40,5 +41,71 @@ class StudentController extends Controller
 		$adv->std_id = $student->std_id;
 		$adv->save();
 		return redirect()->back()->with('alert','successfull submit advisor');
+	}
+
+	public function uploadDocThesisProposal(Request $request){			
+
+		if($request->has('file')){
+			
+			$student = student::whereUsrId(auth()->id())->first();
+
+			$file = $request->file('file');
+			$fileName = $file->getClientOriginalName();
+			//$file->move('uploads\\'.$student->std_id.'\ThesisProposal',$file->getClientOriginalName());
+
+			$uploadDoc = new documentUpload;
+			$uploadDoc->std_id = $student->std_id;
+			$uploadDoc->doc_name = $fileName;
+			$uploadDoc->doc_type_name = 'Thesis Proposal';
+			
+			$uploadDoc->save();
+			return redirect()->back()->with('alert','successfull submit document');
+		}
+	}
+
+	public function uploadDocThesisInterim(Request $request){			
+
+		if($request->has('file')){
+			$student = student::whereUsrId(auth()->id())->first();
+
+			$file = $request->file('file');
+			$fileName = $file->getClientOriginalName();
+			//$file->move('uploads\ThesisInterim',$file->getClientOriginalName());
+			// $path = $request->file('file')->store('file',$fileName);
+			// $size = $file->getSize();
+
+			$uploadDoc = new documentUpload;
+			$uploadDoc->std_id = $student->std_id;
+			$uploadDoc->doc_name = $fileName;
+			$uploadDoc->doc_type_name = 'Thesis Interim';
+			
+			$uploadDoc->save();
+			return redirect()->back()->with('alert','successfull submit document');
+		}
+	}
+
+	public function uploadDocThesisFinalDraft(Request $request){			
+
+		if($request->has('file')){
+			$student = student::whereUsrId(auth()->id())->first();
+
+			$file = $request->file('file');
+			$fileName = $file->getClientOriginalName();
+			//$file->move('uploads\ThesisFinalDraft',$file->getClientOriginalName());
+			// $path = $request->file('file')->store('file',$fileName);
+			// $size = $file->getSize();
+
+			$uploadDoc = new documentUpload;
+			$uploadDoc->std_id = $student->std_id;
+			$uploadDoc->doc_name = $fileName;
+			$uploadDoc->doc_type_name = 'Thesis Final Draft';
+			
+			$uploadDoc->save();
+			return redirect()->back()->with('alert','successfull submit document');
+		}
+	}
+
+	public function checkIsProposalSubmitted(){
+		
 	}
 }

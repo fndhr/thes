@@ -25,4 +25,7 @@ class student extends Model
     public function proposedAdvisor(){
         return $this->hasMany('App\proposedAdvisor','std_id','std_id');
     }
+    public function documentUpload(){
+        return $this->hasMany('App\documentUpload','std_id','std_id');
+    }
 }

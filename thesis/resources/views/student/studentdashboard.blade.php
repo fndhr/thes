@@ -159,9 +159,14 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" action="/student/uploadDocThesisProposal" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -200,9 +205,14 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                        <form class="text-center" action="/student/uploadDocThesisInterim" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -241,9 +251,14 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                        <form class="text-center" action="/student/uploadDocThesisFinalDraft" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                                 </div>
                             </form>
                         </div>

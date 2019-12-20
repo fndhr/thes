@@ -15,8 +15,7 @@ class CreateDocumentUploadsTable extends Migration
     {
         Schema::create('document_uploads', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('usr_id');
-            $table->foreign('usr_id')->references('id')->on('users');
+            $table->string('std_id');
             $table->binary('doc_name');
             $table->string('doc_type_name');
             $table->timestamps();
