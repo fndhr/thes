@@ -13,7 +13,6 @@ class UserController extends Controller
 {
     public function studentRegister(Request $request){
         $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users|min:8|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|unique:users',
@@ -25,7 +24,6 @@ class UserController extends Controller
             $validator->validate();
         }
         $user = new User;
-        $user->username = request('username');
         $user->password = bcrypt(request('password'));
         $user->first_name = request('first_name');
         $user->last_name = request('last_name'); 
@@ -45,7 +43,6 @@ class UserController extends Controller
     public function lecturerRegister(Request $request){
         
         $validator = Validator::make(request(), [
-            'username' => 'required|unique:users|min:8|max:255',
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|unique:users',
@@ -56,7 +53,6 @@ class UserController extends Controller
             $validator->validate();
         }
         $user = new User;
-        $user->username = request('username');
         $user->password = bcrypt(request('password'));
         $user->first_name = request('first_name');
         $user->last_name = request('last_name'); 
