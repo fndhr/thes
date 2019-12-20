@@ -7,6 +7,7 @@ use App\lecturer;
 use App\student;
 use App\proposedAdvisor;
 use App\proposedTitle;
+use App\documentUpload;
 class HomeController extends Controller
 {
     
@@ -35,7 +36,8 @@ class HomeController extends Controller
                 'student' => $student,
                 'proposedTitle' =>proposedTitle::whereStdId($student->std_id)->get(),
                 'lecturers' =>lecturer::whereNotIn('lec_id',proposedAdvisor::whereStdId($student->std_id)->get('lec_id'))->get(),
-                'proposedLecturers' =>proposedAdvisor::whereStdId($student->std_id)->get()
+                'proposedLecturers' =>proposedAdvisor::whereStdId($student->std_id)->get(),
+                'progressUpload' => documentUpload::whereStdId($student->std_id)->get()
             ]);
         }
         else if($isLecturer){
@@ -51,7 +53,6 @@ class HomeController extends Controller
                 'role'=> $this->role
             ]);
         }   
-        
         
            
      
