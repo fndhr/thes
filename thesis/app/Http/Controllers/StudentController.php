@@ -55,7 +55,7 @@ class StudentController extends Controller
 
 			$uploadDoc = new documentUpload;
 			$uploadDoc->std_id = $student->std_id;
-			$uploadDoc->doc_name = $fileName;
+			$uploadDoc->doc_name = $file;
 			$uploadDoc->doc_type_name = 'Thesis Proposal';
 			
 			$uploadDoc->save();

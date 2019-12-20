@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\major;
 use App\student;
+use App\User;
 use App\lecturer;
 use App\proposedAdvisor;
 use App\proposedTitle;
@@ -111,5 +112,19 @@ class AdminController extends Controller
     }
     public function disapproveAdvisor(Request $request){
         return redirect()->back()->with('alert','ini disapprove advisor');
+    }
+
+    public function studentSearchFilter(Request $request){
+        $nameSearch = request('std_name');
+
+        $result = User::where('first_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhere('last_name','LIKE','%'.$nameSearch.'%')->get('id');
+
+        if(count($result) > 0){
+            return view('admin.studentsearch',[
+                'role' => $this->role,
+                'students' =>student::whereIn('usr_id',$result)->get()
+            ]);
+        }
     }
 }

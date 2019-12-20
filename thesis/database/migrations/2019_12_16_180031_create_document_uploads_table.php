@@ -16,7 +16,7 @@ class CreateDocumentUploadsTable extends Migration
         Schema::create('document_uploads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('std_id');
-            $table->binary('doc_name');
+            $table->longText('doc_name');
             $table->string('doc_type_name');
             $table->timestamps();
         });
