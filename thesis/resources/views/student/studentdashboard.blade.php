@@ -16,19 +16,52 @@
                 <div class="card-body">
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                            @php($title_name = NULL)
+                            @foreach($proposedTitle as $title)
+                                @if($title->sts_id == 2)
+                                    @php($title_name = $title->title_name)
+                                @endif
+                            @endforeach
+                            {{$title_name ?? '-'}}
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                            {{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Status</div>
-                        <div class="col-9">:&nbsp;&nbsp;Status Progress</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                            @if(is_null($student->lecturer) || is_null($title_name))
+                                @if(is_null($student->lecturer))
+                                Lecturer
+                                @endif
+                                @if(is_null($student->lecturer) && is_null($title_name))
+                                    and Title
+                                @elseif(is_null($title_name))
+                                    Title
+                                @endif
+                                Hasn't been Set
+                            @elseif(count($progressUpload)==0)
+                                Proposoal Document has not been Uploaded         
+                            @elseif(count($progressUpload)==1)
+                                Interim has not been Uploaded
+                            @elseif(count($progressUpload)==2)
+                                Final Draft has not been Uploaded
+                            @elseif(count($progressUpload)==3)
+                                Waiting for Defense Date
+                            @endif
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Defense</div>
-                        <div class="col-9">:&nbsp;&nbsp;Date not set</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                            {{$student->user->defense ? $student->user->defense->def_strt_dt : 'Date Not Yet Set' }}
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,6 +81,7 @@
                         <div class="col-3"><h5>Status: null</h5></div>
                     </div>
                     <div class="px-4">
+                        @if(is_null($title_name))
                         <form class="mt-5 mb-3" action="/student/submitTitle" method="POST">
                             @csrf
                             <div class="form-group row">
@@ -58,6 +92,7 @@
                                 <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                             </div>
                         </form>
+                        @endif
                         @if(count($proposedTitle)>0)
                         <div class="py-3">
                             <table class="table table-sm table-bordered table-hover">
@@ -73,13 +108,14 @@
                                     <tr>
                                         <td>{{$counter+1}}.</td>
                                         <td>{{$proposedTitle[$counter]->title_name}}</td>
-                                        <td>{{$proposedTitle[$counter]->statuses[0]->sts_name}}</td>
+                                        <td>{{$proposedTitle[$counter]->statuses->sts_name}}</td>
                                     </tr>
                                     @endfor
                                 </tbody>
                             </table>
                         </div>
                         @endif
+                        @if(is_null($student->lecturer))
                         <form class="mt-5 mb-3" action="/student/submitAdvisor" method="POST"> 
                             @csrf   
                             <div class="form-group row">
@@ -105,6 +141,7 @@
                                 <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                             </div>
                         </form>
+                        @endif
                         @if(count($proposedLecturers)>0)
                         <div class="py-3">
                             <table class="table table-sm table-bordered table-hover">
@@ -119,8 +156,8 @@
                                     @for($counter = 0 ; $counter < count($proposedLecturers) ;$counter++)
                                     <tr>
                                         <td>{{$counter+1}}.</td>
-                                        <td>{{$proposedLecturers[$counter]->lecturers[0]->user->first_name}} {{$proposedLecturers[$counter]->lecturers[0]->user->last_name}}</td>
-                                        <td>{{$proposedLecturers[$counter]->statuses[0]->sts_name}}</td>
+                                        <td>{{$proposedLecturers[$counter]->lecturer->user->first_name}} {{$proposedLecturers[$counter]->lecturer->user->last_name}}</td>
+                                        <td>{{$proposedLecturers[$counter]->statuses->sts_name}}</td>
                                     </tr>
                                     @endfor
                                 </tbody>
