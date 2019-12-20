@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class proposedAdvisor extends Model
 {
     //
+    public $primaryKey = 'advisor_id';  
     public function lecturer(){
         return $this->belongsTo('App\lecturer','lec_id','lec_id');
     }

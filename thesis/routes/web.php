@@ -34,7 +34,10 @@ Route::prefix('admin')->group(function (){
 
     Route::post('/register/student','UserController@studentRegister');
     Route::post('/register/lecturer','UserController@lecturerRegister');
-
+    Route::post('/approve/advisor','AdminController@approveAdvisor');
+    Route::post('/approve/title','AdminController@approveTitle');
+    Route::post('/disapprove/advisor','AdminController@disapproveAdvisor');
+    Route::post('/disapprove/title','AdminController@disapproveTitle');
 });
 
 
