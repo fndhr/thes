@@ -96,7 +96,13 @@
                     <tr>
                         <td>{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</td>
                         <td>{{$lecturer->lec_id}}</td>
-                        <td>{{($lecturer->isExm == 1 )? 'Examiner':''}} {{($lecturer->isAdv == 1) ? 'Advisor':''}}</td>
+                        <td>
+                            @if($lecturer->isExm || $lecturer->isAdv)
+                                {{($lecturer->isExm)? 'Examiner':''}}{{($lecturer->isExm )&&($lecturer->isAdv)? ', ':''}}{{($lecturer->isAdv) ? 'Advisor':''}}
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td>{{$lecturer->user->phone ?? 'no phone number'}}</td>
                         <td>{{$lecturer->user->email ?? 'please fill the email'}}</td>
                     </tr>

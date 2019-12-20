@@ -16,10 +16,10 @@ class AdminController extends Controller
         $this->middleware('auth');   
     }
     public function getStudents(){
-        return student::paginate(10);
+        return student::paginate(20);
     }
     public function getLecturers(){
-        return lecturer::all();
+        return lecturer::paginate(20);
     }
     public function getMajor(){
         return major::all();
@@ -54,7 +54,6 @@ class AdminController extends Controller
     public function lecturerViewRegister(){
         return view('admin.lecturerregistration',[
             'role' => $this->role,
-            'majors' =>$this->getMajor(),
             'lecturers' =>$this->getLecturers()
         ]);
     }
