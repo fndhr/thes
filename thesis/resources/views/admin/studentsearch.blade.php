@@ -23,6 +23,7 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
+                        <th scope="col">Student ID</th>
                         <th scope="col">Student</th>
                         <th scope="col">Status</th>
                         <th scope="col">Advisor</th>
@@ -31,6 +32,7 @@
                 <tbody>
                     @foreach($students as $student)
                     <tr>
+                        <td>{{$student->std_id}}</td>
                         <td><a href="/admin/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
                         <td></td>
                         <td>{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</td>
