@@ -81,8 +81,6 @@ class AdminController extends Controller
         foreach ($proposedTitles as $proposedTitle) {
             if($proposedTitle->title_id == request('title')){
                 $proposedTitle->sts_id = 2;
-                $proposedTitle->students->title_id = $proposedTitle->title_id;
-                $proposedTitle->students->save();
             }
             else{
                 $proposedTitle->sts_id = 3;
