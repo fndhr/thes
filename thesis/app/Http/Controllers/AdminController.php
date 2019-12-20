@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\major;
 use App\student;
 use App\lecturer;
-
+use App\proposedAdvisor;
 class AdminController extends Controller
 {
     private $role = 1;
@@ -73,5 +73,30 @@ class AdminController extends Controller
             'role' => $this->role,
             'student' => student::whereStdId($param)->first()
         ]);
+    }
+    public function approveTitle(Request $request){
+
+    }
+    public function approveAdvisor(Request $request){
+        $proposedAdvisors = proposedAdvisor::whereStdId(request('std'))->get();
+        foreach ($proposedAdvisors as $proposedAdvisor) {
+            if($proposedAdvisor->advisor_id == request('advisor')){
+                $proposedAdvisor->sts_id = 2;
+                $proposedAdvisor->student->lec_id = $proposedAdvisor->lec_id;
+                $proposedAdvisor->student->save();
+            }
+            else{
+                $proposedAdvisor->sts_id = 3;
+            }
+            $proposedAdvisor->save();
+        }
+
+        return redirect()->back()->with('alert','successfully approved advisor');
+    }
+    public function disapproveTitle(Request $request){
+
+    }
+    public function disapproveAdvisor(Request $request){
+        return redirect()->back()->with('alert','ini disapprove advisor');
     }
 }

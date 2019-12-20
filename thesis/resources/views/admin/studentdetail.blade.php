@@ -68,7 +68,11 @@
                             <tr>
                                 <td>{{$num}}.</td>
                                 <td>{{$advisor->lecturer->user->first_name.' '.$advisor->lecturer->user->last_name}}</td>
-                                <td><span class="text-success">YES</span>&emsp;<span class="text-danger">NO</span></td>
+                                <td>
+                                    <span class="text-success" onclick="event.preventDefault(); document.getElementById('button-yes-advisor').submit();">YES</span>&emsp;
+                                    <span class="text-danger" onclick="event.preventDefault(); document.getElementById('button-no-advisor').submit();">NO</span></td>
+                                <form id="button-yes-advisor" action="/admin/approve/advisor" method="POST" style="display: none;">@csrf<input for="advisor" name="advisor" value="{{$advisor->advisor_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                <form id="button-no-advisor" action="/admin/disapprove/advisor" method="POST" style="display: none;">@csrf<input for="advisor" name="advisor" value="{{$advisor->advisor_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                             </tr>
                             @php($num++)
                             @endforeach
