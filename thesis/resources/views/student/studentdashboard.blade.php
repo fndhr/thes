@@ -48,7 +48,7 @@
                         <div class="col-3"><h5>Status: null</h5></div>
                     </div>
                     <div class="px-4">
-                        <form class="mt-5 mb-3" action="/student/submitTitle" method="POST">
+                        <form class="mt-5 mb-3" action="/student/submitTitle" method="POST" class="submit">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Title</label>
@@ -80,7 +80,7 @@
                             </table>
                         </div>
                         @endif
-                        <form class="mt-5 mb-3" action="/student/submitAdvisor" method="POST"> 
+                        <form class="mt-5 mb-3" action="/student/submitAdvisor" method="POST" class="submit"> 
                             @csrf   
                             <div class="form-group row">
                                 <label for="majorStudent" class="col-3 col-form-label">Advisor</label>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center" action="/student/uploadDocThesisProposal" method="POST" enctype="multipart/form-data">
+                            <form class="text-center" action="/student/uploadDocThesisProposal" method="POST" enctype="multipart/form-data" class="submit">
                             {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -205,7 +205,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                        <form class="text-center" action="/student/uploadDocThesisInterim" method="POST" enctype="multipart/form-data">
+                        <form class="text-center" action="/student/uploadDocThesisInterim" method="POST" enctype="multipart/form-data" class="submit">
                             {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -251,7 +251,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                        <form class="text-center" action="/student/uploadDocThesisFinalDraft" method="POST" enctype="multipart/form-data">
+                        <form class="text-center" action="/student/uploadDocThesisFinalDraft" method="POST" enctype="multipart/form-data" class="submit">
                             {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -336,7 +336,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
                                 </div>
@@ -378,7 +378,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
                                 </div>
@@ -392,7 +392,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile2">
                                 </div>
@@ -406,7 +406,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile3">
                                 </div>
@@ -420,7 +420,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile4">
                                 </div>
@@ -434,7 +434,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile5">
                                 </div>
@@ -448,7 +448,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile6">
                                 </div>
@@ -462,7 +462,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile7">
                                 </div>
@@ -476,7 +476,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile8">
                                 </div>
@@ -490,7 +490,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center">
+                            <form class="text-center" class="submit">
                                 <div class="form-group row justify-content-center">
                                     <input type="file" class="col-3 form-control-file" id="exampleFormControlFile9">
                                 </div>
