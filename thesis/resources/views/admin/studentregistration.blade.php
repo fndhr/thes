@@ -9,11 +9,11 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-            <form  method="POST" action="/admin/register/student">
+            <form  method="POST" action="register/student">
                 @csrf
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">First Name*</label>
-                    <input type="text" class="form-control col-9 @error('user_name') is-invalid @enderror" for="first_name" name="first_name" placeholder="Please Input Your First Name" value="{{old('first_name')}}">
+                    <input type="text" class="form-control col-9 @error('first_name') is-invalid @enderror" for="first_name" name="first_name" placeholder="Please Input Your First Name" value="{{old('first_name')}}">
                     @error('first_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -58,10 +58,15 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Password*</label>
-                    <input type="password" class="form-control col-9" for="password" name="password" placeholder="Please Input Your Password">
+                    <input type="password" class="form-control col-9 @error('password') is-invalid @enderror" for="password" name="password" placeholder="Please Input Your Password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Major*</label>
+                    <label class="col-3 col-form-label">Major</label>
                     <select class="form-control col-3" for="major_id" name="major_id">
                         @foreach($majors as $major)
                             <option value="{{$major->major_id}}">{{$major->major_name}}</option>
