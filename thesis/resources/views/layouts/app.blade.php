@@ -125,8 +125,8 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery-ui.min.js"></script>
     <script src="/assets/js/aos.js"></script>
-    <script src="/assets/js/main.js"></script>
     <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 
 </html>
