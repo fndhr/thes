@@ -68,5 +68,5 @@ class UserController extends Controller
         }
         $lec->save();
 		return redirect()->back()->with('alert','Successfull Add Lecturer');
-    }
+    }    
 }

@@ -37,7 +37,7 @@
                         <div class="col-9">:&nbsp;&nbsp;
                             @if(is_null($student->lecturer) || is_null($title_name))
                                 @if(is_null($student->lecturer))
-                                Lecturer
+                                    Lecturer
                                 @endif
                                 @if(is_null($student->lecturer) && is_null($title_name))
                                     and Title
@@ -46,7 +46,7 @@
                                 @endif
                                 Hasn't been Set
                             @elseif(count($progressUpload)==0)
-                                Proposoal Document has not been Uploaded
+                                Proposal Document has not been Uploaded
                             @elseif(count($progressUpload)==1)
                                 Interim has not been Uploaded
                             @elseif(count($progressUpload)==2)

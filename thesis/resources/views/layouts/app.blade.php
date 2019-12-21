@@ -21,11 +21,11 @@
                 <a class="navbar-brand" href="/home">
                     <img src="/assets/image/user_navbar.png" width="30" height="30" class="d-inline-block align-top" alt="">
                     @if($role == 3)
-                    {{$student->std_id}} - {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        {{$student->std_id}} - {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                     @elseif($role == 2)
-                    {{$lecturer->lec_id}} - {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        {{$lecturer->lec_id}} - {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                     @else
-                    Admin - {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        Admin - {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                     @endif
                 </a>
                 @if($role == 1)
@@ -74,45 +74,61 @@
                 </div>
             @endif
         </nav>
-    @endauth
+    
     <div class="modal fade" id="AccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Account</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="row py-2">
-                <div class="col-4">ID</div>
-                <div class="col-8">:&nbsp;&nbsp;001201600003</div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                
+                    <form class="text-center" action="/homeChangePass" method="POST" class="submit">
+                    {{ csrf_field() }}
+                        <div class="row py-2">
+                        @if(!is_null($role ?? null))
+                            <div class="col-4">ID</div>
+                            <div class="col-8">:&nbsp;&nbsp;
+                                @if($role == 3)
+                                    {{$student->std_id}}
+                                @elseif($role == 2)
+                                    {{$lecturer->lec_id}}
+                                @else
+                                    Admin
+                                @endif
+                            </div>
+                        @endif
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-4">Phone</div>
+                            <div class="col-8">:&nbsp;&nbsp;{{Auth::user()->phone}}</div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-4">Email</div>
+                            <div class="col-8">:&nbsp;&nbsp;{{Auth::user()->email}}</div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Password</label>
+                            <input type="text" class="form-control col-6" for="new_password" name="new_password" placeholder="" value="{{old('new_password')}}">
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label">Re-enter Password</label>
+                            <input type="text" class="form-control col-6" for="reenter_password" name="reenter_password" placeholder="" value="{{old('reenter_password')}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Edit</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+                    
             </div>
-            <div class="row py-2">
-                <div class="col-4">Phone</div>
-                <div class="col-8">:&nbsp;&nbsp;081211112222</div>
-            </div>
-            <div class="row py-2">
-                <div class="col-4">Email</div>
-                <div class="col-8">:&nbsp;&nbsp;fiqa@gmail.com</div>
-            </div>
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Password</label>
-                <input type="text" class="form-control col-6" for="new_password" name="new_password" placeholder="" value="{{old('new_password')}}">
-            </div>
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Re-enter Password</label>
-                <input type="text" class="form-control col-6" for="reenter_password" name="reenter_password" placeholder="" value="{{old('reenter_password')}}">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-success">Save</button>
-        </div>
         </div>
     </div>
-    </div>
+    @endauth
     @if (session('alert'))
         <div class="alert alert-success">
             {{ session('alert') }}

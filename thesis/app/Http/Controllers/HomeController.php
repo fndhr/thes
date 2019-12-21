@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\lecturer;
 use App\student;
+use App\User;
 use App\proposedAdvisor;
 use App\proposedTitle;
 use App\documentUpload;
@@ -53,8 +54,15 @@ class HomeController extends Controller
                 'role'=> $this->role
             ]);
         }   
-        
-           
-     
+    }
+
+    public function changePassword(Request $request){
+        if($request->has('new_password')){
+            $user = User::whereId(auth()->id())->first();
+
+            $user->password = bcrypt(request('new_password'));
+            $user->save();
+			return redirect()->back()->with('alert','Password Changed Successfully');
+        }
     }
 }
