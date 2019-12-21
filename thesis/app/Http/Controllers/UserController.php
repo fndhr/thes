@@ -24,7 +24,7 @@ class UserController extends Controller
             $validator->validate();
         }
         $user = new User;
-        $user->password = bcrypt(request('password'));
+        $user->password = bcrypt(request('first_name').request('last_name').'1234');
         $user->first_name = request('first_name');
         $user->last_name = request('last_name'); 
         $user->email = request('email');
@@ -51,7 +51,7 @@ class UserController extends Controller
             $validator->validate();
         }
         $user = new User;
-        $user->password = bcrypt(request('password'));
+        $user->password = bcrypt(request('first_name').request('last_name').'1234');
         $user->first_name = request('first_name');
         $user->last_name = request('last_name'); 
         $user->email = request('email');

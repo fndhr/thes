@@ -9,6 +9,7 @@ use App\User;
 use App\proposedAdvisor;
 use App\proposedTitle;
 use App\documentUpload;
+use Validator;
 class HomeController extends Controller
 {
     
@@ -43,7 +44,7 @@ class HomeController extends Controller
         }
         else if($isLecturer){
             $this->role = 2;
-            return view('student.studentdashboard',[
+            return view('lecturer.dashboard',[
                 'role' => $this->role,
                 'lecturer' =>lecturer::whereUsrId(auth()->id())->first()
             ]);
@@ -57,6 +58,7 @@ class HomeController extends Controller
     }
 
     public function changePassword(Request $request){
+
         if($request->has('new_password')){
             $user = User::whereId(auth()->id())->first();
 
