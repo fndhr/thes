@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\lecturer;
 use App\student;
+use App\User;
 use App\proposedAdvisor;
 use App\proposedTitle;
 use App\documentUpload;
+use Validator;
 class HomeController extends Controller
 {
     
@@ -42,7 +44,7 @@ class HomeController extends Controller
         }
         else if($isLecturer){
             $this->role = 2;
-            return view('student.studentdashboard',[
+            return view('lecturer.dashboard',[
                 'role' => $this->role,
                 'lecturer' =>lecturer::whereUsrId(auth()->id())->first()
             ]);
@@ -53,8 +55,21 @@ class HomeController extends Controller
                 'role'=> $this->role
             ]);
         }   
-        
-           
-     
+    }
+
+    public function changePassword(Request $request){
+        $validator = Validator::make($request->all(), [
+            'new_password' => 'required|min:8'
+        ]);
+        if ($validator->fails()) {
+            $validator->validate();
+        }
+        if($request->has('new_password')){
+            $user = User::whereId(auth()->id())->first();
+
+            $user->password = bcrypt(request('new_password'));
+            $user->save();
+			return redirect()->back()->with('alert','Password Changed Successfully');
+        }
     }
 }
