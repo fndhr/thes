@@ -68,7 +68,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="" data-toggle="modal" data-target="#AccountModal">Account Profile</a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                    <a class="dropdown-item submitPropose" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     </div>
                 </div>
@@ -128,7 +128,10 @@
     <script src="/assets/js/index.js"></script>
     <script src="/assets/js/main.js"></script>
     <script>
-    $(".submit").on("submit", function(){
+    $(".submitForm").on("submit", function(){
+        return confirm("Are you sure?");
+    });
+    $(".submitPropose").on("click", function(){
         return confirm("Are you sure?");
     });
 </script>

@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-            <form  method="POST" action="register/student" class="submit">
+            <form  method="POST" action="register/student" class="submitForm">
                 @csrf
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">First Name*</label>
