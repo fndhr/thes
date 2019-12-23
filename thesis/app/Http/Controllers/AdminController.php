@@ -108,10 +108,16 @@ class AdminController extends Controller
         return redirect()->back()->with('alert','successfully approved advisor');
     }
     public function disapproveTitle(Request $request){
-
+        $proposedTitle = proposedTitle::whereTitleId(request('title'))->get();
+        $proposedTitle->sts_id= 3;
+        $proposedTitle->save();
+        return redirect()->back()->with('alert','successfully reject title');
     }
     public function disapproveAdvisor(Request $request){
-        return redirect()->back()->with('alert','ini disapprove advisor');
+        $proposedAdvisor = proposedAdvisor::whereAdvisorId(request('advisor'))->get();
+        $proposedAdvisor->sts_id= 3;
+        $proposedAdvisor->save();
+        return redirect()->back()->with('alert','successfully reject advisor');
     }
 
     public function studentSearchFilter(Request $request){
