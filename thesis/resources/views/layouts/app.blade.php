@@ -121,6 +121,10 @@
                             <label class="col-4 col-form-label">Password</label>
                             <input id="pass" type="text" class="form-control col-6" for="new_password" name="new_password"
                                 placeholder="" value="{{old('new_password')}}">
+                                <span id="passValidator" role="alert" style="display:none; color:red;">
+                                    <strong>Password must be 8 character at least!</strong>
+                                </span>
+                                
                         </div>
                         <div class="form-group row">
                             <label class="col-4 col-form-label">Re-enter Password</label>
@@ -157,13 +161,19 @@
         $(".submit").on("submit", function () {
             return confirm("Are you sure?");
         });
+        
+        $("#pass").on("keyup", function(e){
+            var pass = $("#pass").val().length;
+            if(pass < 8){
+                $("#passValidator").css('display','block')
+            }else{
+                $("#passValidator").css('display','none')
+            }
+        });
 
         $("#repass").on("keyup", function(e){
             var pass = $("#pass").val()
             var retype = $("#repass").val()
-
-            console.log(pass);
-            console.log(retype);
 
             if(pass == retype){
                 document.getElementById("btnSubmit").disabled = false;

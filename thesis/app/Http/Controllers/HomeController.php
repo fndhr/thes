@@ -58,7 +58,12 @@ class HomeController extends Controller
     }
 
     public function changePassword(Request $request){
-
+        $validator = Validator::make($request->all(), [
+            'new_password' => 'required|min:8'
+        ]);
+        if ($validator->fails()) {
+            $validator->validate();
+        }
         if($request->has('new_password')){
             $user = User::whereId(auth()->id())->first();
 
