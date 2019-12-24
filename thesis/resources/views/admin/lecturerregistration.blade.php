@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Lecturer ID*</label>
-                    <input type="text" class="form-control col-9 @error('lec_id') is-invalid @enderror" for="lec_id" name="lec_id" placeholder="Please Input Your Lecturer ID" value="{{old('lec_id')}}">
+                    <input type="number" class="form-control col-9 @error('lec_id') is-invalid @enderror" for="lec_id" name="lec_id" placeholder="Please Input Your Lecturer ID" value="{{old('lec_id')}}">
                     @error('lec_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="text" class="form-control col-9" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
+                    <input type="number" class="form-control col-9" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Email Address*</label>

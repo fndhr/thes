@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Student ID*</label>
-                    <input type="text" class="form-control col-9 @error('std_id') is-invalid @enderror" for="std_id" name="std_id" placeholder="Please Input Your Student ID" value="{{old('std_id')}}">
+                    <input type="number" class="form-control col-9 @error('std_id') is-invalid @enderror" for="std_id" name="std_id" placeholder="Please Input Your Student ID" value="{{old('std_id')}}">
                     @error('std_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="text" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
+                    <input type="number" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
                     @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
