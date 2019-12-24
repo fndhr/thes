@@ -30,6 +30,7 @@ class student extends Model
     }
     public function sessions(){
         return $this->hasMany('App\session','session_id','session_id');
+    }
     public function defense(){
         return $this->belongsTo('App\defense','std_id','std_id');
     }
