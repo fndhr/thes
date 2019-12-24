@@ -117,16 +117,10 @@ class AdminController extends Controller
         return redirect()->back()->with('alert','successfully approved advisor');
     }
     public function disapproveTitle(Request $request){
-        $proposedTitle = proposedTitle::whereTitleId(request('title'))->get();
-        $proposedTitle->sts_id= 3;
-        $proposedTitle->save();
-        return redirect()->back()->with('alert','successfully reject title');
+
     }
     public function disapproveAdvisor(Request $request){
-        $proposedAdvisor = proposedAdvisor::whereAdvisorId(request('advisor'))->get();
-        $proposedAdvisor->sts_id= 3;
-        $proposedAdvisor->save();
-        return redirect()->back()->with('alert','successfully reject advisor');
+        return redirect()->back()->with('alert','ini disapprove advisor');
     }
 
     public function studentSearchFilter(Request $request){
@@ -135,12 +129,12 @@ class AdminController extends Controller
         $result = User::where('first_name','LIKE','%'.$nameSearch.'%')
                     ->orWhere('last_name','LIKE','%'.$nameSearch.'%')->get('id');
 
-        if(count($result) > 0){
-            return view('admin.studentsearch',[
-                'role' => $this->role,
-                'students' =>student::whereIn('usr_id',$result)->get()
-            ]);
-        }
+        
+        return view('admin.studentsearch',[
+            'role' => $this->role,
+            'students' =>student::whereIn('usr_id',$result)->get()
+        ]);
+        
     }
     public function createSessionSet(Request $request){
         $validator = Validator::make($request->all(), [

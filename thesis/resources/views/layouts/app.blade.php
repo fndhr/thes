@@ -57,8 +57,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/admin/studentSearch">Student Search</a>
-                <a class="nav-item nav-link" href="/admin/getDefenseSchedule">Upcoming Defense Schedule</a>
+                <a class="nav-item nav-link" href="/lecturer/studentSearch">Student Search</a>
+                <a class="nav-item nav-link" href="/lecturer/getDefenseSchedule">Upcoming Defense Schedule</a>
             </div>
         </div>
         @else
@@ -123,8 +123,7 @@
                                 placeholder="" value="{{old('new_password')}}">
                                 <span id="passValidator" role="alert" style="display:none; color:red;">
                                     <strong>Password must be 8 character at least!</strong>
-                                </span>
-                                
+                                </span>                                
                         </div>
                         <div class="form-group row">
                             <label class="col-4 col-form-label">Re-enter Password</label>
