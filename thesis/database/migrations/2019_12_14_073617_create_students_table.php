@@ -18,6 +18,7 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('major_id')->nullable();
             $table->string('lec_id')->nullable();
             $table->unsignedBigInteger('usr_id');
+            $table->string('session_id');
             $table->timestamps();
             $table->foreign('major_id')->references('major_id')->on('majors');
             $table->foreign('lec_id')->references('lec_id')->on('lecturers');
