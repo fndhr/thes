@@ -11,45 +11,62 @@
         <div class="col-11">
             <div class="row py-2 mb-2">
                 <div class="col-3">Student</div>
-                <div class="col-9">:&nbsp;&nbsp;Cindy Grace Zebua</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->user->first_name}} {{$student->user->last_name}}</div>
             </div>
             <div class="row py-2 mb-2">
                 <div class="col-3">Title</div>
-                <div class="col-9">:&nbsp;&nbsp;Android-Base Application for HR Management in PT Emerio</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->title->title_name}}</div>
             </div>
             <div class="row py-2 mb-2">
                 <div class="col-3">Advisor</div>
-                <div class="col-9">:&nbsp;&nbsp;Rikip Ginanjar</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer->user->first_name}} {{$student->lecturer->user->last_name}}</div>
             </div>
-            <form method="POST" action="/register/lecturer" class="submit">
+            <form method="POST" action="/admin/submitSetDefenseSchedule" class="submit">
+                @csrf
+                <input type="text" name="std_id" style="display:none" value="{{$student->std_id}}">
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Date*</label>
-                    <input type="text" id="datepicker" class="form-control col-9" for="create_at" placeholder="01/01/2020">
+                    <input type="text" id="datepicker" class="form-control col-9 @error('date') is-invalid @enderror" name="date" placeholder="01/01/2020" value="{{old('date')}}">
+                    @error('date')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Time*</label>
-                    <input type="text" class="form-control col-9" for="create_at" placeholder="09:00">
+                    <input type="text" class="form-control col-9 @error('time') is-invalid @enderror" name="time" placeholder="09:00" value="{{old('time')}}">
+                    @error('time')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Room*</label>
-                    <input type="text" class="form-control col-9" for="create_at" placeholder="A000">
+                    <input type="text" class="form-control col-9 @error('room') is-invalid @enderror" name="room" placeholder="A000" value="{{old('room')}}">
+                    @error('room')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Chairman*</label>
-                    <select class="form-control col-3" for="chairman_id" name="major_id">
-                        <option selected>Choose...</option>
-                        <option value="1">Ronny</option>
-                        <option value="2">Ocha</option>
-                        <option value="3">Ghofir</option>
+                    <select class="form-control col-3" for="chairman_id" name="chairman_id">
+                        <option value="">Choose...</option>
+                        @foreach($chairmans as $examiner)
+                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Examiner*</label>
-                    <select class="form-control col-3" for="examiner_id" name="major_id">
-                        <option selected>Choose...</option>
-                        <option value="1">Tjong Wan Sen</option>
-                        <option value="2">Wiranto</option>
-                        <option value="3">Nurhadi</option>
+                    <select class="form-control col-3" for="examiner_id" name="examiner_id">
+                        <option value="">Choose...</option
+                        >@foreach($examiners as $examiner)
+                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="text-center">
