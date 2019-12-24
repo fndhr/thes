@@ -9,7 +9,9 @@ use App\User;
 use App\lecturer;
 use App\proposedAdvisor;
 use App\proposedTitle;
+use App\defense;
 use DateTime;
+use date;
 use Validator;
 class AdminController extends Controller
 {
@@ -74,8 +76,14 @@ class AdminController extends Controller
         ]);
     }
     public function getDefenseScheduleDetail($param){
+        $student = student::whereStdId($param)->first();
+        $proposedTitle = proposedTitle::whereStdId($param)->whereStsId(2)->first();
+        $student->title = $proposedTitle;
+        $student->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
+        $student->time = date('h:i:s A',strtotime($student->defense->def_strt_dt)).' - '. date('h:i:s A',strtotime($student->defense->def_end_dt));
         return view('admin.defensescheduledetail',[
-            'role' => $this->role
+            'role' => $this->role,
+            'student' => $student
         ]);
     }
     public function studentDetail($param){
@@ -117,10 +125,16 @@ class AdminController extends Controller
         return redirect()->back()->with('alert','successfully approved advisor');
     }
     public function disapproveTitle(Request $request){
-
+        $proposedTitle = proposedTitle::whereTitleId(request('title'))->first();
+        $proposedTitle->sts_id = 3;    
+        $proposedTitle->save();
+        return redirect()->back()->with('alert','successfully reject title');
     }
     public function disapproveAdvisor(Request $request){
-        return redirect()->back()->with('alert','ini disapprove advisor');
+        $proposedAdvisor = proposedAdvisor::whereAdvisorId(request('advisor'))->first();
+        $proposedAdvisor->sts_id = 3;
+        $proposedAdvisor->save();
+        return redirect()->back()->with('alert','successfully reject advisor');
     }
 
     public function studentSearchFilter(Request $request){
@@ -166,12 +180,16 @@ class AdminController extends Controller
         }
         $date = explode('/',request('date'));
         $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $date[2].'-'.$date[0].'-'.$date[1].' '.request('time').':00');
-        $endDate = $startDate->modify('+1 day');
+        $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $date[2].'-'.$date[0].'-'.$date[1].' '.request('time').':00')->modify('+2 hours');
         $defense = new defense;
         $defense->std_id = request('std_id');
         $defense->def_strt_dt = $startDate;
         $defense->def_end_dt = $endDate;
+        $defense->room = request('room');
         $defense->examiner = request('examiner_id');
         $defense->chairman = request('chairman_id');
+        $defense->save();
+
+        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','successfully add defense');
     }
 }

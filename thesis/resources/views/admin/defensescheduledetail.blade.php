@@ -11,35 +11,35 @@
         <div class="col-11">
             <div class="row py-2">
                 <div class="col-3">Student</div>
-                <div class="col-9">:&nbsp;&nbsp;Cindy Grace Zebua</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->user->first_name}} {{$student->user->last_name}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Title</div>
-                <div class="col-9">:&nbsp;&nbsp;Android-Base Application for HR Management in PT Emerio</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->title->title_name}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Advisor</div>
-                <div class="col-9">:&nbsp;&nbsp;Rikip Ginanjar</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer->user->first_name}} {{$student->lecturer->user->last_name}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Date</div>
-                <div class="col-9">:&nbsp;&nbsp;Monday, 06 January 2020</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->date}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Time</div>
-                <div class="col-9">:&nbsp;&nbsp;09:00</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->time}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Room</div>
-                <div class="col-9">:&nbsp;&nbsp;A404</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->defense->room}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Chairman</div>
-                <div class="col-9">:&nbsp;&nbsp;Tjong Wan Sen</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->defense->chairman_name->user->first_name}} {{$student->defense->chairman_name->user->last_name}}</div>
             </div>
             <div class="row py-2">
                 <div class="col-3">Examiner</div>
-                <div class="col-9">:&nbsp;&nbsp;Genta Sahuri</div>
+                <div class="col-9">:&nbsp;&nbsp;{{$student->defense->examiner_name->user->first_name}} {{$student->defense->examiner_name->user->last_name}}</div>
             </div>
         </div>
     </div>
