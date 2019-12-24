@@ -28,4 +28,7 @@ class student extends Model
     public function documentUpload(){
         return $this->hasMany('App\documentUpload','std_id','std_id');
     }
+    public function sessions(){
+        return $this->hasMany('App\session','session_id','session_id');
+    }
 }
