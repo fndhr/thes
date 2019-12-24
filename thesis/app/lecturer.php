@@ -16,9 +16,9 @@ class lecturer extends Model
         return $this->hasMany('App\proposedAdvisor','lec_id','lec_id');
     }
     public function chairmans(){
-        return $this->hashMany('App\defense','lec_id','chairman');
+        return $this->hashMany('App\defense','chairman','lec_id');
     }
     public function examiners(){
-        return $this->hasMany('App\defense','lec_id','examiner');
+        return $this->hasMany('App\defense','examiner','lec_id');
     }
 }
