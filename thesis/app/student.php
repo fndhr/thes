@@ -28,4 +28,7 @@ class student extends Model
     public function documentUpload(){
         return $this->hasMany('App\documentUpload','std_id','std_id');
     }
+    public function defense(){
+        return $this->belongsTo('App\defense','std_id','std_id');
+    }
 }
