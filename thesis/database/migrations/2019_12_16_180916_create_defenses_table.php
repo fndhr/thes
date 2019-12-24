@@ -15,12 +15,13 @@ class CreateDefensesTable extends Migration
     {
         Schema::create('defenses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('usr_id');
+            $table->string('std_id');
             $table->dateTime('def_strt_dt');
             $table->dateTime('def_end_dt');
+            $table->string('room');
             $table->string('examiner');
             $table->string('chairman');
-            $table->foreign('usr_id')->references('id')->on('users');
+            $table->foreign('std_id')->references('std_id')->on('students');
             $table->foreign('examiner')->references('lec_id')->on('lecturers');
             $table->foreign('chairman')->references('lec_id')->on('lecturers');
             $table->timestamps();

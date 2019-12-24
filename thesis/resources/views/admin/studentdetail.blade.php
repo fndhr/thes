@@ -119,8 +119,8 @@
             </div>
             <div class="row py-2 mb-2">
                 <div class="col-3">Defense Date</div>
-                <div class="col-5">:&nbsp;@if(is_null($student->defense)) Not Set @else{{$student->defense}}@endif</div>
-                <div class="col-2"><a href="">View</a>&nbsp;|&nbsp;<a href="/admin/setDefenseSchedule/{{$student->std_id}}">Set</a></div>
+                <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->def_strt_dt}}@endif</div>
+                <div class="col-2"><a href="/admin/getDefenseScheduleDetail/{{$student->std_id}}">View</a>&nbsp;|&nbsp;<a href="/admin/setDefenseSchedule/{{$student->std_id}}">Set</a></div>
                 <div class="col-1"></div>
             </div>
             @endif
