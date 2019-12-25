@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/homeChangePass','HomeController@changePassword') ->name('home');
-
+Route::post('/downloadFile','HomeController@downloadFile');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');

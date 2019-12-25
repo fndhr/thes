@@ -79,4 +79,21 @@ class HomeController extends Controller
 			return redirect()->back()->with('alert','Password Changed Successfully');
         }
     }
+
+    public function downloadFile(Request $request){
+
+        // if(!is_null(request('ThesisProposal'))){
+        //     $path = "public\uploads\\".request('std_id').'\\ThesisProposal\\'.request('ThesisProposal');
+        //     $file = request('ThesisProposal');
+        // }else if(!is_null(request('ThesisInterim'))){
+        //     $path = "public\uploads\\".request('std_id').'\\ThesisInterim\\'.request('ThesisInterim');
+        //     $file = request('ThesisInterim');
+        // }else if(!is_null(request('FinalDraft'))){
+        //     $path = "public\uploads\\".request('std_id').'\\FinalDraft\\'.request('FinalDraft');
+        //     $file = request('FinalDraft');
+        // }
+        $path = "public\uploads\001201500073\ThesisProposal\OPEX-Weekly Report-20191018.pptx";
+        $file = "OPEX-Weekly Report-20191018.pptx";
+        return Response::download($path, $file);
+    }
 }

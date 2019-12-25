@@ -54,13 +54,14 @@ class StudentController extends Controller
 
 			$file = $request->file('file');
 			$fileName = $file->getClientOriginalName();
-			//$file->move('uploads\\'.$student->std_id.'\ThesisProposal',$file->getClientOriginalName());
-			$temp = file_get_contents($file);
-			$blob = base64_encode($temp);
+			$file->move('uploads\\'.$student->std_id.'\ThesisProposal',$file->getClientOriginalName());
+
+			//$temp = file_get_contents($file);
+			//$blob = base64_encode($temp);
 
 			$uploadDoc = new documentUpload;
 			$uploadDoc->std_id = $student->std_id;
-			$uploadDoc->doc_name = $blob;
+			$uploadDoc->doc_name = $fileName;
 			$uploadDoc->doc_type_name = 'Thesis Proposal';
 			
 			$uploadDoc->save();
