@@ -10,6 +10,7 @@ use App\lecturer;
 use App\proposedAdvisor;
 use App\proposedTitle;
 use App\defense;
+use App\session;
 use DateTime;
 use date;
 use Validator;
@@ -34,7 +35,26 @@ class AdminController extends Controller
             return redirect('home');
         }
         return view('admin.sessionset',[
-            'role' => $this->role
+            'role' => $this->role,
+            'sessions' => session::all()
+        ]);
+    }
+    public function sessionEdit($param){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
+        $session = session::whereSessionId($param)->first();
+        $session->title_adv_req_start = date('m/d/Y',strtotime($session->title_adv_req_start));
+        $session->title_adv_req_end = date('m/d/Y',strtotime($session->title_adv_req_end));
+        $session->thesis_proposal_start = date('m/d/Y',strtotime($session->thesis_proposal_start));
+        $session->thesis_proposal_end = date('m/d/Y',strtotime($session->thesis_proposal_end));
+        $session->interim_report_start = date('m/d/Y',strtotime($session->interim_report_start));
+        $session->interim_report_end = date('m/d/Y',strtotime($session->interim_report_end));
+        $session->final_draft_start = date('m/d/Y',strtotime($session->final_draft_start));
+        $session->final_draft_end = date('m/d/Y',strtotime($session->final_draft_end));
+        return view('admin.sessionedit',[
+            'role' => $this->role,
+            'session'=> $session
         ]);
     }
     public function studentProposal(){
@@ -91,7 +111,8 @@ class AdminController extends Controller
         return view('admin.studentregistration',[
             'role' => $this->role,
             'majors'=>$this->getMajor(),
-            'students'=>$this->getStudents()
+            'students'=>$this->getStudents(),
+            'sessions'=>session::all()
         ]);
     }
     public function lecturerViewRegister(){
@@ -149,7 +170,7 @@ class AdminController extends Controller
             $proposedTitle->save();
         }
 
-        return redirect()->back()->with('alert','successfully approved title');
+        return redirect()->back()->with('alert','Successfully Approved Title');
     }
     public function approveAdvisor(Request $request){
         $proposedAdvisors = proposedAdvisor::whereStdId(request('std'))->get();
@@ -165,19 +186,19 @@ class AdminController extends Controller
             $proposedAdvisor->save();
         }
 
-        return redirect()->back()->with('alert','successfully approved advisor');
+        return redirect()->back()->with('alert','Successfully Approved Advisor');
     }
     public function disapproveTitle(Request $request){
         $proposedTitle = proposedTitle::whereTitleId(request('title'))->first();
         $proposedTitle->sts_id = 3;    
         $proposedTitle->save();
-        return redirect()->back()->with('alert','successfully reject title');
+        return redirect()->back()->with('alert','Successfully Reject Title');
     }
     public function disapproveAdvisor(Request $request){
         $proposedAdvisor = proposedAdvisor::whereAdvisorId(request('advisor'))->first();
         $proposedAdvisor->sts_id = 3;
         $proposedAdvisor->save();
-        return redirect()->back()->with('alert','successfully reject advisor');
+        return redirect()->back()->with('alert','Successfully Reject Advisor');
     }
 
     public function studentSearchFilter(Request $request){
@@ -195,19 +216,75 @@ class AdminController extends Controller
     }
     public function createSessionSet(Request $request){
         $validator = Validator::make($request->all(), [
+            'session_id'=>'required|unique:sessions',
             'start_date_title_advisor'=>'required|date',
             'end_date_title_advisor'=>'required|date|after:start_date_title_advisor',
-            'start_date_signed_thesis'=>'required|date',
+            'start_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
             'end_date_signed_thesis'=>'required|date|after:start_date_signed_thesis',
-            'start_date_interim'=>'required|date',
+            'start_date_interim'=>'required|date|after:end_date_signed_thesis',
             'end_date_interim'=>'required|date|after:start_date_interim',
-            'start_date_final_draft'=>'required|date',
+            'start_date_final_draft'=>'required|date|after:end_date_interim',
             'end_date_final_draft'=>'required|date|after:start_date_final_draft',
         ]
         );
         if ($validator->fails()) {
             $validator->validate();
         }
+        $session = new session;
+        $session->session_id = request('session_id');
+        $date = explode('/',request('start_date_title_advisor'));
+        $session->title_adv_req_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_title_advisor'));
+        $session->title_adv_req_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_signed_thesis'));
+        $session->thesis_proposal_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_signed_thesis'));
+        $session->thesis_proposal_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_interim'));
+        $session->interim_report_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_interim'));
+        $session->interim_report_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_final_draft'));
+        $session->final_draft_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_final_draft'));
+        $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $session->save();
+        return redirect()->back()->with('alert','Successfully Set New Session');
+    }
+    public function editSessionSet(Request $request){
+        $validator = Validator::make($request->all(), [
+            'start_date_title_advisor'=>'required|date',
+            'end_date_title_advisor'=>'required|date|after:start_date_title_advisor',
+            'start_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
+            'end_date_signed_thesis'=>'required|date|after:start_date_signed_thesis',
+            'start_date_interim'=>'required|date|after:end_date_signed_thesis',
+            'end_date_interim'=>'required|date|after:start_date_interim',
+            'start_date_final_draft'=>'required|date|after:end_date_interim',
+            'end_date_final_draft'=>'required|date|after:start_date_final_draft',
+        ]
+        );
+        if ($validator->fails()) {
+            $validator->validate();
+        }
+        $session = session::whereSessionId(request('session_id'))->first();
+        $date = explode('/',request('start_date_title_advisor'));
+        $session->title_adv_req_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_title_advisor'));
+        $session->title_adv_req_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_signed_thesis'));
+        $session->thesis_proposal_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_signed_thesis'));
+        $session->thesis_proposal_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_interim'));
+        $session->interim_report_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_interim'));
+        $session->interim_report_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_final_draft'));
+        $session->final_draft_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_final_draft'));
+        $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $session->save();
+        return redirect('admin/sessionSet')->with('alert','Successfully Edit Session '.request('session_id'));
     }
     public function submitSetDefenseSchedule(Request $request){
         $validator = Validator::make($request->all(), [
@@ -238,6 +315,6 @@ class AdminController extends Controller
         $defense->chairman = request('chairman_id');
         $defense->save();
 
-        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','successfully set defense schedule');
+        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','Successfully Set Defense Schedule');
     }
 }

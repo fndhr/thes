@@ -53,21 +53,12 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="number" class="form-control col-9" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
+                    <input type="number" class="form-control col-9" for="phone" name="phone" placeholder="Please Input Your Phone Number (ex:08xx)" value="{{old('phone')}}">
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Email Address*</label>
                     <input type="email" class="form-control col-9 @error('email') is-invalid @enderror" for="email" name="email" placeholder="Please Input Your Email Address" value="{{old('email')}}">
                     @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Password*</label>
-                    <input type="password" class="form-control col-9 @error('password') is-invalid @enderror" for="password" name="password" placeholder="Please Input Your Password">
-                    @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -80,7 +71,7 @@
         </div>
     </div>
     <div class="py-3">
-        <h2 class="text-center">Lecturer List</h2>
+        <h2 class="text-center">List of Lecturer</h2>
         <table class="table table-bordered table-hover">
             <thead class="thead-dark text-center">
                 <tr>
@@ -110,7 +101,7 @@
                 @endforeach
                 @else
                     <tr>
-                        <td colspan="4" class="text-center">Records Not Found</td>
+                        <td colspan="5" class="text-center">Records Not Found</td>
                     </tr>
                 @endif
             </tbody>

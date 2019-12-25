@@ -39,8 +39,16 @@
                     @enderror
                 </div>
                 <div class="form-group row">
+                    <label class="col-3 col-form-label">Major</label>
+                    <select class="form-control col-3" for="major_id" name="major_id">
+                        @foreach($majors as $major)
+                            <option value="{{$major->major_id}}">{{$major->major_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="number" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
+                    <input type="number" class="form-control col-9 @error('phone') is-invalid @enderror" for="phone" name="phone" placeholder="Please Input Your Phone Number (ex:08xx)" value="{{old('phone')}}">
                     @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -57,21 +65,18 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Password*</label>
-                    <input type="password" class="form-control col-9 @error('password') is-invalid @enderror" for="password" name="password" placeholder="Please Input Your Password">
-                    @error('password')
+                    <label class="col-3 col-form-label inputRequired">Session*</label>
+                    <select class="form-control col-3 @error('session_id') is-invalid @enderror" name="session_id">
+                        <option value="">Choose...</option>
+                        @foreach($sessions as $session)
+                            <option value="{{$session->session_id}}">{{$session->session_id}}</option>
+                        @endforeach
+                    </select>
+                    @error('session_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
-                </div>
-                <div class="form-group row">
-                    <label class="col-3 col-form-label">Major</label>
-                    <select class="form-control col-3" for="major_id" name="major_id">
-                        @foreach($majors as $major)
-                            <option value="{{$major->major_id}}">{{$major->major_name}}</option>
-                        @endforeach
-                    </select>
+                    @enderror   
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
@@ -80,7 +85,7 @@
         </div>
     </div>
     <div class="py-3">
-        <h2 class="text-center">Student List</h2>
+        <h2 class="text-center">List of Student</h2>
         <table class="table table-bordered table-hover">
             <thead class="thead-dark text-center">
                 <tr>
@@ -104,7 +109,7 @@
                 @endforeach
                 @else
                     <tr>
-                        <td colspan="4" class="text-center">Records Not Found</td>
+                        <td colspan="5" class="text-center">Records Not Found</td>
                     </tr>
                 @endif
             </tbody>
