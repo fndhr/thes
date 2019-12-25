@@ -28,12 +28,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1.</td>
-                        <td><a href="/admin/getDefenseScheduleDetail/1">Fiqa Nadhira Luthfia Taufik</a></td>
-                        <td>Rikip Ginanjar</td>
-                        <td>06-01-2020</td>
-                    </tr>
+                    @if(count($defenses)>0)
+                        @php($num = 1)
+                        @foreach($defenses as $defense)
+                        <tr>
+                            <td>{{$num}}.</td>
+                            <td><a href="/admin/getDefenseScheduleDetail/{{$defense->student->std_id}}">{{$defense->student->user->first_name}} {{$defense->student->user->last_name}}</a></td>
+                            <td>{{$defense->student->lecturer->user->first_name}} {{$defense->student->lecturer->user->last_name}}</td>
+                            <td>{{$defense->date}}</td>
+                        </tr>
+                        @php($num++)
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4" class="text-center">Records Not Found</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

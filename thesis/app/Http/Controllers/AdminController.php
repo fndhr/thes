@@ -59,8 +59,17 @@ class AdminController extends Controller
         ]);
     }
     public function getDefenseSchedule(){
+        $defenses = defense::whereDate('def_strt_dt','>=',date('Y-m-d'))->get();
+        foreach($defenses as  $defense){
+            $datetime = explode(' ',$defense->def_strt_dt);
+            $date = explode('-',$datetime[0]);
+            $time = explode(':',$datetime[1]);
+            $defense->date = $date[0].'-'.$date[1].'-'.$date[2];
+            $defense->time = $time[0].':'.$date[1];
+        }
         return view('admin.defenseschedulesearch',[
-            'role' => $this->role
+            'role' => $this->role,
+            'defenses' => $defenses
         ]);
     }
     public function studentViewRegister(){
