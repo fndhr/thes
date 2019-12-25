@@ -65,15 +65,14 @@
         <div class="navbar-collapse"></div>
         @endif
         <div class="dropdown">
-            <a class="navbar-brand"><img src="/assets/image/admin_message.png" width="30" height="30" class=""
-                    alt=""></a>
+            <a class="navbar-brand messages" onClick="alert('COMMING SOON')"><img src="/assets/image/admin_message.png" width="30" height="30" alt=""></a>
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Hi, {{Auth::user()->first_name}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="" data-toggle="modal" data-target="#AccountModal">Account Profile</a>
-                <a class="dropdown-item submitPropose" href="{{ route('logout') }}"
+                <a class="dropdown-item showAccount" href="" data-toggle="modal" data-target="#AccountModal">Account Profile</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
             </div>
@@ -92,8 +91,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    <form class="text-center" action="/homeChangePass" method="POST" class="submit">
+                    <form action="/homeChangePass" method="POST" class="submitForm">
                         {{ csrf_field() }}
                         <div class="row py-2">
                             @if(!is_null($role ?? null))
@@ -117,15 +115,15 @@
                             <div class="col-4">Email</div>
                             <div class="col-8">:&nbsp;&nbsp;{{Auth::user()->email}}</div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row inputPass">
                             <label class="col-4 col-form-label">Password</label>
                             <input id="pass" type="text" class="form-control col-6" for="new_password" name="new_password"
                                 placeholder="" value="{{old('new_password')}}">
                                 <span id="passValidator" role="alert" style="display:none; color:red;">
                                     <strong>Password must be 8 character at least!</strong>
-                                </span>                                
+                                </span>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row inputRePass">
                             <label class="col-4 col-form-label">Re-enter Password</label>
                             <input id ="repass" type="text" class="form-control col-6" for="reenter_password" name="reenter_password"
                                 placeholder="" value="{{old('reenter_password')}}">
@@ -133,8 +131,8 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Edit</button>
-                    <button id="btnSubmit" type="submit" class="btn btn-success" disabled>Save</button>
+                    <button id="btnEdit" type="button" class="btn btn-primary">Edit</button>
+                    <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
                 </div>
                 </form>
 
@@ -188,6 +186,20 @@
             document.getElementById("btnSubmit").disabled = true;
             $("#notif").css('display','block')
         }
+    });
+
+    $(".showAccount").on("click", function(e) {
+        $("#btnEdit").css('display','');
+        $("#btnSubmit").css('display','none');
+        $(".inputPass").css('display','none');
+        $(".inputRePass").css('display','none');
+    });
+
+    $("#btnEdit").on("click", function(e) {
+        $("#btnSubmit").css('display','');
+        $("#btnEdit").css('display','none');
+        $(".inputPass").css('display','');
+        $(".inputRePass").css('display','');
     });
 </script>
 </body>

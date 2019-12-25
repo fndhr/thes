@@ -3,6 +3,7 @@ body {
     padding: 0;
     color: #808080;
     background-color: rgb(126, 129, 119);
+    cursor: default;
 }
 
 /* a {
@@ -46,4 +47,8 @@ a:hover {
     border-left: 10px solid black;
     top: 8px;
     right: 10px;
+}
+
+.text-danger, .text-success, .messages{
+    cursor: pointer;
 }
