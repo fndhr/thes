@@ -92,6 +92,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if(count($students)>0)
                 @foreach($students as $student)
                 <tr>
                     <td>{{$student->user->first_name}} {{$student->user->last_name}}</td>
@@ -101,6 +102,11 @@
                     <td>{{$student->user->email ?? 'please fill the email'}}</td>
                 </tr>
                 @endforeach
+                @else
+                    <tr>
+                        <td colspan="4" class="text-center">Records Not Found</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
 

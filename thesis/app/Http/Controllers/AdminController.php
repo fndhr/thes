@@ -238,6 +238,6 @@ class AdminController extends Controller
         $defense->chairman = request('chairman_id');
         $defense->save();
 
-        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','successfully add defense');
+        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','successfully set defense schedule');
     }
 }
