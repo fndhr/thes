@@ -54,4 +54,7 @@ Route::prefix('student')->group(function(){
 
 Route::prefix('lecturer')->group(function(){
     Route::get('/studentSearch','LecturerController@studentSearch');
+    Route::get('/studentDetail/{id}','LecturerController@studentDetail');
+    Route::get('/defenseScheduleSearch','LecturerController@defenseScheduleSearch');
+    Route::get('/getDefenseScheduleDetail/{id}','LecturerController@getDefenseScheduleDetail');
 });

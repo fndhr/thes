@@ -58,7 +58,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/lecturer/studentSearch">Student Search</a>
-                <a class="nav-item nav-link" href="/lecturer/getDefenseSchedule">Upcoming Defense Schedule</a>
+                <a class="nav-item nav-link" href="/lecturer/defenseScheduleSearch">Upcoming Defense Schedule</a>
             </div>
         </div>
         @else

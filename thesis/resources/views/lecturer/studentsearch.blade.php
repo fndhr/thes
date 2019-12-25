@@ -32,7 +32,7 @@
                     @foreach($students as $student)
                     <tr>
                         <td>{{$count}}</td>
-                        <td><a href="/admin/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
+                        <td><a href="/lecturer/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
                         <td></td>
                         <td>{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</td>
                         @php($count++)
