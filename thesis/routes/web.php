@@ -51,3 +51,7 @@ Route::prefix('student')->group(function(){
     Route::post('/uploadDocThesisInterim','StudentController@uploadDocThesisInterim');
     Route::post('/uploadDocThesisFinalDraft','StudentController@uploadDocThesisFinalDraft');
 });
+
+Route::prefix('lecturer')->group(function(){
+    Route::get('/studentSearch','LecturerController@studentSearch');
+});

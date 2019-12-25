@@ -30,16 +30,25 @@ class AdminController extends Controller
         return major::all();
     }
     public function sessionSet(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         return view('admin.sessionset',[
             'role' => $this->role
         ]);
     }
     public function studentProposal(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         return view('admin.studentproposal',[
             'role' => $this->role
         ]);
     }
     public function setDefenseSchedule($param){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         $student = student::whereStdId($param)->first();
         $proposedTitle = proposedTitle::whereStdId($param)->whereStsId(2)->first();
         $student->title = $proposedTitle;
@@ -59,6 +68,9 @@ class AdminController extends Controller
         ]);
     }
     public function getDefenseSchedule(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         $defenses = defense::whereDate('def_strt_dt','>=',date('Y-m-d'))->get();
         foreach($defenses as  $defense){
             $datetime = explode(' ',$defense->def_strt_dt);
@@ -73,6 +85,9 @@ class AdminController extends Controller
         ]);
     }
     public function studentViewRegister(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         return view('admin.studentregistration',[
             'role' => $this->role,
             'majors'=>$this->getMajor(),
@@ -80,18 +95,27 @@ class AdminController extends Controller
         ]);
     }
     public function lecturerViewRegister(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         return view('admin.lecturerregistration',[
             'role' => $this->role,
             'lecturers' =>$this->getLecturers()
         ]);
     }
     public function studentSearch(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         return view('admin.studentsearch',[
             'role' => $this->role,
             'students' =>$this->getStudents()
         ]);
     }
     public function getDefenseScheduleDetail($param){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         $student = student::whereStdId($param)->first();
         $proposedTitle = proposedTitle::whereStdId($param)->whereStsId(2)->first();
         $student->title = $proposedTitle;
@@ -103,6 +127,9 @@ class AdminController extends Controller
         ]);
     }
     public function studentDetail($param){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
         return view('admin.studentdetail',[
             'role' => $this->role,
             'student' => student::whereStdId($param)->first(),

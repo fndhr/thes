@@ -10,7 +10,10 @@ use App\documentUpload;
 use Validator;
 class StudentController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth');   
+    }
 	public function submitTitle(Request $request){
 		$validator = Validator::make($request->all(), [
             'title_name' => 'required',
