@@ -57,13 +57,18 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Password*</label>
-                    <input type="password" class="form-control col-9 @error('password') is-invalid @enderror" for="password" name="password" placeholder="Please Input Your Password">
-                    @error('password')
+                    <label class="col-3 col-form-label inputRequired">Session*</label>
+                    <select class="form-control col-3 @error('session_id') is-invalid @enderror" name="session_id">
+                        <option value="">Choose...</option>
+                        @foreach($sessions as $session)
+                            <option value="{{$session->session_id}}">{{$session->session_id}}</option>
+                        @endforeach
+                    </select>
+                    @error('session_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                    @enderror   
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Major</label>

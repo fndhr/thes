@@ -18,7 +18,7 @@ class UserController extends Controller
             'std_id' => 'required|string|unique:students',
             'phone' => request('phone') != null ? 'min:10|regex:/(08)[0-9]{9}/' : '',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
+            'session_id'=>'required'
         ]);
         if ($validator->fails()) {
             $validator->validate();
@@ -34,6 +34,7 @@ class UserController extends Controller
         $student->std_id = request('std_id');
         $student->usr_id = $user->id;
         $student->major_id = request('major_id');
+        $student->session_id = request('session_id');
         $student->save();
 		return redirect()->back()->with('alert','Successfull Add Student');
     }
@@ -45,7 +46,6 @@ class UserController extends Controller
             'lec_id' => 'required|unique:lecturers',
             'phone' =>  request('phone') != null ? 'min:10|regex:/(08)[0-9]{9}/' : '',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
         ]);
         if ($validator->fails()) {
             $validator->validate();

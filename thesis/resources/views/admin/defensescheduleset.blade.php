@@ -117,7 +117,7 @@
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Examiner*</label>
                     <select class="form-control col-3" for="examiner_id" name="examiner_id">
-                        <option value="">Choose...</option
+                        <option value="">Choose...</option>
                         >@foreach($examiners as $examiner)
                             <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
                         @endforeach

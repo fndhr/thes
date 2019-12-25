@@ -23,6 +23,7 @@ Route::post('/homeChangePass','HomeController@changePassword') ->name('home');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
+    Route::get('/sessionSet/{id}','AdminController@sessionEdit');
     Route::get('/setDefenseSchedule/{id}','AdminController@setDefenseSchedule');
     Route::get('/getDefenseSchedule','AdminController@getDefenseSchedule');
     Route::get('/registerStudent','AdminController@studentViewRegister');
@@ -40,6 +41,7 @@ Route::prefix('admin')->group(function (){
     Route::post('/disapprove/title','AdminController@disapproveTitle');
     Route::post('/studentSearch','AdminController@studentSearchFilter');
     Route::post('/createSessionSet','AdminController@createSessionSet');
+    Route::post('/editSessionSet','AdminController@editSessionSet');
     Route::post('/submitSetDefenseSchedule','AdminController@submitSetDefenseSchedule');
 });
 

@@ -64,15 +64,6 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Password*</label>
-                    <input type="password" class="form-control col-9 @error('password') is-invalid @enderror" for="password" name="password" placeholder="Please Input Your Password">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
                 </div>
