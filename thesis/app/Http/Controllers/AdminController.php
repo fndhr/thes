@@ -52,10 +52,8 @@ class AdminController extends Controller
         $session->interim_report_end = date('m/d/Y',strtotime($session->interim_report_end));
         $session->final_draft_start = date('m/d/Y',strtotime($session->final_draft_start));
         $session->final_draft_end = date('m/d/Y',strtotime($session->final_draft_end));
-        return view('admin.sessionset',[
+        return view('admin.sessionedit',[
             'role' => $this->role,
-            'sessions' => [],
-            'edit' => 'edit',
             'session'=> $session
         ]);
     }
