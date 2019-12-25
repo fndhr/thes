@@ -43,6 +43,13 @@ class AdminController extends Controller
         $student = student::whereStdId($param)->first();
         $proposedTitle = proposedTitle::whereStdId($param)->whereStsId(2)->first();
         $student->title = $proposedTitle;
+        if(!is_null($student->defense)){
+            $datetime = explode(' ',$student->defense->def_strt_dt);
+            $date = explode('-',$datetime[0]);
+            $time = explode(':',$datetime[1]);
+            $student->defense->date = $date[1].'/'.$date[0].'/'.$date[2];
+            $student->defense->time = $time[0].':'.$date[1];
+        }
         $examiner = lecturer::whereIsexm(1)->get();
         return view('admin.defensescheduleset',[
             'role' => $this->role,
@@ -181,7 +188,12 @@ class AdminController extends Controller
         $date = explode('/',request('date'));
         $startDate = DateTime::createFromFormat('Y-m-d H:i:s', $date[2].'-'.$date[0].'-'.$date[1].' '.request('time').':00');
         $endDate = DateTime::createFromFormat('Y-m-d H:i:s', $date[2].'-'.$date[0].'-'.$date[1].' '.request('time').':00')->modify('+2 hours');
-        $defense = new defense;
+        if(count(defense::whereStdId(request('std_id'))->get())>0){
+            $defense = defense::whereStdId(request('std_id'))->first();
+        }
+        else{
+            $defense = new defense;
+        }
         $defense->std_id = request('std_id');
         $defense->def_strt_dt = $startDate;
         $defense->def_end_dt = $endDate;

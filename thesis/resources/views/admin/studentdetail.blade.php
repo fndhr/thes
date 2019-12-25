@@ -111,18 +111,20 @@
             </div>
             @endif
             @if(count($student->documentUpload)==3)
-            <div class="row py-2 mb-2">
-                <div class="col-3">Final Draft</div>
-                <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
-                <div class="col-2">Download</div>
-                <div class="col-1"></div>
-            </div>
-            <div class="row py-2 mb-2">
-                <div class="col-3">Defense Date</div>
-                <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->def_strt_dt}}@endif</div>
-                <div class="col-2"><a href="/admin/getDefenseScheduleDetail/{{$student->std_id}}">View</a>&nbsp;|&nbsp;<a href="/admin/setDefenseSchedule/{{$student->std_id}}">Set</a></div>
-                <div class="col-1"></div>
-            </div>
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Final Draft</div>
+                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
+                    <div class="col-2">Download</div>
+                    <div class="col-1"></div>
+                </div>
+                @if(!is_null($sts_title) && !is_null($student->lecturer))
+                    <div class="row py-2 mb-2">
+                        <div class="col-3">Defense Date</div>
+                        <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->def_strt_dt}}@endif</div>
+                        <div class="col-2">@if(!is_null($student->defense))<a href="/admin/getDefenseScheduleDetail/{{$student->std_id}}">View</a>&nbsp;|&nbsp;@endif<a href="/admin/setDefenseSchedule/{{$student->std_id}}">Set</a></div>
+                        <div class="col-1"></div>
+                    </div>
+                @endif
             @endif
             <div class="row py-2 mb-2">
                 <div class="col-3">Revision</div>

@@ -21,6 +21,60 @@
                 <div class="col-3">Advisor</div>
                 <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer->user->first_name}} {{$student->lecturer->user->last_name}}</div>
             </div>
+            @if(!is_null($student->defense))
+            <form method="POST" action="/admin/submitSetDefenseSchedule" class="submit">
+                @csrf
+                <input type="text" name="std_id" style="display:none" value="{{$student->std_id}}">
+                <div class="form-group row">
+                    <label class="col-3 col-form-label inputRequired">Date*</label>
+                    <input type="text" id="datepicker" class="form-control col-9 @error('date') is-invalid @enderror" name="date" placeholder="01/01/2020" value="{{old('date') ?? $student->defense->date}}">
+                    @error('date')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label inputRequired">Time*</label>
+                    <input type="text" class="form-control col-9 @error('time') is-invalid @enderror" name="time" placeholder="09:00" value="{{old('time')?? $student->defense->time}}">
+                    @error('time')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label inputRequired">Room*</label>
+                    <input type="text" class="form-control col-9 @error('room') is-invalid @enderror" name="room" placeholder="A000" value="{{old('room')?? $student->defense->room}}">
+                    @error('room')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label inputRequired">Chairman*</label>
+                    <select class="form-control col-3" for="chairman_id" name="chairman_id">
+                        <option value="">Choose...</option>
+                        @foreach($chairmans as $examiner)
+                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 col-form-label inputRequired">Examiner*</label>
+                    <select class="form-control col-3" for="examiner_id" name="examiner_id">
+                        <option value="">Choose...</option
+                        >@foreach($examiners as $examiner)
+                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
+                </div>
+            </form>
+            @else
             <form method="POST" action="/admin/submitSetDefenseSchedule" class="submit">
                 @csrf
                 <input type="text" name="std_id" style="display:none" value="{{$student->std_id}}">
@@ -73,6 +127,7 @@
                     <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
                 </div>
             </form>
+            @endif
         </div>
     </div>
 </div>
