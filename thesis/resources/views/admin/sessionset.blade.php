@@ -91,7 +91,7 @@
                     @enderror
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary px-5 my-4 btnSubmit">Edit</button>
+                    <!--<button type="submit" class="btn btn-primary px-5 my-4 btnSubmit">Edit</button>-->
                     <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
                 </div>
             </form>
