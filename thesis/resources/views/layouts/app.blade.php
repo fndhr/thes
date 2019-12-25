@@ -117,7 +117,7 @@
                         </div>
                         <div class="form-group row inputPass">
                             <label class="col-4 col-form-label">Password</label>
-                            <input id="pass" type="text" class="form-control col-6" for="new_password" name="new_password"
+                            <input id="pass" type="password" class="form-control col-6" for="new_password" name="new_password"
                                 placeholder="" value="{{old('new_password')}}">
                                 <span id="passValidator" role="alert" style="display:none; color:red;">
                                     <strong>Password must be 8 character at least!</strong>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group row inputRePass">
                             <label class="col-4 col-form-label">Re-enter Password</label>
-                            <input id ="repass" type="text" class="form-control col-6" for="reenter_password" name="reenter_password"
+                            <input id ="repass" type="password" class="form-control col-6" for="reenter_password" name="reenter_password"
                                 placeholder="" value="{{old('reenter_password')}}">
                                 <a id="notif" style="color:red; display:none;">Password Isn't Match!</a>
                         </div>

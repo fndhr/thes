@@ -170,7 +170,7 @@ class AdminController extends Controller
             $proposedTitle->save();
         }
 
-        return redirect()->back()->with('alert','successfully approved title');
+        return redirect()->back()->with('alert','Successfully Approved Title');
     }
     public function approveAdvisor(Request $request){
         $proposedAdvisors = proposedAdvisor::whereStdId(request('std'))->get();
@@ -186,19 +186,19 @@ class AdminController extends Controller
             $proposedAdvisor->save();
         }
 
-        return redirect()->back()->with('alert','successfully approved advisor');
+        return redirect()->back()->with('alert','Successfully Approved Advisor');
     }
     public function disapproveTitle(Request $request){
         $proposedTitle = proposedTitle::whereTitleId(request('title'))->first();
         $proposedTitle->sts_id = 3;    
         $proposedTitle->save();
-        return redirect()->back()->with('alert','successfully reject title');
+        return redirect()->back()->with('alert','Successfully Reject Title');
     }
     public function disapproveAdvisor(Request $request){
         $proposedAdvisor = proposedAdvisor::whereAdvisorId(request('advisor'))->first();
         $proposedAdvisor->sts_id = 3;
         $proposedAdvisor->save();
-        return redirect()->back()->with('alert','successfully reject advisor');
+        return redirect()->back()->with('alert','Successfully Reject Advisor');
     }
 
     public function studentSearchFilter(Request $request){
@@ -249,7 +249,7 @@ class AdminController extends Controller
         $date = explode('/',request('end_date_final_draft'));
         $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $session->save();
-        return redirect()->back()->with('alert','successfully set new session');
+        return redirect()->back()->with('alert','Successfully Set New Session');
     }
     public function editSessionSet(Request $request){
         $validator = Validator::make($request->all(), [
@@ -284,7 +284,7 @@ class AdminController extends Controller
         $date = explode('/',request('end_date_final_draft'));
         $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $session->save();
-        return redirect('admin/sessionSet')->with('alert','successfully edit session '.request('session_id'));
+        return redirect('admin/sessionSet')->with('alert','Successfully Edit Session '.request('session_id'));
     }
     public function submitSetDefenseSchedule(Request $request){
         $validator = Validator::make($request->all(), [
@@ -315,6 +315,6 @@ class AdminController extends Controller
         $defense->chairman = request('chairman_id');
         $defense->save();
 
-        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','successfully set defense schedule');
+        return redirect('admin/studentDetail/'.request('std_id'))->with('alert','Successfully Set Defense Schedule');
     }
 }

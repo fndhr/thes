@@ -26,7 +26,7 @@ class StudentController extends Controller
 		$title->title_name = request('title_name');
 		$title->std_id = $student->std_id;
 		$title->save();
-		return redirect()->back()->with('alert','successfull submit title');
+		return redirect()->back()->with('alert','Successfully Submit Title');
 	}
 
 	
@@ -43,7 +43,7 @@ class StudentController extends Controller
 		$adv->lec_id = request('advisor');
 		$adv->std_id = $student->std_id;
 		$adv->save();
-		return redirect()->back()->with('alert','successfull submit advisor');
+		return redirect()->back()->with('alert','Successfully Submit Advisor');
 	}
 
 	public function uploadDocThesisProposal(Request $request){			
@@ -64,7 +64,7 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Thesis Proposal';
 			
 			$uploadDoc->save();
-			return redirect()->back()->with('alert','successfull submit document');
+			return redirect()->back()->with('alert','Successfully Submit Document');
 		}
 	}
 
@@ -85,7 +85,7 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Thesis Interim';
 			
 			$uploadDoc->save();
-			return redirect()->back()->with('alert','successfull submit document');
+			return redirect()->back()->with('alert','Successfully Submit Document');
 		}
 	}
 
@@ -106,7 +106,7 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Thesis Final Draft';
 			
 			$uploadDoc->save();
-			return redirect()->back()->with('alert','successfull submit document');
+			return redirect()->back()->with('alert','Successfull Submit Document');
 		}
 	}
 

@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label">Phone Number</label>
-                    <input type="number" class="form-control col-9" for="phone" name="phone" placeholder="Please Input Your Phone Number" value="{{old('phone')}}">
+                    <input type="number" class="form-control col-9" for="phone" name="phone" placeholder="Please Input Your Phone Number (ex:08xx)" value="{{old('phone')}}">
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Email Address*</label>
@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="py-3">
-        <h2 class="text-center">Lecturer List</h2>
+        <h2 class="text-center">List of Lecturer</h2>
         <table class="table table-bordered table-hover">
             <thead class="thead-dark text-center">
                 <tr>

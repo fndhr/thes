@@ -27,7 +27,7 @@
                 <input type="text" name="std_id" style="display:none" value="{{$student->std_id}}">
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Date*</label>
-                    <input type="text" id="datepicker" class="form-control col-9 @error('date') is-invalid @enderror" name="date" placeholder="01/01/2020" value="{{old('date') ?? $student->defense->date}}">
+                    <input type="text" id="datepicker" class="form-control col-9 @error('date') is-invalid @enderror" name="date" placeholder="ex:01/01/2020" value="{{old('date') ?? $student->defense->date}}">
                     @error('date')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Time*</label>
-                    <input type="text" class="form-control col-9 @error('time') is-invalid @enderror" name="time" placeholder="09:00" value="{{old('time')?? $student->defense->time}}">
+                    <input type="text" class="form-control col-9 @error('time') is-invalid @enderror" name="time" placeholder="ex:09:00" value="{{old('time')?? $student->defense->time}}">
                     @error('time')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Room*</label>
-                    <input type="text" class="form-control col-9 @error('room') is-invalid @enderror" name="room" placeholder="A000" value="{{old('room')?? $student->defense->room}}">
+                    <input type="text" class="form-control col-9 @error('room') is-invalid @enderror" name="room" placeholder="ex:A000" value="{{old('room')?? $student->defense->room}}">
                     @error('room')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -80,7 +80,7 @@
                 <input type="text" name="std_id" style="display:none" value="{{$student->std_id}}">
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Date*</label>
-                    <input type="text" id="datepicker" class="form-control col-9 @error('date') is-invalid @enderror" name="date" placeholder="01/01/2020" value="{{old('date')}}">
+                    <input type="text" id="datepicker" class="form-control col-9 @error('date') is-invalid @enderror" name="date" placeholder="ex:01/01/2020" value="{{old('date')}}">
                     @error('date')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Time*</label>
-                    <input type="text" class="form-control col-9 @error('time') is-invalid @enderror" name="time" placeholder="09:00" value="{{old('time')}}">
+                    <input type="text" class="form-control col-9 @error('time') is-invalid @enderror" name="time" placeholder="ex:09:00" value="{{old('time')}}">
                     @error('time')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Room*</label>
-                    <input type="text" class="form-control col-9 @error('room') is-invalid @enderror" name="room" placeholder="A000" value="{{old('room')}}">
+                    <input type="text" class="form-control col-9 @error('room') is-invalid @enderror" name="room" placeholder="ex:A000" value="{{old('room')}}">
                     @error('room')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
