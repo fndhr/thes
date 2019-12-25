@@ -33,6 +33,13 @@ class HomeController extends Controller
         if($isStudent){
             $this->role = 3;
             $student = student::whereUsrId(auth()->id())->first();
+            if(!is_null($student->defense)){
+                $datetime = explode(' ',$student->defense->def_strt_dt);
+                $date = explode('-',$datetime[0]);
+                $time = explode(':',$datetime[1]);
+                $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
+                $student->defense->time = $time[0].':'.$date[1];
+            }
             return view('student.studentdashboard',[
                 'role' => $this->role,
                 'student' => $student,

@@ -59,7 +59,7 @@
                     <div class="row py-2">
                         <div class="col-3">Defense</div>
                         <div class="col-9">:&nbsp;&nbsp;
-                            {{$student->user->defense ? $student->user->defense->def_strt_dt : 'Date Not Yet Set' }}
+                            {{$student->defense ? $student->defense->date.' '.$student->defense->time : 'Date Not Yet Set' }}
 
                         </div>
                     </div>
@@ -184,11 +184,11 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer ?$student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
@@ -316,31 +316,31 @@
                 <div class="card-body">
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Date</div>
-                        <div class="col-9">:&nbsp;&nbsp;Undefined</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->date : 'Undefined'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Time</div>
-                        <div class="col-9">:&nbsp;&nbsp;Undefined</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->time : 'Undefined'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Room</div>
-                        <div class="col-9">:&nbsp;&nbsp;Undefined</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->room : 'Undefined'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Chairman</div>
-                        <div class="col-9">:&nbsp;&nbsp;Undefined</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->chairman_name->user->first_name.' '.$student->defense->chairman_name->user->last_name : 'Undefined'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Examiner</div>
-                        <div class="col-9">:&nbsp;&nbsp;Undefined</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->examiner_name->user->first_name.' '.$student->defense->examiner_name->user->last_name : 'Undefined'}}</div>
                     </div>
                 </div>
             </div>
