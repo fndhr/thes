@@ -76,7 +76,8 @@ class StudentController extends Controller
 
 			$file = $request->file('file');
 			$fileName = $file->getClientOriginalName();
-			//$file->move('uploads\ThesisInterim',$file->getClientOriginalName());
+			$file->move('uploads\\'.$student->std_id.'\ThesisInterim',$file->getClientOriginalName());
+
 			// $path = $request->file('file')->store('file',$fileName);
 			// $size = $file->getSize();
 
@@ -97,7 +98,7 @@ class StudentController extends Controller
 
 			$file = $request->file('file');
 			$fileName = $file->getClientOriginalName();
-			//$file->move('uploads\ThesisFinalDraft',$file->getClientOriginalName());
+			$file->move('uploads\\'.$student->std_id.'\ThesisFinalDraft',$file->getClientOriginalName());
 			// $path = $request->file('file')->store('file',$fileName);
 			// $size = $file->getSize();
 

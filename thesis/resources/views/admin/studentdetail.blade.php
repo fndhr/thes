@@ -94,7 +94,6 @@
                 </div>
             </div>
             @endif
-            <form action="/downloadFile" method="POST" class="submitForm">
             {{ csrf_field() }}
             <div class="row py-2 mb-2" style="display:none">
                 <div class="col-3">NIK</div>
@@ -104,25 +103,24 @@
             <div class="row py-2 mb-2">
                 <div class="col-3">Proposal</div>
                 <div class="col-5" for="ThesisProposal" name="ThesisProposal">:&nbsp;&nbsp;{{$student->documentUpload[0]->doc_name}}</div>
-                <div class="col-2"><a href="uploads\001201500073\ThesisProposal\{{$student->documentUpload[0]->doc_name}}"
-                                        download="{{$student->documentUpload[0]->doc_name}}">Download</a></div>
+                <div class="col-2"><a href="/downloadFile">Download</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
             @endif
             @if(count($student->documentUpload)>=2)
             <div class="row py-2 mb-2">
                 <div class="col-3">Interim</div>
-                <div class="col-5" for="ThesisInterim" name="ThesisInterim">:&nbsp;&nbsp;$student->documentUpload->get(1)->doc_name</div>
-                <div class="col-2"><a href="">Download</a></div>
+                <div class="col-5" for="ThesisInterim" name="ThesisInterim">:&nbsp;&nbsp;{{$student->documentUpload[1]->doc_name}}</div>
+                <div class="col-2"><a href="/downloadFileInterim">Download</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
             @endif
-            @if(count($student->documentUpload)==3)
+            @if(count($student->documentUpload)>=3)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Draft</div>
-                    <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;$student->documentUpload->get(2)->doc_name</div>
-                    <div class="col-2">Download</div>
-                    <div class="col-1"></div>
+                    <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;{{$student->documentUpload[2]->doc_name}}</div>
+                    <div class="col-2"><a href="/downloadFileFinalDraft">Download</a></div>
+                    <div class="col-1">&#10003;</div>
                 </div>
                 @if(!is_null($sts_title) && !is_null($student->lecturer))
                     <div class="row py-2 mb-2">
@@ -151,7 +149,6 @@
                 <div class="col-2">Download</div>
                 <div class="col-1"></div>
             </div>            
-            </form>
         </div>
     </div>
 </div>
