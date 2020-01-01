@@ -42,11 +42,19 @@
                     <label class="col-3 col-form-label">Role</label>
                     <div class="col-9 pt-2 pl-0" id="roleLecturer">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" for="isAdv" name="isAdv" id="advisor" value="option1">
+                            @if(!is_null(old('isAdv')))
+                                <input class="form-check-input" type="checkbox" for="isAdv" name="isAdv" id="advisor" checked>
+                            @else
+                                <input class="form-check-input" type="checkbox" for="isAdv" name="isAdv" id="advisor">
+                            @endif
                             <label class="form-check-label" for="advisor">Advisor</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" for="isExm" name="isExm" id="examiner" value="option2">
+                            @if(!is_null(old('isExm')))
+                                <input class="form-check-input" type="checkbox" for="isExm" name="isExm" id="examiner" checked>
+                            @else
+                                <input class="form-check-input" type="checkbox" for="isExm" name="isExm" id="examiner">
+                            @endif
                             <label class="form-check-label" for="examiner">Examiner</label>
                         </div>
                     </div>

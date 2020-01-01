@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 Route::post('/homeChangePass','HomeController@changePassword') ->name('home');
 Route::post('/downloadFile','HomeController@downloadFile');
 Route::post('/downloadFileInterim',"HomeController@downloadFileInterim");
