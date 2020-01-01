@@ -57,16 +57,32 @@
                     <select class="form-control col-3" for="chairman_id" name="chairman_id">
                         <option value="">Choose...</option>
                         @foreach($chairmans as $examiner)
-                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                            @if(!is_null(old('chairman_id')))
+                                @if(old('chairman_id')==$examiner->lec_id)
+                                    <option value="{{$examiner->lec_id}}" selected>{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @else
+                                    <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @endif
+                            @else
+                                <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Examiner*</label>
                     <select class="form-control col-3" for="examiner_id" name="examiner_id">
-                        <option value="">Choose...</option
-                        >@foreach($examiners as $examiner)
-                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                        <option value="">Choose...</option>
+                        @foreach($examiners as $examiner)
+                            @if(!is_null(old('examiner_id')))
+                                @if(old('examiner_id')==$examiner->lec_id)
+                                    <option value="{{$examiner->lec_id}}" selected>{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @else
+                                    <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @endif
+                            @else
+                                <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -107,19 +123,35 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Chairman*</label>
-                    <select class="form-control col-3" for="chairman_id" name="chairman_id">
+                    <select class="form-control col-3 @error('chairman_id') is-invalid @enderror" name="chairman_id" for="chairman_id">
                         <option value="">Choose...</option>
                         @foreach($chairmans as $examiner)
-                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                            @if(!is_null(old('chairman_id')))
+                                @if(old('chairman_id')==$examiner->lec_id)
+                                    <option value="{{$examiner->lec_id}}" selected>{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @else
+                                    <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @endif
+                            @else
+                                <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Examiner*</label>
-                    <select class="form-control col-3" for="examiner_id" name="examiner_id">
+                    <select class="form-control col-3" name="examiner_id">
                         <option value="">Choose...</option>
-                        >@foreach($examiners as $examiner)
-                            <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                        @foreach($examiners as $examiner)
+                            @if(!is_null(old('examiner_id')))
+                                @if(old('examiner_id')==$examiner->lec_id)
+                                    <option value="{{$examiner->lec_id}}" selected>{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @else
+                                    <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                                @endif
+                            @else
+                                <option value="{{$examiner->lec_id}}">{{$examiner->user->first_name}} {{$examiner->user->last_name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>

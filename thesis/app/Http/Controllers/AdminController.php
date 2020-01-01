@@ -76,7 +76,7 @@ class AdminController extends Controller
             $datetime = explode(' ',$student->defense->def_strt_dt);
             $date = explode('-',$datetime[0]);
             $time = explode(':',$datetime[1]);
-            $student->defense->date = $date[1].'/'.$date[0].'/'.$date[2];
+            $student->defense->date = $date[1].'/'.$date[2].'/'.$date[0];
             $student->defense->time = $time[0].':'.$date[1];
         }
         $examiner = lecturer::whereIsexm(1)->get();
@@ -151,9 +151,14 @@ class AdminController extends Controller
         if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
             return redirect('home');
         }
+        $student = student::whereStdId($param)->first();
+        if($student->defense){
+            $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
+            $student->defense->time = date('h:i:s A',strtotime($student->defense->def_strt_dt));
+        }
         return view('admin.studentdetail',[
             'role' => $this->role,
-            'student' => student::whereStdId($param)->first(),
+            'student' => $student,
             'numberPropTitle' => count(proposedTitle::whereStdId($param)->whereStsId(1)->get()),
             'numberPropAdv' => count(proposedAdvisor::whereStdId($param)->whereStsId(1)->get()),
         ]);
