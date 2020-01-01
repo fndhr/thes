@@ -39,9 +39,14 @@ class LecturerController extends Controller
         if(is_null($this->user)){
             return redirect('home');
         }
+        $student = student::whereStdId($param)->first();
+        if($student->defense){
+            $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
+            $student->defense->time = date('h:i:s A',strtotime($student->defense->def_strt_dt));
+        }
         return view('lecturer.studentdetail',[
             'role' => $this->role,
-            'student' => student::whereStdId($param)->first(),
+            'student' => $student,
             'lecturer' => $this->user,
             'numberPropTitle' => count(proposedTitle::whereStdId($param)->whereStsId(1)->get()),
             'numberPropAdv' => count(proposedAdvisor::whereStdId($param)->whereStsId(1)->get()),

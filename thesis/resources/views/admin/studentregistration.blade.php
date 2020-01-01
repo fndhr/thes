@@ -42,7 +42,15 @@
                     <label class="col-3 col-form-label">Major</label>
                     <select class="form-control col-3" for="major_id" name="major_id">
                         @foreach($majors as $major)
-                            <option value="{{$major->major_id}}">{{$major->major_name}}</option>
+                            @if(!is_null(old('major_id')))
+                                @if(old('major_id')==$major->major_id)
+                                    <option value="{{$major->major_id}}" selected>{{$major->major_name}}</option>
+                                @else
+                                    <option value="{{$major->major_id}}">{{$major->major_name}}</option>
+                                @endif
+                            @else
+                                <option value="{{$major->major_id}}">{{$major->major_name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -69,7 +77,15 @@
                     <select class="form-control col-3 @error('session_id') is-invalid @enderror" name="session_id">
                         <option value="">Choose...</option>
                         @foreach($sessions as $session)
-                            <option value="{{$session->session_id}}">{{$session->session_id}}</option>
+                        @if(!is_null(old('session_id')))
+                                @if(old('session_id')==$session->session_id)
+                                    <option value="{{$session->session_id}}" selected>{{$session->session_id}}</option>
+                                @else
+                                    <option value="{{$session->session_id}}">{{$session->session_id}}</option>
+                                @endif
+                            @else
+                                <option value="{{$session->session_id}}">{{$session->session_id}}</option>
+                            @endif
                         @endforeach
                     </select>
                     @error('session_id')
@@ -103,8 +119,8 @@
                     <td>{{$student->user->first_name}} {{$student->user->last_name}}</td>
                     <td>{{$student->std_id}}</td>
                     <td>{{$student->major->major_name}}</td>
-                    <td>{{$student->user->phone ?? 'no phone number'}}</td>
-                    <td>{{$student->user->email ?? 'please fill the email'}}</td>
+                    <td>{{$student->user->phone ?? '-'}}</td>
+                    <td>{{$student->user->email ?? 'Please Fill The Email'}}</td>
                 </tr>
                 @endforeach
                 @else

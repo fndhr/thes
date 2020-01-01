@@ -130,7 +130,7 @@
                         <div class="col-3">Defense Date</div>
                         <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->date}} {{$student->defense->time}}@endif</div>
                         <div class="col-2">@if(!is_null($student->defense))<a href="/admin/getDefenseScheduleDetail/{{$student->std_id}}">View</a>&nbsp;|&nbsp;@endif<a href="/admin/setDefenseSchedule/{{$student->std_id}}">Set</a></div>
-                        <div class="col-1"></div>
+                        <div class="col-1">@if(!is_null($student->defense))&#10003;@endif</div>
                     </div>
                 @endif
             @endif

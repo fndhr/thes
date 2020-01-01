@@ -17,8 +17,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
-        
     }
 
     /**
@@ -66,17 +64,19 @@ class HomeController extends Controller
 
     public function changePassword(Request $request){
         $validator = Validator::make($request->all(), [
-            'new_password' => 'required|min:8'
+            'new_password' => 'required|min:8',
+            'phone' => request('phone') != null ? 'min:10|regex:/(08)[0-9]{9}/' : '',
         ]);
-        if ($validator->fails()) {
+        
+        if ($validator->fails()) {dd(request('new_password'));
             $validator->validate();
         }
         if($request->has('new_password')){
             $user = User::whereId(auth()->id())->first();
-
+            $user->phone = request('phone');
             $user->password = bcrypt(request('new_password'));
             $user->save();
-			return redirect()->back()->with('alert','Password Changed Successfully');
+			return redirect()->back()->with('alert','Account Data Changed Successfully');
         }
     }
 
