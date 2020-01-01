@@ -82,49 +82,33 @@ class HomeController extends Controller
 
     public function downloadFile(Request $request){
 
-        $student = student::whereUsrId(auth()->id())->first();
-
-        $path = public_path("\uploads\\".$student->std_id."\ThesisProposal\\".request('ThesisProposal'));
+        $path = public_path("\uploads\\".request('studentId')."\ThesisProposal\\".request('ThesisProposal'));
         $file = request('ThesisProposal');
-        return Response::download($path, $file);
+
+        return response()->download($path, $file);
     }
 
     public function downloadFileProposal(Request $request){
 
-        $student = student::whereUsrId(auth()->id())->first();
-        
-        // if(!is_null(request('ThesisProposal'))){
-            $path = public_path("\uploads\\".$student->std_id.'\\ThesisProposal\\'.request('ThesisProposal'));
-            $file = request('ThesisProposal');
-        // }else if(!is_null(request('ThesisInterim'))){
-        //     $path = public_path("\uploads\\".$student->std_id.'\\ThesisInterim\\'.request('ThesisInterim'));
-        //     $file = request('ThesisInterim');
-        // }else if(!is_null(request('FinalDraft'))){
-        //     $path = public_path("\uploads\\".$student->std_id.'\\ThesisFinalDraft\\'.request('FinalDraft'));
-        //     $file = request('FinalDraft');
-        // }
+        $path = public_path("\uploads\\".request('studentId').'\\ThesisProposal\\'.request('ThesisProposal'));
+        $file = request('ThesisProposal');
 
-        // $path = public_path("\uploads\\".$student->std_id."\ThesisProposal\OPEX-Weekly Report-20191018.pptx");
-        // $file = "OPEX-Weekly Report-20191018.pptx";
-        return Response::download($path, $file);
+        return response()->download($path, $file);
     }
 
     public function downloadFileInterim(Request $request){
 
-        $student = student::whereUsrId(auth()->id())->first();
-    
-        $path = public_path("\uploads\\.$student->std_id.\ThesisInterim\\".request('ThesisInterim'));
+        $path = public_path("\uploads\\".request('studentId').'\\ThesisInterim\\'.request('ThesisInterim'));
         $file = request('ThesisInterim');
-        return Response::download($path, $file);
+
+        return response()->download($path, $file);
     }
 
     public function downloadFileFinalDraft(Request $request){
 
-        $student = student::whereUsrId(auth()->id())->first();
-
-        $path = public_path("\uploads\\".$student->std_id."\ThesisFinalDraft\\".request('FinalDraft'));
+        $path = public_path("\uploads\\".request('studentId')."\ThesisFinalDraft\\".request('FinalDraft'));
         $file = request('FinalDraft');
         
-        return Response::download($path, $file);
+        return response()->download($path, $file);
     }
 }

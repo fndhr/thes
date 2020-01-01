@@ -98,9 +98,9 @@
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Status</th>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -202,6 +202,11 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
+                                @error('file')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
                                 </div>

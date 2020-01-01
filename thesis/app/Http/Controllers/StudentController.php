@@ -48,6 +48,12 @@ class StudentController extends Controller
 
 	public function uploadDocThesisProposal(Request $request){			
 
+		$validation = $request->validate([
+			'file' => 'required|file|mimes:doc,docx,pdf'
+			// for multiple file uploads
+			// 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+		]);
+
 		if($request->has('file')){
 			
 			$student = student::whereUsrId(auth()->id())->first();
