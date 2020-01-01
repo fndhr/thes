@@ -19,9 +19,9 @@ Auth::routes();
 
 Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 Route::post('/homeChangePass','HomeController@changePassword') ->name('home');
-Route::post('/downloadFile','HomeController@downloadFile');
-Route::post('/downloadFileInterim',"HomeController@downloadFileInterim");
-// Route::post('/downloadFileProposal','HomeController@downloadFileProposal');
+//Route::post('/downloadFile','HomeController@downloadFile');
+Route::post('/downloadFileProposal','HomeController@downloadFileProposal');
+Route::post('/downloadFileInterim','HomeController@downloadFileInterim');
 Route::post('/downloadFileFinalDraft','HomeController@downloadFileFinalDraft');
 
 Route::prefix('admin')->group(function (){
