@@ -31,6 +31,22 @@ class HomeController extends Controller
         if($isStudent){
             $this->role = 3;
             $student = student::whereUsrId(auth()->id())->first();
+            $datetime = explode(' ',$student->session->title_adv_req_start);
+            $student->session->title_adv_req_start = $datetime[0];
+            $datetime = explode(' ',$student->session->title_adv_req_end);
+            $student->session->title_adv_req_end = $datetime[0];
+            $datetime = explode(' ',$student->session->thesis_proposal_start);
+            $student->session->thesis_proposal_start = $datetime[0];
+            $datetime = explode(' ',$student->session->thesis_proposal_end);
+            $student->session->thesis_proposal_end = $datetime[0];
+            $datetime = explode(' ',$student->session->interim_report_start);
+            $student->session->interim_report_start = $datetime[0];
+            $datetime = explode(' ',$student->session->interim_report_end);
+            $student->session->interim_report_end = $datetime[0];
+            $datetime = explode(' ',$student->session->final_draft_start);
+            $student->session->final_draft_start = $datetime[0];
+            $datetime = explode(' ',$student->session->final_draft_end);
+            $student->session->final_draft_end = $datetime[0];
             if(!is_null($student->defense)){
                 $datetime = explode(' ',$student->defense->def_strt_dt);
                 $date = explode('-',$datetime[0]);
@@ -44,7 +60,9 @@ class HomeController extends Controller
                 'proposedTitle' =>proposedTitle::whereStdId($student->std_id)->get(),
                 'lecturers' =>lecturer::whereNotIn('lec_id',proposedAdvisor::whereStdId($student->std_id)->get('lec_id'))->get(),
                 'proposedLecturers' =>proposedAdvisor::whereStdId($student->std_id)->get(),
-                'progressUpload' => documentUpload::whereStdId($student->std_id)->get()
+                'progressUpload' => documentUpload::whereStdId($student->std_id)->get(),
+                'countNotApprovedLecturer' =>count(proposedAdvisor::whereStdId($student->std_id)->whereStsId(1)->get()),
+                'countNotApprovedTitle' =>count(proposedTitle::whereStdId($student->std_id)->whereStsId(1)->get()),
             ]);
         }
         else if($isLecturer){
