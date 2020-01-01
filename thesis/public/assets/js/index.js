@@ -1,10 +1,4 @@
 $(document).ready(function() {
-    $('.dataTable').hide();
-    $('.btnSubmit').click(function() {
-        $('.dataTable').show();
-    }); 
-});
-$(document).ready(function() {
     // $('.entry').hide(); 
     $('.type').change(function() {
         if($('.type').val() == 'student') {

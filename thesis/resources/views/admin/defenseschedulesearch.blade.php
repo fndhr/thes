@@ -22,7 +22,8 @@
                 <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Student</th>
+                        <th scope="col">Student ID</th>
+                        <th scope="col">Student Name</th>
                         <th scope="col">Advisor</th>
                         <th scope="col">Date</th>
                     </tr>
@@ -33,6 +34,7 @@
                         @foreach($defenses as $defense)
                         <tr>
                             <td>{{$num}}.</td>
+                            <td>{{$defense->student->std_id}}</td>
                             <td><a href="/admin/getDefenseScheduleDetail/{{$defense->student->std_id}}">{{$defense->student->user->first_name}} {{$defense->student->user->last_name}}</a></td>
                             <td>{{$defense->student->lecturer->user->first_name}} {{$defense->student->lecturer->user->last_name}}</td>
                             <td>{{$defense->date}}</td>

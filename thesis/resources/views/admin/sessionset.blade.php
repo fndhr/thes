@@ -14,7 +14,7 @@
                 <h3>Session ID</h3>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Session Name*</label>
-                    <input type="text" class="form-control col-7 @error('session_id') is-invalid @enderror" name="session_id" placeholder="ex:20191" value="{{old('session_id')}}">
+                    <input type="number" class="form-control col-7 @error('session_id') is-invalid @enderror" name="session_id" placeholder="ex:20191" value="{{old('session_id')}}">
                     @error('session_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -106,7 +106,7 @@
             </form>
         </div>
         @if(count($sessions)>0)
-        <div class="py-3">
+        <div class="col-11 py-3">
             <h2 class="text-center">List of Session</h2>
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
@@ -123,7 +123,7 @@
                     <tr>
                         <td>{{$num}}.</td>
                         <td>{{$session->session_id}}</td>
-                        <td><a href="/admin/sessionSet/{{$session->session_id}}">edit</a></td>
+                        <td><a href="/admin/sessionSet/{{$session->session_id}}">Edit</a></td>
                         @php($num++)
                     </tr>
                     @endforeach

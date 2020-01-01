@@ -103,8 +103,8 @@
                     <td>{{$student->user->first_name}} {{$student->user->last_name}}</td>
                     <td>{{$student->std_id}}</td>
                     <td>{{$student->major->major_name}}</td>
-                    <td>{{$student->user->phone ?? 'no phone number'}}</td>
-                    <td>{{$student->user->email ?? 'please fill the email'}}</td>
+                    <td>{{$student->user->phone ?? '-'}}</td>
+                    <td>{{$student->user->email ?? 'Please Fill The Email'}}</td>
                 </tr>
                 @endforeach
                 @else

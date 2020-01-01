@@ -108,8 +108,13 @@
                             @endif
                         </div>
                         <div class="row py-2">
-                            <div class="col-4">Phone</div>
-                            <div class="col-8">:&nbsp;&nbsp;{{Auth::user()->phone}}</div>
+                            <label class="col-4 col-form-label">Phone</label>
+                            <input type="text" class="form-control col-6 @error('phone') is-invalid @enderror inputPhone" for="phone" name="phone" value="{{Auth::user()->phone ?? '-'}}" disabled>
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror                
                         </div>
                         <div class="row py-2">
                             <div class="col-4">Email</div>
@@ -129,13 +134,12 @@
                                 placeholder="" value="{{old('reenter_password')}}">
                                 <a id="notif" style="color:red; display:none;">Password Isn't Match!</a>
                         </div>
+                        <div class="modal-footer">
+                            <button id="btnEdit" type="button" class="btn btn-primary">Edit</button>
+                            <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button id="btnEdit" type="button" class="btn btn-primary">Edit</button>
-                    <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
-                </div>
-                </form>
-
             </div>
         </div>
     </div>
@@ -200,6 +204,7 @@
         $("#btnEdit").css('display','none');
         $(".inputPass").css('display','');
         $(".inputRePass").css('display','');
+        $(".inputPhone").removeAttr("disabled");
     });
 </script>
 </body>
