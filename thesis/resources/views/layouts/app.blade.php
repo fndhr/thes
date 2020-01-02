@@ -121,7 +121,7 @@
                             <div class="col-8">:&nbsp;&nbsp;{{Auth::user()->email}}</div>
                         </div>
                         <div class="form-group row inputPass">
-                            <label class="col-4 col-form-label">Password</label>
+                            <label class="col-4 col-form-label">New Password</label>
                             <input id="pass" type="password" class="form-control col-6" for="new_password" name="new_password"
                                 placeholder="" value="{{old('new_password')}}">
                                 <span id="passValidator" role="alert" style="display:none; color:red;">

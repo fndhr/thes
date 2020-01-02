@@ -415,34 +415,6 @@
                     </div>
 
                     <div class="row py-2">
-                        <div class="col-3">Thesis .doc</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.doc</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
-                        <div class="col-3">Thesis .pdf</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile2">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
                         <div class="col-3">Source code</div>
                         <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.zip</div>
                     </div>
@@ -455,92 +427,23 @@
                             </form>
                         </div>
                     </div>
-
+                    <br />
+                    <div class="text-danger">*Please note that you only have 1 attempt to upload the file</div>
+                    <div class="text-danger">*Make Sure to Get 3 Signatures from <strong>Thesis Advisor, Head Study Program, and Dean</strong> before binding the thesis</div>
+                    <div class="text-danger">*Hard Cover Thesis 1 Copies <strong>(Dark Blue)</strong></div>
+                    <br />
+                    <div>Content list of Finalized Documents (.zip): </div>
                     <div class="row py-2">
-                        <div class="col-3">User Manual</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile4">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
-                        <div class="col-3">Installer Guide</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile5">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
-                        <div class="col-3">Summary in English (max 6 pages, .doc/.docx</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile6">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
-                        <div class="col-3">Summary in Bahasa (max 6 pages, .doc/.docx</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile7">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
-                        <div class="col-3">Powerpoint Slide</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pptx</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile8">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row py-2">
-                        <div class="col-3">Declaration of Originality</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-12 text-center">
-                            <form class="text-center submitForm">
-                                <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile9">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col text-danger">*Please note that you only have 1 attempt to upload the file</div>
+                        <ol>
+                            <li>Soft Copy Thesis <strong>(.doc / .docx)</strong></li>
+                            <li>Soft Copy Thesis <strong>PDF</strong></li>
+                            <li>Source Code Executables File & Supporting Softwares</li>
+                            <li>User Manual & Installer Guide</li>
+                            <li>Summary of Thesis Report in English, <strong>Max 6 Pages (.doc / .docx)</strong></li>
+                            <li>Summary of Thesis Report in Bahasa, <strong>Max 6 Pages (.doc / .docx)</strong></li>
+                            <li>Power Point Slide</li>
+                            <li>Authors Declaration of Originality</li>
+                        </ul>
                     </div>
                 </div>
             </div>

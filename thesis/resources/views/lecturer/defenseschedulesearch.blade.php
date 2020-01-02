@@ -23,7 +23,7 @@
                     <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Student ID</th>
-                        <th scope="col">Student Name</th>
+                        <th scope="col">Student</th>
                         <th scope="col">Advisor</th>
                         <th scope="col">Date</th>
                     </tr>
