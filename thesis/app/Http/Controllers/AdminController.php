@@ -208,9 +208,13 @@ class AdminController extends Controller
 
     public function studentSearchFilter(Request $request){
         $nameSearch = request('std_name');
+        $fullname = explode(' ',request('std_name'));
 
         $result = User::where('first_name','LIKE','%'.$nameSearch.'%')
-                    ->orWhere('last_name','LIKE','%'.$nameSearch.'%')->get('id');
+                    ->orWhere('last_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhere('first_name','last_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhereIn('first_name',$fullname)->orWhereIn('last_name',$fullname)
+                    ->get('id');
 
         
         return view('admin.studentsearch',[
