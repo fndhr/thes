@@ -153,7 +153,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding: 0 !important;">
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action">
                             <p class="mb-1 font-weight-bold">upload file sampai final zip, d-3, d-2, d-1, last day (untuk student)</p>
