@@ -210,10 +210,11 @@ class AdminController extends Controller
         $nameSearch = request('std_name');
         $fullname = explode(' ',request('std_name'));
 
-        $result = User::where('first_name','LIKE','%'.$nameSearch.'%')
-                    ->orWhere('last_name','LIKE','%'.$nameSearch.'%')
-                    ->orWhere('first_name','last_name','LIKE','%'.$nameSearch.'%')
-                    ->orWhereIn('first_name',$fullname)->orWhereIn('last_name',$fullname)
+        $result = User::where('users.first_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhere('users.last_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhere('students.std_id','LIKE','%'.$nameSearch.'%')
+                    ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
+                    ->leftJoin('students','users.id','=','students.usr_id')
                     ->get('id');
 
         
@@ -325,5 +326,52 @@ class AdminController extends Controller
         $defense->save();
 
         return redirect('admin/studentDetail/'.request('std_id'))->with('alert','Successfully Set Defense Schedule');
+    }
+
+    public function defenseSearchFilter(Request $request){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
+        
+        $inputSearch = request('input_search');
+        $fullname = explode(' ',request('input_search'));
+
+        $defenses = defense::where('defenses.std_id','LIKE','%'.$inputSearch.'%')
+                            ->orWhere('users.first_name','LIKE','%'.$inputSearch.'%')
+                            ->orWhere('users.last_name','LIKE','%'.$inputSearch.'%')
+                            ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
+                            ->leftJoin('students','defenses.std_id','=','students.std_id')
+                            ->leftJoin('users','students.usr_id','=','users.id')
+                            ->get();
+
+        foreach($defenses as  $defense){
+            $datetime = explode(' ',$defense->def_strt_dt);
+            $date = explode('-',$datetime[0]);
+            $time = explode(':',$datetime[1]);
+            $defense->date = $date[0].'-'.$date[1].'-'.$date[2];
+            $defense->time = $time[0].':'.$date[1];
+        }
+        return view('admin.defenseschedulesearch',[
+            'role' => $this->role,
+            'defenses' => $defenses
+        ]);
+    }
+
+    public function defenseSearchFilter1(Request $request){
+        $inputSearch = request('std_name');
+        $fullname = explode(' ',request('std_name'));
+
+        $result = defense::where('std_id','LIKE','%'.$inputSearch.'%')
+                    ->orWhere('first_name','LIKE','%'.$inputSearch.'%')
+                    ->orWhere('last_name','LIKE','%'.$inputSearch.'%')
+                    ->orWhereIn('first_name',$fullname)->orWhereIn('last_name',$fullname)
+                    ->get('id');
+
+        
+        return view('admin.studentsearch',[
+            'role' => $this->role,
+            'defenses' =>student::whereIn('usr_id',$result)->get()
+        ]);
+        
     }
 }

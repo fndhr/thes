@@ -34,7 +34,6 @@ Route::prefix('admin')->group(function (){
     Route::get('/studentSearch','AdminController@studentSearch');
     Route::get('/getDefenseScheduleDetail/{id}','AdminController@getDefenseScheduleDetail');
     Route::get('/studentDetail/{id}','AdminController@studentDetail');
-    
 
     Route::post('/register/student','UserController@studentRegister');
     Route::post('/register/lecturer','UserController@lecturerRegister');
@@ -46,6 +45,7 @@ Route::prefix('admin')->group(function (){
     Route::post('/createSessionSet','AdminController@createSessionSet');
     Route::post('/editSessionSet','AdminController@editSessionSet');
     Route::post('/submitSetDefenseSchedule','AdminController@submitSetDefenseSchedule');
+    Route::post('/defenseSearchFilter','AdminController@defenseSearchFilter');
 });
 
 

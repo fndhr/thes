@@ -9,15 +9,17 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-            <form method="POST" action="/register/lecturer">
+        <form method="POST" action="defenseSearchFilter">
+            {{ csrf_field() }}
                 <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Student*</label>
-                    <input type="text" class="form-control col-9" for="std_id" placeholder="Input Student Name or ID">
+                    <label class="col-3 col-form-label inputRequired">Student</label>
+                    <input type="text" class="form-control col-9" for="input_search" name="input_search" placeholder="Input Student Name or ID">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-5 my-4 btnSubmit">Search</button>
                 </div>
             </form>
+            @if(isset($defenses))
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
@@ -28,26 +30,29 @@
                         <th scope="col">Date</th>
                     </tr>
                 </thead>
+                @if(count($defenses)>0)
                 <tbody>
-                    @if(count($defenses)>0)
-                        @php($num = 1)
-                        @foreach($defenses as $defense)
-                        <tr>
-                            <td>{{$num}}.</td>
-                            <td>{{$defense->student->std_id}}</td>
-                            <td><a href="/admin/getDefenseScheduleDetail/{{$defense->student->std_id}}">{{$defense->student->user->first_name}} {{$defense->student->user->last_name}}</a></td>
-                            <td>{{$defense->student->lecturer->user->first_name}} {{$defense->student->lecturer->user->last_name}}</td>
-                            <td>{{$defense->date}}</td>
-                        </tr>
-                        @php($num++)
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="4" class="text-center">Records Not Found</td>
-                        </tr>
-                    @endif
+                    @php($num = 1)
+                    @foreach($defenses as $defense)
+                    <tr>
+                        <td>{{$num}}.</td>
+                        <td>{{$defense->student->std_id}}</td>
+                        <td><a href="/admin/getDefenseScheduleDetail/{{$defense->student->std_id}}">{{$defense->student->user->first_name}} {{$defense->student->user->last_name}}</a></td>
+                        <td>{{$defense->student->lecturer->user->first_name}} {{$defense->student->lecturer->user->last_name}}</td>
+                        <td>{{$defense->date}}</td>
+                    </tr>
+                    @php($num++)
+                    @endforeach
                 </tbody>
+                @else
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="text-center">Records Not Found</td>
+                    </tr>
+                </tbody>
+                @endif
             </table>
+            @endif
         </div>
     </div>
 </div>
