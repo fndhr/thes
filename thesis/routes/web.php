@@ -55,6 +55,9 @@ Route::prefix('student')->group(function(){
     Route::post('/uploadDocThesisProposal','StudentController@uploadDocThesisProposal');
     Route::post('/uploadDocThesisInterim','StudentController@uploadDocThesisInterim');
     Route::post('/uploadDocThesisFinalDraft','StudentController@uploadDocThesisFinalDraft');
+    Route::post('/uploadSignedRevisedDoc','StudentController@uploadSignedRevisedDoc');
+    Route::post('/uploadFinalizedDoc','StudentController@uploadFinalizedDoc');
+    
 });
 
 Route::prefix('lecturer')->group(function(){
@@ -62,4 +65,8 @@ Route::prefix('lecturer')->group(function(){
     Route::get('/studentDetail/{id}','LecturerController@studentDetail');
     Route::get('/defenseScheduleSearch','LecturerController@defenseScheduleSearch');
     Route::get('/getDefenseScheduleDetail/{id}','LecturerController@getDefenseScheduleDetail');
+
+    Route::post('/studentSearch','LecturerController@studentSearchFilter');
+    Route::post('/defenseSearchFilter','LecturerController@defenseSearchFilter');
+    
 });

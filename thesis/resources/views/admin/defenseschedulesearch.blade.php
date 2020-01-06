@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-        <form method="POST" action="defenseSearchFilter">
+            <form method="POST" action="defenseSearchFilter">
             {{ csrf_field() }}
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Student</label>

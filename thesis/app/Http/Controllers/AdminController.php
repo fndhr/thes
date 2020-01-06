@@ -207,6 +207,10 @@ class AdminController extends Controller
     }
 
     public function studentSearchFilter(Request $request){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
+        
         $nameSearch = request('std_name');
         $fullname = explode(' ',request('std_name'));
 
@@ -355,23 +359,5 @@ class AdminController extends Controller
             'role' => $this->role,
             'defenses' => $defenses
         ]);
-    }
-
-    public function defenseSearchFilter1(Request $request){
-        $inputSearch = request('std_name');
-        $fullname = explode(' ',request('std_name'));
-
-        $result = defense::where('std_id','LIKE','%'.$inputSearch.'%')
-                    ->orWhere('first_name','LIKE','%'.$inputSearch.'%')
-                    ->orWhere('last_name','LIKE','%'.$inputSearch.'%')
-                    ->orWhereIn('first_name',$fullname)->orWhereIn('last_name',$fullname)
-                    ->get('id');
-
-        
-        return view('admin.studentsearch',[
-            'role' => $this->role,
-            'defenses' =>student::whereIn('usr_id',$result)->get()
-        ]);
-        
     }
 }

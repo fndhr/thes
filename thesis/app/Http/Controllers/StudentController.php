@@ -49,9 +49,7 @@ class StudentController extends Controller
 	public function uploadDocThesisProposal(Request $request){			
 
 		$validation = $request->validate([
-			'file' => 'required|file|mimes:doc,docx,pdf'
-			// for multiple file uploads
-			// 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+			'file' => 'required|file|mimes:doc,docx,zip'
 		]);
 
 		if($request->has('file')){
@@ -77,6 +75,10 @@ class StudentController extends Controller
 
 	public function uploadDocThesisInterim(Request $request){			
 
+		$validation = $request->validate([
+			'file' => 'required|file|mimes:doc,docx,zip'
+		]);
+
 		if($request->has('file')){
 			$student = student::whereUsrId(auth()->id())->first();
 
@@ -99,6 +101,10 @@ class StudentController extends Controller
 
 	public function uploadDocThesisFinalDraft(Request $request){			
 
+		$validation = $request->validate([
+			'file' => 'required|file|mimes:doc,docx,zip'
+		]);
+
 		if($request->has('file')){
 			$student = student::whereUsrId(auth()->id())->first();
 
@@ -120,5 +126,53 @@ class StudentController extends Controller
 
 	public function checkIsProposalSubmitted(){
 		
+	}
+
+	public function uploadSignedRevisedDoc(Request $request){			
+
+		$validation = $request->validate([
+			'file' => 'required|file|mimes:doc,docx'
+		]);
+
+		if($request->has('file')){
+			$student = student::whereUsrId(auth()->id())->first();
+
+			$file = $request->file('file');
+			$fileName = $file->getClientOriginalName();
+			$file->move('uploads\\'.$student->std_id.'\uploadSignedRevisedDoc',$file->getClientOriginalName());
+
+
+			$uploadDoc = new documentUpload;
+			$uploadDoc->std_id = $student->std_id;
+			$uploadDoc->doc_name = $fileName;
+			$uploadDoc->doc_type_name = 'Signed Revised Document';
+			
+			$uploadDoc->save();
+			return redirect()->back()->with('alert','Successfull Submit Document');
+		}
+	}
+
+	public function uploadFinalizedDoc(Request $request){			
+
+		$validation = $request->validate([
+			'file' => 'required|file|mimes:zip'
+		]);
+
+		if($request->has('file')){
+			$student = student::whereUsrId(auth()->id())->first();
+
+			$file = $request->file('file');
+			$fileName = $file->getClientOriginalName();
+			$file->move('uploads\\'.$student->std_id.'\uploadFinalizedDoc',$file->getClientOriginalName());
+
+
+			$uploadDoc = new documentUpload;
+			$uploadDoc->std_id = $student->std_id;
+			$uploadDoc->doc_name = $fileName;
+			$uploadDoc->doc_type_name = 'Finalized Document';
+			
+			$uploadDoc->save();
+			return redirect()->back()->with('alert','Successfull Submit Document');
+		}
 	}
 }

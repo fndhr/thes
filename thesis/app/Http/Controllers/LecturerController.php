@@ -23,6 +23,7 @@ class LecturerController extends Controller
     public function getStudents(){
         return student::paginate(20);
     }
+
     public function studentSearch(){
         $this->validateLecturer();
         if(is_null($this->user)){
@@ -34,6 +35,7 @@ class LecturerController extends Controller
             'lecturer' => $this->user
         ]);
     }
+
     public function studentDetail($param){
         $this->validateLecturer();
         if(is_null($this->user)){
@@ -71,6 +73,7 @@ class LecturerController extends Controller
             'defenses' => $defenses
         ]);
     }
+
     public function getDefenseScheduleDetail($param){
         $this->validateLecturer();
         if(is_null($this->user)){
@@ -85,6 +88,58 @@ class LecturerController extends Controller
             'role' => $this->role,
             'lecturer' => $this->user,
             'student' => $student
+        ]);
+    }
+
+    public function studentSearchFilter(Request $request){
+        $this->validateLecturer();
+        if(is_null($this->user)){
+            return redirect('home');
+        }
+        $nameSearch = request('std_name');
+        $fullname = explode(' ',request('std_name'));
+
+        $result = User::where('users.first_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhere('users.last_name','LIKE','%'.$nameSearch.'%')
+                    ->orWhere('students.std_id','LIKE','%'.$nameSearch.'%')
+                    ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
+                    ->leftJoin('students','users.id','=','students.usr_id')
+                    ->get('id');
+
+        return view('lecturer.studentsearch',[
+            'role' => $this->role,
+            'students' =>student::whereIn('usr_id',$result)->get(),
+            'lecturer' => $this->user
+        ]);        
+    }
+
+    public function defenseSearchFilter(Request $request){
+        $this->validateLecturer();
+        if(is_null($this->user)){
+            return redirect('home');
+        }
+        $inputSearch = request('input_search');
+        $fullname = explode(' ',request('input_search'));
+
+        $defenses = defense::where('defenses.std_id','LIKE','%'.$inputSearch.'%')
+                            ->orWhere('users.first_name','LIKE','%'.$inputSearch.'%')
+                            ->orWhere('users.last_name','LIKE','%'.$inputSearch.'%')
+                            ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
+                            ->leftJoin('students','defenses.std_id','=','students.std_id')
+                            ->leftJoin('users','students.usr_id','=','users.id')
+                            ->get();
+
+        foreach($defenses as  $defense){
+            $datetime = explode(' ',$defense->def_strt_dt);
+            $date = explode('-',$datetime[0]);
+            $time = explode(':',$datetime[1]);
+            $defense->date = $date[0].'-'.$date[1].'-'.$date[2];
+            $defense->time = $time[0].':'.$date[1];
+        }
+        return view('lecturer.defenseschedulesearch',[
+            'role' => $this->role,
+            'defenses' => $defenses,
+            'lecturer' => $this->user
         ]);
     }
 }

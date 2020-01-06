@@ -89,7 +89,7 @@
                                 <input type="text" class="form-control col-9" for="title_name" name="title_name" placeholder="Title Name">
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
+                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmitTitle">Submit</button>
                             </div>
                         </form>
                         @endif
@@ -208,7 +208,7 @@
                                     </span>
                                 @enderror
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitProposal">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -254,7 +254,7 @@
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitInterim">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -300,7 +300,7 @@
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalDraft">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -378,9 +378,14 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center submitForm">
+                            <form class="text-center submitForm" action="/student/uploadSignedRevisedDoc" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile1">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitRevisedDoc">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -420,9 +425,14 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
-                            <form class="text-center submitForm">
+                            <form class="text-center submitForm" action="/student/uploadFinalizedDoc" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="form-group row justify-content-center">
-                                    <input type="file" class="col-3 form-control-file" id="exampleFormControlFile3">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalized">Submit</button>
                                 </div>
                             </form>
                         </div>
