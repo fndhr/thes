@@ -50,4 +50,7 @@ class User extends Authenticatable
     public function lecturer(){
         return $this->belongsTo('App\lecturer','id','usr_id');
     }
+    public function notifications(){
+        return $this->hasMany('App\notification','usr_id','id');
+    }
 }

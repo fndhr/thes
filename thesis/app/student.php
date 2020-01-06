@@ -29,9 +29,12 @@ class student extends Model
         return $this->hasMany('App\documentUpload','std_id','std_id');
     }
     public function session(){
-        return $this->hasOne('App\session','session_id','session_id');
+        return $this->belongsTo('App\session','session_id','session_id');
     }
     public function defense(){
         return $this->belongsTo('App\defense','std_id','std_id');
+    }
+    public function notification(){
+        return $this->hasMany('App\notification','std_id','std_id');
     }
 }

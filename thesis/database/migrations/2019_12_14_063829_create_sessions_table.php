@@ -15,14 +15,14 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('session_id')->primary();
-            $table->dateTime('title_adv_req_start')->nullable();
-            $table->dateTime('title_adv_req_end')->nullable();
-            $table->dateTime('thesis_proposal_start')->nullable();
-            $table->dateTime('thesis_proposal_end')->nullable();
-            $table->dateTime('interim_report_start')->nullable();
-            $table->dateTime('interim_report_end')->nullable();
-            $table->dateTime('final_draft_start')->nullable();
-            $table->dateTime('final_draft_end')->nullable();
+            $table->date('title_adv_req_start')->nullable();
+            $table->date('title_adv_req_end')->nullable();
+            $table->date('thesis_proposal_start')->nullable();
+            $table->date('thesis_proposal_end')->nullable();
+            $table->date('interim_report_start')->nullable();
+            $table->date('interim_report_end')->nullable();
+            $table->date('final_draft_start')->nullable();
+            $table->date('final_draft_end')->nullable();
             $table->timestamps();
         });
     }
