@@ -65,7 +65,7 @@
         <div class="navbar-collapse"></div>
         @endif
         <div class="dropdown">
-            <a class="navbar-brand messages" onClick="alert('COMMING SOON')"><img src="/assets/image/admin_message.png" width="30" height="30" alt=""></a>
+            <a class="navbar-brand messages" data-toggle="modal" data-target="#modalNotification"><img src="/assets/image/admin_message.png" width="30" height="30" alt=""></a>
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Hi, {{Auth::user()->first_name}}
@@ -139,6 +139,47 @@
                             <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNotification" tabindex="-1" role="dialog" aria-labelledby="modalNotificationTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNotificationTitle">Notifications</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action">
+                            <p class="mb-1 font-weight-bold">upload file sampai final zip, d-3, d-2, d-1, last day (untuk student)</p>
+                            <small>3 days ago</small>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <p class="mb-1 font-weight-bold">dapet tanggal sidang, d-3, d-2, d-1, d-day (untuk student)</p>
+                            <small>3 days ago</small>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <p class="mb-1 font-weight-bold">upload file cuma sampai final draft, d-3, d-2, d-1, last day (lecturer)</p>
+                            <small>3 days ago</small>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <p class="mb-1 font-weight-bold">tiap ada bocah yang upload file (lecturer)</p>
+                            <small>3 days ago</small>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <p class="mb-1 font-weight-bold">pas defense bocah dapet tanggal, d-3, d-2, d-1, d-day (lecturer)</p>
+                            <small>3 days ago</small>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <p class="mb-1 font-weight-bold">khusus admin ketika student uplaod file saja, dan mungkin notif pas udah selesai defense dan ada scorenya</p>
+                            <small>3 days ago</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
