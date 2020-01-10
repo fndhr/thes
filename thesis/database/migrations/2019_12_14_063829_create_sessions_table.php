@@ -23,6 +23,10 @@ class CreateSessionsTable extends Migration
             $table->dateTime('interim_report_end')->nullable();
             $table->dateTime('final_draft_start')->nullable();
             $table->dateTime('final_draft_end')->nullable();
+            $table->dateTime('signed_revised_doc_start_date')->nullable();
+            $table->dateTime('signed_revised_doc_end_date')->nullable();
+            $table->dateTime('finalized_doc_start_date')->nullable();
+            $table->dateTime('finalized_doc_end_date')->nullable();
             $table->timestamps();
         });
     }
