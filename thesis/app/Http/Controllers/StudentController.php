@@ -49,7 +49,7 @@ class StudentController extends Controller
 	public function uploadDocThesisProposal(Request $request){			
 
 		$validation = $request->validate([
-			'file' => 'required|file|mimes:doc,docx,zip'
+			'file' => 'required|file|mimes:pdf,zip'
 		]);
 
 		if($request->has('file')){
@@ -76,7 +76,7 @@ class StudentController extends Controller
 	public function uploadDocThesisInterim(Request $request){			
 
 		$validation = $request->validate([
-			'file' => 'required|file|mimes:doc,docx,zip'
+			'file' => 'required|file|mimes:pdf,zip'
 		]);
 
 		if($request->has('file')){
@@ -102,7 +102,7 @@ class StudentController extends Controller
 	public function uploadDocThesisFinalDraft(Request $request){			
 
 		$validation = $request->validate([
-			'file' => 'required|file|mimes:doc,docx,zip'
+			'file' => 'required|file|mimes:pdf,zip'
 		]);
 
 		if($request->has('file')){
@@ -131,7 +131,7 @@ class StudentController extends Controller
 	public function uploadSignedRevisedDoc(Request $request){			
 
 		$validation = $request->validate([
-			'file' => 'required|file|mimes:doc,docx'
+			'file' => 'required|file|mimes:pdf,zip'
 		]);
 
 		if($request->has('file')){
@@ -155,7 +155,7 @@ class StudentController extends Controller
 	public function uploadFinalizedDoc(Request $request){			
 
 		$validation = $request->validate([
-			'file' => 'required|file|mimes:zip'
+			'file' => 'required|file|mimes:pdf,zip'
 		]);
 
 		if($request->has('file')){
