@@ -20,5 +20,8 @@ class lecturer extends Model
     }
     public function examiners(){
         return $this->hasMany('App\defense','examiner','lec_id');
+    }    
+    public function scoringTable(){
+        return $this->belongsTo('App\scoringTable','lec_id','lec_id');
     }
 }

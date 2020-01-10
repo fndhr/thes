@@ -37,4 +37,7 @@ class student extends Model
     public function notification(){
         return $this->hasMany('App\notification','std_id','std_id');
     }
+    public function scoringTable(){
+        return $this->hasMany('App\scoringTable','std_id','std_id');
+    }
 }

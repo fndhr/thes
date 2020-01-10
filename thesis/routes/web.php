@@ -65,8 +65,9 @@ Route::prefix('lecturer')->group(function(){
     Route::get('/studentDetail/{id}','LecturerController@studentDetail');
     Route::get('/defenseScheduleSearch','LecturerController@defenseScheduleSearch');
     Route::get('/getDefenseScheduleDetail/{id}','LecturerController@getDefenseScheduleDetail');
+    Route::get('/defensescoring/{id}','LecturerController@defenseScoring');
 
     Route::post('/studentSearch','LecturerController@studentSearchFilter');
     Route::post('/defenseSearchFilter','LecturerController@defenseSearchFilter');
-    
+    Route::post('/submitScoring','LecturerController@submitScoring');
 });
