@@ -20,6 +20,8 @@ class CreateScoringTablesTable extends Migration
             $table->integer('supervisor_total')->default(0);
             $table->string('std_id');
             $table->string('lec_id');
+            $table->string('suggestion');
+            $table->string('correction');
             $table->foreign('std_id')->references('std_id')->on('students');
             $table->foreign('lec_id')->references('lec_id')->on('lecturers');
             $table->timestamps();
