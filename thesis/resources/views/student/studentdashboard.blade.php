@@ -360,8 +360,8 @@
                 <div class="card-body">
                     <div class="row my-4 text-center">
                         <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: 16-08-2019</h5></div>
-                        <div class="col-3"><h5>End: 24-08-2019</h5></div>
+                        <div class="col-3"><h5>Start: {{$student->session->final_revised_document}}</h5></div>
+                        <div class="col-3"><h5>End: {{$student->session->final_revised_document}}</h5></div>
                         <div class="col-3"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
@@ -406,8 +406,8 @@
                 <div class="card-body">
                     <div class="row my-4 text-center">
                         <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: 16-08-2019</h5></div>
-                        <div class="col-3"><h5>End: 24-08-2019</h5></div>
+                        <div class="col-3"><h5>Start: {{$student->session->final_finalized_document}}</h5></div>
+                        <div class="col-3"><h5>End: {{$student->session->final_finalized_document}}</h5></div>
                         <div class="col-3"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">

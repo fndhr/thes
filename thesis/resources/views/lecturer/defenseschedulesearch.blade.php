@@ -47,7 +47,7 @@
                 @else
                 <tbody>
                     <tr>
-                        <td colspan="4" class="text-center">Records Not Found</td>
+                        <td colspan="5" class="text-center">Records Not Found</td>
                     </tr>
                 </tbody>
                 @endif
