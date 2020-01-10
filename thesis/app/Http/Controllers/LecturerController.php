@@ -136,6 +136,7 @@ class LecturerController extends Controller
                                 $q->where('users.first_name','LIKE','%'.request('input_search').'%')
                                 ->orWhere('users.last_name','LIKE','%'.request('input_search').'%')
                                 ->orWhereIn('users.first_name',explode(' ',request('input_search')))->orWhereIn('users.last_name',explode(' ',request('input_search')));})
+                            ->whereDate('def_strt_dt','>=',date('Y-m-d'))
                             ->leftJoin('students','defenses.std_id','=','students.std_id')
                             ->leftJoin('users','students.usr_id','=','users.id')
                             ->get();
