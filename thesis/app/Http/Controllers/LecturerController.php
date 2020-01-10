@@ -128,9 +128,14 @@ class LecturerController extends Controller
         $fullname = explode(' ',request('input_search'));
 
         $defenses = defense::where('defenses.std_id','LIKE','%'.$inputSearch.'%')
-                            ->orWhere('users.first_name','LIKE','%'.$inputSearch.'%')
-                            ->orWhere('users.last_name','LIKE','%'.$inputSearch.'%')
-                            ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
+                            ->where(function($q) {
+                                $q->where('examiner', $this->user->lec_id)
+                                ->orWhere('chairman', $this->user->lec_id)
+                                ->orWhereHas('student',function($query){$query->where('lec_id',$this->user->lec_id);});})
+                            ->where(function($q) {
+                                $q->where('users.first_name','LIKE','%'.request('input_search').'%')
+                                ->orWhere('users.last_name','LIKE','%'.request('input_search').'%')
+                                ->orWhereIn('users.first_name',explode(' ',request('input_search')))->orWhereIn('users.last_name',explode(' ',request('input_search')));})
                             ->leftJoin('students','defenses.std_id','=','students.std_id')
                             ->leftJoin('users','students.usr_id','=','users.id')
                             ->get();
