@@ -59,7 +59,8 @@ class LecturerController extends Controller
         if(is_null($this->user)){
             return redirect('home');
         }
-        $defenses = defense::whereDate('def_strt_dt','>=',date('Y-m-d'))->get();
+        $defenses = defense::whereDate('def_strt_dt','>=',date('Y-m-d'))
+        ->whereHas('student',function($query){$query->where('lec_id',$this->user->lec_id);})->get();
         foreach($defenses as  $defense){
             $datetime = explode(' ',$defense->def_strt_dt);
             $date = explode('-',$datetime[0]);
