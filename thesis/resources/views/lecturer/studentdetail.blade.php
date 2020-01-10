@@ -61,24 +61,22 @@
                     </div>
                 @endif
             @endif
-            <div class="row py-2 mb-2">
-                <div class="col-3">Revision</div>
-                <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
-                <div class="col-2">Download</div>
-                <div class="col-1"></div>
-            </div>
-            <div class="row py-2 mb-2">
-                <div class="col-3">Thesis .doc</div>
-                <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
-                <div class="col-2">Download</div>
-                <div class="col-1"></div>
-            </div>
-            <div class="row py-2 mb-2">
-                <div class="col-3">Thesis .pdf</div>
-                <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
-                <div class="col-2">Download</div>
-                <div class="col-1"></div>
-            </div>            
+            @if(count($student->documentUpload)>=4)
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Revision</div>
+                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
+                    <div class="col-2">Download</div>
+                    <div class="col-1"></div>
+                </div>
+            @endif
+            @if(count($student->documentUpload)>=5)
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Thesis .zip</div>
+                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
+                    <div class="col-2">Download</div>
+                    <div class="col-1"></div>
+                </div>
+            @endif           
         </div>
     </div>
 </div>

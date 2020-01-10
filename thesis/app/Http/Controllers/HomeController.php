@@ -9,14 +9,18 @@ use App\User;
 use App\proposedAdvisor;
 use App\proposedTitle;
 use App\documentUpload;
+use App\notification;
 use Validator;
+use App\session;
+use DateTime;
+use date;
 class HomeController extends Controller
 {
     
     public $role;//anggep 1 itu admin, 2 lecturer, 3 student
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -129,4 +133,6 @@ class HomeController extends Controller
         
         return response()->download($path, $file);
     }
+
+    
 }

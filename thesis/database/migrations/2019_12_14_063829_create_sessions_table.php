@@ -15,6 +15,7 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('session_id')->primary();
+
             $table->dateTime('title_adv_req_start')->nullable();
             $table->dateTime('title_adv_req_end')->nullable();
             $table->dateTime('thesis_proposal_start')->nullable();
@@ -27,6 +28,7 @@ class CreateSessionsTable extends Migration
             $table->dateTime('signed_revised_doc_end_date')->nullable();
             $table->dateTime('finalized_doc_start_date')->nullable();
             $table->dateTime('finalized_doc_end_date')->nullable();
+
             $table->timestamps();
         });
     }
