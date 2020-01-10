@@ -21,7 +21,7 @@ class LecturerController extends Controller
         $this->user = User::find(auth()->id())->lecturer;
     }
     public function getStudents(){
-        return student::paginate(20);
+        return student::where('lec_id',$this->user->lec_id)->get();
     }
 
     public function studentSearch(){
@@ -105,10 +105,12 @@ class LecturerController extends Controller
         $nameSearch = request('std_name');
         $fullname = explode(' ',request('std_name'));
 
-        $result = User::where('users.first_name','LIKE','%'.$nameSearch.'%')
-                    ->orWhere('users.last_name','LIKE','%'.$nameSearch.'%')
-                    ->orWhere('students.std_id','LIKE','%'.$nameSearch.'%')
-                    ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
+        $result = User::where(function($q) {
+                        $q->where('users.first_name','LIKE','%'.request('std_name').'%')
+                        ->orWhere('users.last_name','LIKE','%'.request('std_name').'%')
+                        ->orWhere('students.std_id','LIKE','%'.request('std_name').'%')
+                        ->orWhereIn('users.first_name',explode(' ',request('std_name')))->orWhereIn('users.last_name',explode(' ',request('std_name')));})
+                    ->where('lec_id',$this->user->lec_id)
                     ->leftJoin('students','users.id','=','students.usr_id')
                     ->get('id');
 
@@ -127,14 +129,14 @@ class LecturerController extends Controller
         $inputSearch = request('input_search');
         $fullname = explode(' ',request('input_search'));
 
-        $defenses = defense::where('defenses.std_id','LIKE','%'.$inputSearch.'%')
-                            ->where(function($q) {
+        $defenses = defense::where(function($q) {
                                 $q->where('examiner', $this->user->lec_id)
                                 ->orWhere('chairman', $this->user->lec_id)
                                 ->orWhereHas('student',function($query){$query->where('lec_id',$this->user->lec_id);});})
                             ->where(function($q) {
                                 $q->where('users.first_name','LIKE','%'.request('input_search').'%')
                                 ->orWhere('users.last_name','LIKE','%'.request('input_search').'%')
+                                ->orWhere('defenses.std_id','LIKE','%'.request('input_search').'%')
                                 ->orWhereIn('users.first_name',explode(' ',request('input_search')))->orWhereIn('users.last_name',explode(' ',request('input_search')));})
                             ->whereDate('def_strt_dt','>=',date('Y-m-d'))
                             ->leftJoin('students','defenses.std_id','=','students.std_id')
