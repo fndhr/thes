@@ -9,6 +9,7 @@ use App\student;
 use App\proposedAdvisor;
 use App\defense;
 use App\proposedTitle;
+use App\scoringTable;
 class LecturerController extends Controller
 {
     private $role = 2;
@@ -90,13 +91,26 @@ class LecturerController extends Controller
         $student->title = $proposedTitle;
         $student->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
         $student->time = date('h:i:s A',strtotime($student->defense->def_strt_dt)).' - '. date('h:i:s A',strtotime($student->defense->def_end_dt));
-        return view('admin.defensescheduledetail',[
+        return view('lecturer.defensescheduledetail',[
             'role' => $this->role,
             'lecturer' => $this->user,
             'student' => $student
         ]);
     }
-
+    public function defenseScoring($param){
+        $this->validateLecturer();
+        if(is_null($this->user)){
+            return redirect('home');
+        }
+        $student = student::whereStdId($param)->first();
+        $proposedTitle = proposedTitle::whereStdId($param)->whereStsId(2)->first();
+        $student->title = $proposedTitle;
+        $student->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
+        $student->time = date('h:i:s A',strtotime($student->defense->def_strt_dt)).' - '. date('h:i:s A',strtotime($student->defense->def_end_dt));
+        
+        return view('lecturer.defensescoring',['role' => $this->role,
+        'lecturer' => $this->user,'student' => $student]);
+    }
     public function studentSearchFilter(Request $request){
         $this->validateLecturer();
         if(is_null($this->user)){
@@ -156,4 +170,36 @@ class LecturerController extends Controller
             'lecturer' => $this->user
         ]);
     }
+
+    public function submitScoring(){
+        $totalReport = 0; $totalPresentation = 0; $totalAdvisor = 0;
+        foreach(request('final_report') as $nilai){
+            $totalReport+=$nilai;
+        }
+        foreach(request('presentation') as $nilai){
+            $totalPresentation+=$nilai;
+        }
+        if(!is_null(request('advisor'))){
+            foreach(request('presentation') as $nilai){
+                $totalAdvisor+=$nilai;
+            }
+        }
+        $scoring = new scoringTable;
+        $scoring->final_report_total = $totalReport;
+        $scoring->presentation_total = $totalPresentation;
+        $scoring->supervisor_total = $totalAdvisor;
+        if(is_null(request('suggestion')))
+            $scoring->suggestion = "";
+        else
+            $scoring->suggestion = request('suggestion');
+        if(is_null(request('suggestion')))
+            $scoring->correction = "";
+        else
+            $scoring->correction = request('correction');
+        $scoring->std_id = request('student_id');
+        $scoring->lec_id = request('lec_id');
+        $scoring->save();
+        return redirect('home')->with('alert','successfully submit live scoring');
+    }
+    
 }
