@@ -239,6 +239,11 @@ class AdminController extends Controller
             'end_date_interim'=>'required|date|after:start_date_interim',
             'start_date_final_draft'=>'required|date|after:end_date_interim',
             'end_date_final_draft'=>'required|date|after:start_date_final_draft',
+            'start_date_revised_document'=>'required|date|after:end_date_final_draft',
+            'end_date_revised_document'=>'required|date|after:start_date_revised_document',
+            'start_date_finalized_document'=>'required|date|after:end_date_revised_document',
+            'end_date_finalized_document'=>'required|date|after:start_date_finalized_document',
+        
         ]
         );
         if ($validator->fails()) {
@@ -262,8 +267,16 @@ class AdminController extends Controller
         $session->final_draft_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_final_draft'));
         $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_revised_document'));
+        $session->signed_revised_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_revised_document'));
+        $session->signed_revised_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_finalized_document'));
+        $session->finalized_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_finalized_document'));
+        $session->finalized_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $session->save();
-        return redirect()->back()->with('alert','Successfully Set New Session');
+        return redirect()->back()->with('alert','Successfully Edit New Session');
     }
     public function editSessionSet(Request $request){
         $validator = Validator::make($request->all(), [
@@ -275,6 +288,11 @@ class AdminController extends Controller
             'end_date_interim'=>'required|date|after:start_date_interim',
             'start_date_final_draft'=>'required|date|after:end_date_interim',
             'end_date_final_draft'=>'required|date|after:start_date_final_draft',
+            
+            'start_date_revised_document'=>'required|date|after:end_date_final_draft',
+            'end_date_revised_document'=>'required|date|after:start_date_revised_document',
+            'start_date_finalized_document'=>'required|date|after:end_date_revised_document',
+            'end_date_finalized_document'=>'required|date|after:start_date_finalized_document',
         ]
         );
         if ($validator->fails()) {
@@ -297,6 +315,15 @@ class AdminController extends Controller
         $session->final_draft_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_final_draft'));
         $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        //2 new session
+        $date = explode('/',request('start_date_revised_document'));
+        $session->signed_revised_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_revised_document'));
+        $session->signed_revised_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('start_date_finalized_document'));
+        $session->finalized_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
+        $date = explode('/',request('end_date_finalized_document'));
+        $session->finalized_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $session->save();
         return redirect('admin/sessionSet')->with('alert','Successfully Edit Session '.request('session_id'));
     }
