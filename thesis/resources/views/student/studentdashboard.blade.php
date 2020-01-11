@@ -51,8 +51,18 @@
                                 Interim has not been Uploaded
                             @elseif(count($progressUpload)==2)
                                 Final Draft has not been Uploaded
-                            @elseif(count($progressUpload)==3)
+                            @elseif(count($progressUpload)==3 && is_null($student->defense))
                                 Waiting for Defense Date
+                            @elseif(count($progressUpload)==3 && !is_null($student->defense))
+                                @if($student->defense->passed)
+                                    Revised Documents has not been Uploaded
+                                @elseif($student->defense->isToday)
+                                    Today is the Defense Date
+                                @else
+                                    Waiting for Defense Date
+                                @endif
+                            @elseif(count($progressUpload)==4)
+                                Finalized document has not been Uploaded
                             @endif
                         </div>
                     </div>

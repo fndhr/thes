@@ -91,10 +91,12 @@ class LecturerController extends Controller
         $student->title = $proposedTitle;
         $student->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
         $student->time = date('h:i:s A',strtotime($student->defense->def_strt_dt)).' - '. date('h:i:s A',strtotime($student->defense->def_end_dt));
+        $liveScoringHasNotSubmit = count(scoringTable::whereStdId($param)->whereLecId($this->user->lec_id)->get())==0;
         return view('lecturer.defensescheduledetail',[
             'role' => $this->role,
             'lecturer' => $this->user,
-            'student' => $student
+            'student' => $student,
+            'liveScoringHasNotSubmit' => $liveScoringHasNotSubmit
         ]);
     }
     public function defenseScoring($param){
