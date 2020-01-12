@@ -202,7 +202,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->documentUpload ? $student->documentUpload[0]->doc_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -232,8 +232,13 @@
 
 
         <div class="card">
+        @if(count($student->documentUpload)>=1)
             <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                 <h4 class="text-black">Upload Your Signed Interim Report</h4>
+        @else
+            <div class="card-header" id="headingFour" data-toggle="no-collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <h4>Upload Your Signed Interim Report</h4>
+        @endif   
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
@@ -245,15 +250,15 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer ?$student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->documentUpload ? $student->documentUpload[1]->doc_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -278,8 +283,13 @@
 
 
         <div class="card">
+        @if(count($student->documentUpload)>=2)
             <div class="card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                 <h4 class="text-black">Upload Your Signed Final Draft</h4>
+        @else
+            <div class="card-header" id="headingFive" data-toggle="no-collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <h4>Upload Your Signed Final Draft</h4>
+        @endif
             </div>
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                 <div class="card-body">
@@ -291,15 +301,15 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer ?$student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.pdf</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->documentUpload ? $student->documentUpload[2]->doc_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -324,8 +334,13 @@
 
 
         <div class="card">
+        @if(count($student->documentUpload)>=2)
             <div class="card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                 <h4 class="text-black">Your Defense Schedule</h4>
+        @else
+            <div class="card-header" id="headingSix" data-toggle="no-collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                <h4>Your Defense Schedule</h4>
+        @endif
             </div>
             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
                 <div class="card-body">
@@ -363,8 +378,13 @@
 
 
         <div class="card">
+        @if(count($student->documentUpload)>=3)
             <div class="card-header" id="headingSeven" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                 <h4 class="text-black">Upload Your Signed Revised Document</h4>
+        @else
+            <div class="card-header" id="headingSeven" data-toggle="no-collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                <h4>Upload Your Signed Revised Document</h4>
+        @endif
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
                 <div class="card-body">
@@ -409,8 +429,13 @@
 
 
         <div class="card">
+        @if(count($student->documentUpload)>=3)
             <div class="card-header" id="headingEight" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                 <h4 class="text-black">Upload Your Finalized Documents</h4>
+        @else
+            <div class="card-header" id="headingEight" data-toggle="no-collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                <h4>Upload Your Finalized Documents</h4>
+        @endif
             </div>
             <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
                 <div class="card-body">
