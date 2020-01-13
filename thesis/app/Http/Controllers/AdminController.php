@@ -156,6 +156,27 @@ class AdminController extends Controller
             $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
             $student->defense->time = date('h:i:s A',strtotime($student->defense->def_strt_dt));
         }
+        if(count($student->scoringTable) == 3){
+            $a=0;$b=0;$c=0;
+            foreach($student->scoringTable as $personalscore){
+                $a+=$personalscore->final_report_total;
+                $b+=$personalscore->presentation_total;
+                $c+=$personalscore->supervisor_total;
+            }
+            $student->scoringTable->totalScore = round(($a/3)+($b/3)+$c, 2);    
+        }
+        else if($student->defense){
+            $pusher = [];
+            foreach($student->scoringTable as $personalscore){
+                array_push($pusher,$personalscore->lec_id);
+            }
+            $eligible = [];
+            array_push($eligible,$student->defense->examiner);
+            array_push($eligible,$student->defense->chairman);
+            array_push($eligible,$student->lec_id);
+            $lecturers = lecturer::whereIn('lec_id',$eligible)->whereNotIn('lec_id',$pusher)->get();
+            $student->scoringTable->lecturers = $lecturers;
+        }
         return view('admin.studentdetail',[
             'role' => $this->role,
             'student' => $student,
