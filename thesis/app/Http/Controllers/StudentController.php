@@ -69,6 +69,10 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Thesis Proposal';
 			
 			$uploadDoc->save();
+			$notification = new notification;
+			$notification->message = $student->user->first_name." ".$student->user->last_name." has submitted their .".$uploadDoc->doc_type_name;
+			$notification->usr_id =  $student->lecturer->usr_id;
+			$notification->save();
 			return redirect()->back()->with('alert','Successfully Submit Document');
 		}
 	}
@@ -95,6 +99,10 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Thesis Interim';
 			
 			$uploadDoc->save();
+			$notification = new notification;
+			$notification->message = $student->user->first_name." ".$student->user->last_name." has submitted their .".$uploadDoc->doc_type_name;
+			$notification->usr_id =  $student->lecturer->usr_id;
+			$notification->save();
 			return redirect()->back()->with('alert','Successfully Submit Document');
 		}
 	}
@@ -120,6 +128,10 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Thesis Final Draft';
 			
 			$uploadDoc->save();
+			$notification = new notification;
+			$notification->message = $student->user->first_name." ".$student->user->last_name." has submitted their .".$uploadDoc->doc_type_name;
+			$notification->usr_id =  $student->lecturer->usr_id;
+			$notification->save();
 			return redirect()->back()->with('alert','Successfull Submit Document');
 		}
 	}
@@ -148,6 +160,11 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Signed Revised Document';
 			
 			$uploadDoc->save();
+			
+			$notification = new notification;
+			$notification->message = $student->user->first_name." ".$student->user->last_name." has submitted their .".$uploadDoc->doc_type_name;
+			$notification->usr_id =  $student->lecturer->usr_id;
+			$notification->save();
 			return redirect()->back()->with('alert','Successfull Submit Document');
 		}
 	}
@@ -172,6 +189,12 @@ class StudentController extends Controller
 			$uploadDoc->doc_type_name = 'Finalized Document';
 			
 			$uploadDoc->save();
+
+
+			$notification = new notification;
+			$notification->message = $student->user->first_name." ".$student->user->last_name." has submitted their .".$uploadDoc->doc_type_name;
+			$notification->usr_id =  $student->lecturer->usr_id;
+			$notification->save();
 			return redirect()->back()->with('alert','Successfull Submit Document');
 		}
 	}

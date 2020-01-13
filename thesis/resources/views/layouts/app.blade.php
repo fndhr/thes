@@ -155,30 +155,20 @@
                 </div>
                 <div class="modal-body" style="padding: 0 !important;">
                     <div class="list-group">
+                        @foreach(Auth::user()->notifications as $notif)
                         <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">upload file sampai final zip, d-3, d-2, d-1, last day (untuk student)</p>
-                            <small>3 days ago</small>
+                            <p class="mb-1 font-weight-bold">{{$notif->message}}</p>
+                            <small>
+                            @if((int)date_diff(date_create(),date_create($notif->created_at))->format("%d") == 0)
+                                Today
+                            @elseif((int)date_diff(date_create(),date_create($notif->created_at))->format("%d") == 1)
+                                Yesterday
+                            @else
+                                {{date_diff(date_create(),date_create($notif->created_at))->format("%d")}} days ago
+                            @endif
+                            </small>
                         </div>
-                        <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">dapet tanggal sidang, d-3, d-2, d-1, d-day (untuk student)</p>
-                            <small>3 days ago</small>
-                        </div>
-                        <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">upload file cuma sampai final draft, d-3, d-2, d-1, last day (lecturer)</p>
-                            <small>3 days ago</small>
-                        </div>
-                        <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">tiap ada bocah yang upload file (lecturer)</p>
-                            <small>3 days ago</small>
-                        </div>
-                        <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">pas defense bocah dapet tanggal, d-3, d-2, d-1, d-day (lecturer)</p>
-                            <small>3 days ago</small>
-                        </div>
-                        <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">khusus admin ketika student uplaod file saja, dan mungkin notif pas udah selesai defense dan ada scorenya</p>
-                            <small>3 days ago</small>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
