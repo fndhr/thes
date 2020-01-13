@@ -76,7 +76,11 @@
                     <div class="col-2">Download</div>
                     <div class="col-1"></div>
                 </div>
-            @endif           
+            @endif
+            <div class="row py-2 mb-2">
+                <div class="col-3">Final Score</div>
+                <div class="col-5">:&nbsp;&nbsp;Not Set</div>
+            </div>
         </div>
     </div>
 </div>
