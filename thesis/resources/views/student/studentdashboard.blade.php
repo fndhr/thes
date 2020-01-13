@@ -465,7 +465,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                @if($student->session->passed_revised_doc_dt)
+                                @if($student->session->passed_revised_doc_dt || count($student->documentUpload)>=4)
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitRevisedDoc" disabled>Submit</button>
                                     </div>
@@ -528,7 +528,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                @if($student->session->passed_finalized_doc_dt)
+                                @if($student->session->passed_finalized_doc_dt || count($student->documentUpload)>=5)
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitFinalized" disabled>Submit</button>
                                     </div>
