@@ -38,27 +38,47 @@ class HomeController extends Controller
             $datetime = explode(' ',$student->session->title_adv_req_start);
             $student->session->title_adv_req_start = $datetime[0];
             $datetime = explode(' ',$student->session->title_adv_req_end);
+            $student->session->passed_adv_title_dt = date('Ymd') > date('Ymd',strtotime($student->session->title_adv_req_end));
             $student->session->title_adv_req_end = $datetime[0];
+
             $datetime = explode(' ',$student->session->thesis_proposal_start);
             $student->session->thesis_proposal_start = $datetime[0];
             $datetime = explode(' ',$student->session->thesis_proposal_end);
+            $student->session->passed_proposal_dt = date('Ymd') > date('Ymd',strtotime($student->session->thesis_proposal_end));
             $student->session->thesis_proposal_end = $datetime[0];
+
             $datetime = explode(' ',$student->session->interim_report_start);
             $student->session->interim_report_start = $datetime[0];
             $datetime = explode(' ',$student->session->interim_report_end);
+            $student->session->passed_interim_dt = date('Ymd') > date('Ymd',strtotime($student->session->interim_report_end));
             $student->session->interim_report_end = $datetime[0];
+
             $datetime = explode(' ',$student->session->final_draft_start);
             $student->session->final_draft_start = $datetime[0];
             $datetime = explode(' ',$student->session->final_draft_end);
+            $student->session->passed_final_draft_dt = date('Ymd') > date('Ymd',strtotime($student->session->final_draft_end));
             $student->session->final_draft_end = $datetime[0];
+
+            $datetime = explode(' ',$student->session->signed_revised_doc_start_date);
+            $student->session->signed_revised_doc_start_date = $datetime[0];
+            $datetime = explode(' ',$student->session->signed_revised_doc_end_date);
+            $student->session->passed_revised_doc_dt = date('Ymd') > date('Ymd',strtotime($student->session->signed_revised_doc_end_date));
+            $student->session->signed_revised_doc_end_date = $datetime[0];
+
+            $datetime = explode(' ',$student->session->finalized_doc_start_date);
+            $student->session->finalized_doc_start_date = $datetime[0];
+            $datetime = explode(' ',$student->session->finalized_doc_end_date);
+            $student->session->passed_finalized_doc_dt = date('Ymd') > date('Ymd',strtotime($student->session->finalized_doc_end_date));
+            $student->session->finalized_doc_end_date = $datetime[0];
+            
             if(!is_null($student->defense)){
                 $datetime = explode(' ',$student->defense->def_strt_dt);
                 $date = explode('-',$datetime[0]);
                 $time = explode(':',$datetime[1]);
                 $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
                 $student->defense->time = $time[0].':'.$date[1];
-                $student->defense->isToday = date('l, d F Y') == $student->defense->date;
-                $student->defense->passed = date('l, d F Y') < $student->defense->date;
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));                
             }
             return view('student.studentdashboard',[
                 'role' => $this->role,
@@ -136,5 +156,19 @@ class HomeController extends Controller
         return response()->download($path, $file);
     }
 
-    
+    public function downloadFileFinalizedDoc(Request $request){
+
+        $path = public_path("\uploads\\".request('studentId')."\uploadFinalizedDoc\\".request('finalizedDoc'));
+        $file = request('finalizedDoc');
+        
+        return response()->download($path, $file);
+    }
+
+    public function downloadFileRevisedDoc(Request $request){
+
+        $path = public_path("\uploads\\".request('studentId')."\uploadSignedRevisedDoc\\".request('signedRevisedDoc'));
+        $file = request('signedRevisedDoc');
+        
+        return response()->download($path, $file);
+    }
 }

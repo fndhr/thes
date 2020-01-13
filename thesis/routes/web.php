@@ -23,6 +23,8 @@ Route::post('/homeChangePass','HomeController@changePassword') ->name('home');
 Route::post('/downloadFileProposal','HomeController@downloadFileProposal');
 Route::post('/downloadFileInterim','HomeController@downloadFileInterim');
 Route::post('/downloadFileFinalDraft','HomeController@downloadFileFinalDraft');
+Route::post('/downloadFileFinalizedDoc','HomeController@downloadFileFinalizedDoc');
+Route::post('/downloadFileRevisedDoc','HomeController@downloadFileRevisedDoc');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');

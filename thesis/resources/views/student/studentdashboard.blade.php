@@ -100,9 +100,15 @@
                                 <label class="col-3 col-form-label">Title</label>
                                 <input type="text" class="form-control col-9" for="title_name" name="title_name" placeholder="Title Name">
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmitTitle">Submit</button>
-                            </div>
+                            @if($student->session->passed_adv_title_dt)
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitTitle" disabled>Submit</button>
+                                </div>
+                            @else
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitTitle">Submit</button>
+                                </div>
+                            @endif                            
                         </form>
                         @endif
                         @if(count($proposedTitle)>0)
@@ -225,9 +231,15 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitProposal">Submit</button>
-                                </div>
+                                @if($student->session->passed_proposal_dt || count($student->documentUpload)>=1)
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitProposal" disabled>Submit</button>
+                                    </div>
+                                @else
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitProposal">Submit</button>
+                                    </div>
+                                @endif
                             </form>
                         </div>
                     </div>
@@ -282,9 +294,16 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitInterim">Submit</button>
-                                </div>
+                                @if($student->session->passed_interim_dt || count($student->documentUpload)>=2)
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitInterim" disabled>Submit</button>
+                                    </div>
+                                @else
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitInterim">Submit</button>
+                                    </div>
+                                @endif
+                                
                             </form>
                         </div>
                     </div>
@@ -339,9 +358,16 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalDraft">Submit</button>
-                                </div>
+                                @if($student->session->passed_final_draft_dt || count($student->documentUpload)>=3)
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitFinalDraft" disabled>Submit</button>
+                                    </div>
+                                @else
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalDraft">Submit</button>
+                                    </div>
+                                @endif
+                                
                             </form>
                         </div>
                     </div>
@@ -398,9 +424,14 @@
 
 
         <div class="card">
-        @if(count($student->documentUpload)>=3)
+        @if(!is_null($student->defense))
+            @if($student->defense->passed)
             <div class="card-header" id="headingSeven" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                 <h4 class="text-black">Upload Your Signed Revised Document</h4>
+            @else
+            <div class="card-header" id="headingSeven" data-toggle="no-collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                <h4>Upload Your Signed Revised Document</h4>
+            @endif
         @else
             <div class="card-header" id="headingSeven" data-toggle="no-collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                 <h4>Upload Your Signed Revised Document</h4>
@@ -434,9 +465,15 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitRevisedDoc">Submit</button>
-                                </div>
+                                @if($student->session->passed_revised_doc_dt)
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitRevisedDoc" disabled>Submit</button>
+                                    </div>
+                                @else
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitRevisedDoc">Submit</button>
+                                    </div>
+                                @endif                                
                             </form>
                         </div>
                     </div>
@@ -449,9 +486,14 @@
 
 
         <div class="card">
-        @if(count($student->documentUpload)>=3)
+        @if(!is_null($student->defense))
+            @if($student->defense->passed)
             <div class="card-header" id="headingEight" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                 <h4 class="text-black">Upload Your Finalized Documents</h4>
+            @else
+            <div class="card-header" id="headingEight" data-toggle="no-collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                <h4>Upload Your Finalized Documents</h4>
+            @endif
         @else
             <div class="card-header" id="headingEight" data-toggle="no-collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                 <h4>Upload Your Finalized Documents</h4>
@@ -486,9 +528,15 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalized">Submit</button>
-                                </div>
+                                @if($student->session->passed_finalized_doc_dt)
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitFinalized" disabled>Submit</button>
+                                    </div>
+                                @else
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalized">Submit</button>
+                                    </div>
+                                @endif                                
                             </form>
                         </div>
                     </div>
