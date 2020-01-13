@@ -151,7 +151,17 @@
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
-            @endif     
+            @endif
+            <div class="row py-2 mb-2">
+                <div class="col-3">Final Score</div>
+                @if(count($student->scoringTable)==0)
+                <div class="col">:&nbsp;&nbsp;Not Set</div>
+                @elseif(count($student->scoringTable) < 3)
+                    <div class="col">:&nbsp;&nbsp;Waiting for @php($tot=count($student->scoringTable->lecturers))@php($c=0)@foreach($student->scoringTable->lecturers as $lecturer){{$lecturer->user->first_name.' '.$lecturer->user->last_name}}@php($c++)@if($c!=$tot) , @endif @endforeach to submit the score</div>  
+                @else
+                    <div class="col">:&nbsp;&nbsp;{{$student->scoringTable->totalScore}}</div>                    
+                @endif
+            </div>
         </div>
     </div>
 </div>
