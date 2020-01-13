@@ -123,7 +123,7 @@
                     <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;{{$student->documentUpload[2]->doc_name}}</div>
                     <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalDraft').submit();">Download</span></div>
                     <form id="downloadFileFinalDraft" action="/downloadFileFinalDraft" method="POST" style="display: none;">@csrf<input for="FinalDraft" name="FinalDraft" value="{{$student->documentUpload[2]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
-                <div class="col-1">&#10003;</div>
+                    <div class="col-1">&#10003;</div>
                 </div>
                 @if(!is_null($sts_title) && !is_null($student->lecturer))
                     <div class="row py-2 mb-2">
@@ -137,17 +137,17 @@
             @if(count($student->documentUpload)>=4)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
-                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
+                    <div class="col-5">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
                     <div class="col-2">Download</div>
-                    <div class="col-1"></div>
+                    <div class="col-1">&#10003;</div>
                 </div>
             @endif
             @if(count($student->documentUpload)>=5)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Thesis .zip</div>
-                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
+                    <div class="col-5">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>
                     <div class="col-2">Download</div>
-                    <div class="col-1"></div>
+                    <div class="col-1">&#10003;</div>
                 </div>
             @endif     
         </div>

@@ -57,7 +57,7 @@ class HomeController extends Controller
                 $time = explode(':',$datetime[1]);
                 $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
                 $student->defense->time = $time[0].':'.$date[1];
-                $student->defense->isToday = date('l, d F Y') < $student->defense->date;
+                $student->defense->isToday = date('l, d F Y') == $student->defense->date;
                 $student->defense->passed = date('l, d F Y') < $student->defense->date;
             }
             return view('student.studentdashboard',[
