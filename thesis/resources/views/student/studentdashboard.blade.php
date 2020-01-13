@@ -202,7 +202,13 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->documentUpload ? $student->documentUpload[0]->doc_name : '-'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                        @if(count($student->documentUpload)>=1)
+                            {{$student->documentUpload[0]->doc_name}}
+                        @else
+                            -
+                        @endif    
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -258,7 +264,13 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->documentUpload ? $student->documentUpload[1]->doc_name : '-'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                        @if(count($student->documentUpload)>=2)
+                            {{$student->documentUpload[1]->doc_name}}
+                        @else
+                            -
+                        @endif
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -309,7 +321,13 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->documentUpload ? $student->documentUpload[2]->doc_name : '-'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                        @if(count($student->documentUpload)>=3)
+                            {{$student->documentUpload[2]->doc_name}}
+                        @else
+                            -
+                        @endif
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
