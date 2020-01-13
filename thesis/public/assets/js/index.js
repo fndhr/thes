@@ -22,10 +22,6 @@ $(document).ready(function() {
     $("#datepicker6").datepicker();
     $("#datepicker7").datepicker();
     $("#datepicker8").datepicker();
-    $("#datepicker9").datepicker();
-    $("#datepicker10").datepicker();
-    $("#datepicker11").datepicker();
-    $("#datepicker12").datepicker();
 });
 
 window.onbeforeunload = function () {

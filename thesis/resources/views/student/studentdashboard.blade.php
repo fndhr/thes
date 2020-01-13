@@ -63,6 +63,8 @@
                                 @endif
                             @elseif(count($progressUpload)==4)
                                 Finalized document has not been Uploaded
+                            @else
+                                Finished
                             @endif
                         </div>
                     </div>
@@ -396,15 +398,15 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer ?$student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;No file</div>
+                        <div class="col-9">:&nbsp;&nbsp;-</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -447,16 +449,16 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;Thesis's Title</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
-                        <div class="col-9">:&nbsp;&nbsp;Advisor Name</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->lecturer ?$student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</div>
                     </div>
 
                     <div class="row py-2">
                         <div class="col-3">Source code</div>
-                        <div class="col-9">:&nbsp;&nbsp;Fiqa Nadhira - Thesis Proposal.zip</div>
+                        <div class="col-9">:&nbsp;&nbsp;-</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
