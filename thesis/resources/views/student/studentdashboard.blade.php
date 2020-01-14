@@ -581,9 +581,15 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                <div class="text-center">
-                                   <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitRevisedDoc" >Submit</button>
-                                </div>                          
+                                @if(count($student->documentUpload)>=4)
+                                    <div class="text-center">
+                                    <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitRevisedDoc" disabled>Submit</button>
+                                    </div>      
+                                @else
+                                    <div class="text-center">
+                                    <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitRevisedDoc" >Submit</button>
+                                    </div>      
+                                @endif                                                    
                             </form>
                         </div>
                     </div>
@@ -652,9 +658,15 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitFinalized">Submit</button>
-                                </div>                            
+                                @if(count($student->documentUpload)>=5)
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitFinalized" disabled>Submit</button>
+                                    </div>                            
+                                @else
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitFinalized">Submit</button>
+                                    </div> 
+                                @endif
                             </form>
                         </div>
                     </div>
