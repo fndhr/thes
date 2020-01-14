@@ -18,7 +18,9 @@ class CreateDocumentUploadsTable extends Migration
             $table->string('std_id');
             $table->longText('doc_name');
             $table->string('doc_type_name');
+            $table->string('status')->default('1');
             $table->timestamps();
+            
         });
     }
 
