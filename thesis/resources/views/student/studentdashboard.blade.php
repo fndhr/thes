@@ -545,11 +545,11 @@
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
-                                                                @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document")) Not Yet 
+                                                                @if($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document")) Not Yet 
                                                                 @else Completed 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
-                                                                @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Signed Revised Document"))) Not Yet 
+                                                                @if(($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))) Not Yet 
                                                                 @else Completed 
                                                                 @endif 
                                                             @else Not Yet 
@@ -565,7 +565,13 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;-</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                        @if(count($student->documentUpload)>=4)
+                            {{$student->documentUpload[3]->doc_name}}
+                        @else
+                            -
+                        @endif
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
@@ -609,11 +615,11 @@
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
-                                                                @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document")) Not Yet 
+                                                                @if($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Finalized Document")) Not Yet 
                                                                 @else Completed 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
-                                                                @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Finalized Document"))) Not Yet 
+                                                                @if(($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Finalized Document"))||($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))) Not Yet 
                                                                 @else Completed 
                                                                 @endif 
                                                             @else Not Yet 
@@ -630,7 +636,13 @@
 
                     <div class="row py-2">
                         <div class="col-3">Source code</div>
-                        <div class="col-9">:&nbsp;&nbsp;-</div>
+                        <div class="col-9">:&nbsp;&nbsp;
+                        @if(count($student->documentUpload)>=5)
+                            {{$student->documentUpload[4]->doc_name}}
+                        @else
+                            -
+                        @endif
+                        </div>
                     </div>
                     <div class="row py-2">
                         <div class="col-12 text-center">
