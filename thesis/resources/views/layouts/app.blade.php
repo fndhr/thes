@@ -95,8 +95,9 @@
                         {{ csrf_field() }}
                         <div class="row py-2">
                             @if(!is_null($role ?? null))
-                            <div class="col-4">ID</div>
-                            <div class="col-8">:&nbsp;&nbsp;
+                            <div class="col-4">Student ID</div>
+                            <div class="col-1 col-form-label">:&nbsp;&nbsp;</div>
+                            <div class="col-7">
                                 @if($role == 3)
                                 {{$student->std_id}}
                                 @elseif($role == 2)
@@ -109,30 +110,40 @@
                         </div>
                         <div class="row py-2">
                             <label class="col-4 col-form-label">Phone</label>
-                            <input type="text" class="form-control col-6 @error('phone') is-invalid @enderror inputPhone" for="phone" name="phone" value="{{Auth::user()->phone ?? '-'}}" disabled>
-                            @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror                
+                            <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
+                            <div class="col-6">
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror inputPhone" for="phone" name="phone" value="{{Auth::user()->phone ?? '-'}}" disabled>
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row py-2">
                             <div class="col-4">Email</div>
-                            <div class="col-8">:&nbsp;&nbsp;{{Auth::user()->email}}</div>
+                            <div class="col-1 col-form-label">:&nbsp;&nbsp;</div>
+                            <div class="col-7">{{Auth::user()->email}}</div>
                         </div>
                         <div class="form-group row inputPass">
                             <label class="col-4 col-form-label">New Password</label>
-                            <input id="pass" type="password" class="form-control col-6" for="new_password" name="new_password"
-                                placeholder="" value="{{old('new_password')}}">
+                            <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
+                            <div class="col-6">
+                                <input id="pass" type="password" class="form-control" for="new_password" name="new_password"
+                                    placeholder="" value="{{old('new_password')}}">
                                 <span id="passValidator" role="alert" style="display:none; color:red;">
                                     <strong>Password must be 8 character at least!</strong>
                                 </span>
+                            </div>
                         </div>
                         <div class="form-group row inputRePass">
                             <label class="col-4 col-form-label">Re-enter Password</label>
-                            <input id ="repass" type="password" class="form-control col-6" for="reenter_password" name="reenter_password"
-                                placeholder="" value="{{old('reenter_password')}}">
-                                <a id="notif" style="color:red; display:none;">Password Isn't Match!</a>
+                            <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
+                            <div class="col-6">
+                                <input id ="repass" type="password" class="form-control" for="reenter_password" name="reenter_password"
+                                    placeholder="" value="{{old('reenter_password')}}">
+                                <span id="notif" style="color:red; display:none;"><strong>Password Isn't Match!</strong></span>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button id="btnEdit" type="button" class="btn btn-primary">Edit</button>
@@ -155,20 +166,26 @@
                 </div>
                 <div class="modal-body" style="padding: 0 !important;">
                     <div class="list-group">
-                        @foreach(Auth::user()->notifications as $notif)
-                        <div class="list-group-item list-group-item-action">
-                            <p class="mb-1 font-weight-bold">{{$notif->message}}</p>
-                            <small>
-                            @if((int)date_diff(date_create(),date_create($notif->created_at))->format("%d") == 0)
-                                Today
-                            @elseif((int)date_diff(date_create(),date_create($notif->created_at))->format("%d") == 1)
-                                Yesterday
-                            @else
-                                {{date_diff(date_create(),date_create($notif->created_at))->format("%d")}} days ago
-                            @endif
-                            </small>
-                        </div>
-                        @endforeach
+                        @if(count(Auth::user()->notifications) > 0)
+                            @foreach(Auth::user()->notifications as $notif)
+                            <div class="list-group-item list-group-item-action">
+                                <p class="mb-1 font-weight-bold">{{$notif->message}}</p>
+                                <small>
+                                @if((int)date_diff(date_create(),date_create($notif->created_at))->format("%d") == 0)
+                                    Today
+                                @elseif((int)date_diff(date_create(),date_create($notif->created_at))->format("%d") == 1)
+                                    Yesterday
+                                @else
+                                    {{date_diff(date_create(),date_create($notif->created_at))->format("%d")}} days ago
+                                @endif
+                                </small>
+                            </div>
+                            @endforeach
+                        @else
+                            <div class="list-group-item list-group-item-action text-center">
+                                <p class="mb-1 font-weight-bold">Empty</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

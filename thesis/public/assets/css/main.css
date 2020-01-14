@@ -52,3 +52,7 @@ a:hover {
 .text-danger, .text-success, .messages{
     cursor: pointer;
 }
+
+.session {
+    border-radius: 20px;
+}

@@ -12,11 +12,12 @@
             <form method="POST" action="defenseSearchFilter">
             {{ csrf_field() }}
                 <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Student</label>
+                    <label class="col-2 col-form-label">Search</label>
+                    <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9" for="input_search" name="input_search" placeholder="Input Student Name or ID">
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary px-5 my-4 btnSubmit">Search</button>
+                    <button type="submit" class="btn btn-primary btn-pill px-5 my-4 btnSubmit">Search</button>
                 </div>
             </form>
             @if(isset($defenses))

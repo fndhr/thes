@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row my-4">
-        <div class="col-12">
+        <div class="col-12 text-center">
             <h1>Student Dashboard</h1>
         </div>
     </div>
-    <div class="accordion" id="accordionExample">
+    <div class="accordion mx-3" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <h4 class="text-black">Your Progress</h4>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <div class="col-3">Defense</div>
+                        <div class="col-3">Defense Date</div>
                         <div class="col-9">:&nbsp;&nbsp;
                             {{$student->defense ? $student->defense->date.' '.$student->defense->time : 'Date Not Yet Set' }}
 
@@ -86,9 +86,9 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center bg-light mx-5">
+                    <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->title_adv_req_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->title_adv_req_end ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="px-4">
@@ -133,7 +133,7 @@
                                 </select>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
+                                <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>
                             </div>
                         </form>
                         <!-- @if(is_null($title_name)&&$countNotApprovedTitle < 3)
@@ -237,14 +237,14 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center bg-light mx-5">
+                    <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->thesis_proposal_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->thesis_proposal_end ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name ?? '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
@@ -252,7 +252,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;
+                        <div class="col-9">:&nbsp;
                         @if(count($student->documentUpload)>=1)
                             {{$student->documentUpload[0]->doc_name}}
                         @else
@@ -275,11 +275,11 @@
                                 @enderror
                                 @if($student->session->passed_proposal_dt || count($student->documentUpload)>=1)
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitProposal" disabled>Submit</button>
+                                        <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitProposal" disabled>Submit</button>
                                     </div>
                                 @else
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitProposal">Submit</button>
+                                        <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitProposal">Submit</button>
                                     </div>
                                 @endif
                             </form>
@@ -304,14 +304,14 @@
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center bg-light mx-5">
+                    <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->interim_report_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->interim_report_end ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name ?? '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
@@ -319,7 +319,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;
+                        <div class="col-9">:&nbsp;
                         @if(count($student->documentUpload)>=2)
                             {{$student->documentUpload[1]->doc_name}}
                         @else
@@ -337,11 +337,11 @@
                                 </div>
                                 @if($student->session->passed_interim_dt || count($student->documentUpload)>=2)
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitInterim" disabled>Submit</button>
+                                        <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitInterim" disabled>Submit</button>
                                     </div>
                                 @else
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitInterim">Submit</button>
+                                        <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitInterim">Submit</button>
                                     </div>
                                 @endif
                                 
@@ -367,14 +367,14 @@
             </div>
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center bg-light mx-5">
+                    <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>End: {{$student->session->final_draft_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_draft_end ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name ?? '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
@@ -382,7 +382,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">File Submmited</div>
-                        <div class="col-9">:&nbsp;&nbsp;
+                        <div class="col-9">:&nbsp;
                         @if(count($student->documentUpload)>=3)
                             {{$student->documentUpload[2]->doc_name}}
                         @else
@@ -400,11 +400,11 @@
                                 </div>
                                 @if($student->session->passed_final_draft_dt || count($student->documentUpload)>=3)
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitFinalDraft" disabled>Submit</button>
+                                        <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitFinalDraft" disabled>Submit</button>
                                     </div>
                                 @else
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalDraft">Submit</button>
+                                        <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitFinalDraft">Submit</button>
                                     </div>
                                 @endif
                             </form>
@@ -431,7 +431,7 @@
                 <div class="card-body">
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name ?? '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
@@ -439,23 +439,23 @@
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Date</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->date : 'Undefined'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->date : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Time</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->time : 'Undefined'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->time : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Room</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->room : 'Undefined'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->room : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Chairman</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->chairman_name->user->first_name.' '.$student->defense->chairman_name->user->last_name : 'Undefined'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->chairman_name->user->first_name.' '.$student->defense->chairman_name->user->last_name : '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Examiner</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->examiner_name->user->first_name.' '.$student->defense->examiner_name->user->last_name : 'Undefined'}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$student->defense ? $student->defense->examiner_name->user->first_name.' '.$student->defense->examiner_name->user->last_name : '-'}}</div>
                     </div>
                 </div>
             </div>
@@ -478,14 +478,14 @@
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center bg-light mx-5">
+                    <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>End: {{$student->session->final_revised_document}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_revised_document ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name ?? '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
@@ -505,11 +505,11 @@
                                 </div>
                                 @if($student->session->passed_revised_doc_dt || count($student->documentUpload)>=4)
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitRevisedDoc" disabled>Submit</button>
+                                        <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitRevisedDoc" disabled>Submit</button>
                                     </div>
                                 @else
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitRevisedDoc">Submit</button>
+                                        <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitRevisedDoc">Submit</button>
                                     </div>
                                 @endif                                
                             </form>
@@ -539,14 +539,14 @@
             </div>
             <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center bg-light mx-5">
+                    <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>End: {{$student->session->final_finalized_document}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_finalized_document ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
-                        <div class="col-9">:&nbsp;&nbsp;{{$title_name}}</div>
+                        <div class="col-9">:&nbsp;&nbsp;{{$title_name ?? '-'}}</div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Advisor</div>
@@ -567,11 +567,11 @@
                                 </div>
                                 @if($student->session->passed_finalized_doc_dt || count($student->documentUpload)>=5)
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitFinalized" disabled>Submit</button>
+                                        <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitFinalized" disabled>Submit</button>
                                     </div>
                                 @else
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalized">Submit</button>
+                                        <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitFinalized">Submit</button>
                                     </div>
                                 @endif                                
                             </form>
