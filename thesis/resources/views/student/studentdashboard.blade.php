@@ -232,9 +232,15 @@
 
 
         <div class="card">
+        @if(is_null($student->lecturer))
+            <div class="card-header" id="headingThree" data-toggle="no-collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h4>Upload Your Signed Thesis Proposal</h4>
+            </div>
+        @else
             <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 <h4 class="text-black">Upload Your Signed Thesis Proposal</h4>
             </div>
+        @endif
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="row my-4 text-center bg-light mx-5 session">
