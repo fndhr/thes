@@ -36,6 +36,28 @@
                 <div class="col-2"><a href="/downloadFile">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
+            <div class="row py-2 mb-2">
+                <div class="col">
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Test.pdf</td>
+                                <td>
+                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
+                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             @endif
             @if(count($student->documentUpload)>=2)
             <div class="row py-2 mb-2">
@@ -44,6 +66,28 @@
                 <div class="col-2"><a href="/downloadFileInterim">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
+            <div class="row py-2 mb-2">
+                <div class="col">
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Test.pdf</td>
+                                <td>
+                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
+                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             @endif
             @if(count($student->documentUpload)>=3)
                 <div class="row py-2 mb-2">
@@ -51,6 +95,28 @@
                     <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;{{$student->documentUpload[2]->doc_name}}</div>
                     <div class="col-2"><a href="/downloadFileFinalDraft">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                     <div class="col-1">&#10003;</div>
+                </div>
+                <div class="row py-2 mb-2">
+                    <div class="col">
+                        <table class="table table-sm table-bordered table-hover">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">File Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Test.pdf</td>
+                                    <td>
+                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
+                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 @if(!is_null($sts_title) && !is_null($student->lecturer))
                     <div class="row py-2 mb-2">
@@ -69,6 +135,28 @@
                     <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
+                <div class="row py-2 mb-2">
+                    <div class="col">
+                        <table class="table table-sm table-bordered table-hover">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">File Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Test.pdf</td>
+                                    <td>
+                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
+                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             @endif
             @if(count($student->documentUpload)>=5)
                 <div class="row py-2 mb-2">
@@ -77,6 +165,28 @@
                     <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
+                </div>
+                <div class="row py-2 mb-2">
+                    <div class="col">
+                        <table class="table table-sm table-bordered table-hover">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">File Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Test.pdf</td>
+                                    <td>
+                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
+                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             @endif
             <div class="row py-2 mb-2">
