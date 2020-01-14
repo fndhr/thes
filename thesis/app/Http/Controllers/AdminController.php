@@ -253,19 +253,10 @@ class AdminController extends Controller
     public function createSessionSet(Request $request){
         $validator = Validator::make($request->all(), [
             'session_id'=>'required|unique:sessions',
-            'start_date_title_advisor'=>'required|date',
-            'end_date_title_advisor'=>'required|date|after:start_date_title_advisor',
-            'start_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
-            'end_date_signed_thesis'=>'required|date|after:start_date_signed_thesis',
-            'start_date_interim'=>'required|date|after:end_date_signed_thesis',
-            'end_date_interim'=>'required|date|after:start_date_interim',
-            'start_date_final_draft'=>'required|date|after:end_date_interim',
-            'end_date_final_draft'=>'required|date|after:start_date_final_draft',
-            'start_date_revised_document'=>'required|date|after:end_date_final_draft',
-            'end_date_revised_document'=>'required|date|after:start_date_revised_document',
-            'start_date_finalized_document'=>'required|date|after:end_date_revised_document',
-            'end_date_finalized_document'=>'required|date|after:start_date_finalized_document',
-        
+            'end_date_title_advisor'=>'required|date',
+            'end_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
+            'end_date_interim'=>'required|date|after:end_date_signed_thesis',
+            'end_date_final_draft'=>'required|date|after:end_date_interim',
         ]
         );
         if ($validator->fails()) {
@@ -273,79 +264,37 @@ class AdminController extends Controller
         }
         $session = new session;
         $session->session_id = request('session_id');
-        $date = explode('/',request('start_date_title_advisor'));
-        $session->title_adv_req_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_title_advisor'));
         $session->title_adv_req_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_signed_thesis'));
-        $session->thesis_proposal_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_signed_thesis'));
         $session->thesis_proposal_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_interim'));
-        $session->interim_report_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_interim'));
         $session->interim_report_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_final_draft'));
-        $session->final_draft_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_final_draft'));
         $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_revised_document'));
-        $session->signed_revised_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('end_date_revised_document'));
-        $session->signed_revised_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_finalized_document'));
-        $session->finalized_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('end_date_finalized_document'));
-        $session->finalized_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $session->save();
         return redirect()->back()->with('alert','Successfully Edit New Session');
     }
     public function editSessionSet(Request $request){
         $validator = Validator::make($request->all(), [
-            'start_date_title_advisor'=>'required|date',
-            'end_date_title_advisor'=>'required|date|after:start_date_title_advisor',
-            'start_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
-            'end_date_signed_thesis'=>'required|date|after:start_date_signed_thesis',
-            'start_date_interim'=>'required|date|after:end_date_signed_thesis',
-            'end_date_interim'=>'required|date|after:start_date_interim',
-            'start_date_final_draft'=>'required|date|after:end_date_interim',
-            'end_date_final_draft'=>'required|date|after:start_date_final_draft',
-            
-            'start_date_revised_document'=>'required|date|after:end_date_final_draft',
-            'end_date_revised_document'=>'required|date|after:start_date_revised_document',
-            'start_date_finalized_document'=>'required|date|after:end_date_revised_document',
-            'end_date_finalized_document'=>'required|date|after:start_date_finalized_document',
+            'end_date_title_advisor'=>'required|date',
+            'end_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
+            'end_date_interim'=>'required|date|after:end_date_signed_thesis',
+            'end_date_final_draft'=>'required|date|after:end_date_interim',
         ]
         );
         if ($validator->fails()) {
             $validator->validate();
         }
         $session = session::whereSessionId(request('session_id'))->first();
-        $date = explode('/',request('start_date_title_advisor'));
-        $session->title_adv_req_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_title_advisor'));
         $session->title_adv_req_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_signed_thesis'));
-        $session->thesis_proposal_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_signed_thesis'));
         $session->thesis_proposal_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_interim'));
-        $session->interim_report_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_interim'));
         $session->interim_report_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_final_draft'));
-        $session->final_draft_start = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_final_draft'));
         $session->final_draft_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        //2 new session
-        $date = explode('/',request('start_date_revised_document'));
-        $session->signed_revised_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('end_date_revised_document'));
-        $session->signed_revised_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('start_date_finalized_document'));
-        $session->finalized_doc_start_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
-        $date = explode('/',request('end_date_finalized_document'));
-        $session->finalized_doc_end_date = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $session->save();
         return redirect('admin/sessionSet')->with('alert','Successfully Edit Session '.request('session_id'));
     }
