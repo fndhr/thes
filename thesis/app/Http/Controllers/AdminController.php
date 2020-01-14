@@ -11,6 +11,7 @@ use App\proposedAdvisor;
 use App\proposedTitle;
 use App\defense;
 use App\session;
+use App\notification;
 use DateTime;
 use date;
 use Validator;
@@ -369,6 +370,7 @@ class AdminController extends Controller
         else{
             $defense = new defense;
         }
+        $student = student::whereStdId(request('std_id'))->first();
         $defense->std_id = request('std_id');
         $defense->def_strt_dt = $startDate;
         $defense->def_end_dt = $endDate;
@@ -377,6 +379,26 @@ class AdminController extends Controller
         $defense->chairman = request('chairman_id');
         $defense->save();
 
+        $notification = new notification;
+        $notification->message = "Hello, ".$student->user->first_name." ".$student->user->last_name.". Your defense schedule has been set. Please pay attention to the details in the defense section.";
+        $notification->usr_id =  $student->usr_id;
+        $notification->save();
+            
+        
+        $notification = new notification;
+        $notification->message = "Hello, ".$student->lecturer->user->first_name." ".$student->lecturer->user->last_name.". ".$student->user->first_name." ".$student->user->last_name."'s defense schedule has been set. Please pay attention to the details in the defense section.";
+        $notification->usr_id =  $student->lecturer->usr_id;
+        $notification->save();
+
+        
+        $notification = new notification;
+        $notification->message = "Hello, ".$student->defense->examiner_name->user->first_name." ".$student->defense->examiner_name->user->last_name.". ".$student->user->first_name." ".$student->user->last_name."'s defense schedule has been set. Please pay attention to the details in the defense section.";
+        $notification->usr_id =  $student->defense->examiner_name->usr_id;
+        $notification->save();
+        $notification = new notification;
+        $notification->message = "Hello, ".$student->defense->chairman_name->user->first_name." ".$student->defense->chairman_name->user->last_name.". ".$student->user->first_name." ".$student->user->last_name."'s defense schedule has been set. Please pay attention to the details in the defense section.";
+        $notification->usr_id =  $student->defense->chairman_name->usr_id;
+        $notification->save();
         return redirect('admin/studentDetail/'.request('std_id'))->with('alert','Successfully Set Defense Schedule');
     }
 
