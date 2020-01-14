@@ -92,18 +92,26 @@
                         <div class="col-4 pt-2"><h5>Status: @if(is_null($title_name) || is_null($student->lec_id)) Not Yet @else Completed @endif</h5></div>
                     </div>
                     <div class="px-4">
-                        <form class="mt-5 mb-3 submitForm" action="" method="">
+                        @if(count($proposedTitle)==0)
+                        <form class="mt-5 mb-3 submitForm" action="/student/submitAdvisorTitle" method="post">
+                            @csrf
                             <div class="form-group row">
                                 <label class="col-3 col-form-label inputRequired">Title 1*</label>
-                                <input type="text" class="form-control col-9" for="title_name1" name="title_name1" placeholder="Title Name 1">
+                                <input type="text" class="form-control col-9" for="title_name1" name="title_name1" placeholder="Title Name 1" value="{{old('title_name1')}}">
+                                
+                                @error('title_name1')
+                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Title 2</label>
-                                <input type="text" class="form-control col-9" for="title_name2" name="title_name2" placeholder="Title Name 2">
+                                <input type="text" class="form-control col-9" for="title_name2" name="title_name2" placeholder="Title Name 2" value="{{old('title_name2')}}">
                             </div>
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Title 3</label>
-                                <input type="text" class="form-control col-9" for="title_name3" name="title_name3" placeholder="Title Name 3">
+                                <input type="text" class="form-control col-9" for="title_name3" name="title_name3" placeholder="Title Name 3" value="{{old('title_name3')}}">
                             </div>
                             <div class="form-group row">
                                 <label for="majorStudent" class="col-3 col-form-label inputRequired">Advisor 1*</label>
@@ -113,6 +121,11 @@
                                         <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
                                     @endforeach
                                 </select>
+                                @error('advisor1')
+                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group row">
                                 <label for="majorStudent" class="col-3 col-form-label">Advisor 2</label>
@@ -136,6 +149,50 @@
                                 <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>
                             </div>
                         </form>
+                        @else
+                        <div class="py-3">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for($counter = 0 ; $counter < count($proposedTitle) ;$counter++)
+                                    <tr>
+                                        <td>{{$counter+1}}.</td>
+                                        <td>{{$proposedTitle[$counter]->title_name}}</td>
+                                        <td>{{$proposedTitle[$counter]->statuses->sts_name}}</td>
+                                    </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="py-3">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Advisor</th>
+                                    <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for($counter = 0 ; $counter < count($proposedLecturers) ;$counter++)
+                                    <tr>
+                                        <td>{{$counter+1}}.</td>
+                                        <td>{{$proposedLecturers[$counter]->lecturer->user->first_name}} {{$proposedLecturers[$counter]->lecturer->user->last_name}}</td>
+                                        <td>{{$proposedLecturers[$counter]->statuses->sts_name}}</td>
+                                    </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+                        
                         <!-- @if(is_null($title_name)&&$countNotApprovedTitle < 3)
                         <form class="mt-5 mb-3 submitForm" action="/student/submitTitle" method="POST">
                             @csrf
@@ -486,7 +543,7 @@
                 <div class="card-body">
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_revised_document ?? '-'}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
                                                                 @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document")) Not Yet 
                                                                 @else Completed 
@@ -550,7 +607,7 @@
                 <div class="card-body">
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_finalized_document ?? '-'}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
                                                                 @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document")) Not Yet 
                                                                 @else Completed 
