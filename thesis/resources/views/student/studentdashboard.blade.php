@@ -488,11 +488,11 @@
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_revised_document ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
-                                                                @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document") Not Yet 
+                                                                @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document")) Not Yet 
                                                                 @else Complete 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
-                                                                @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document")||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Signed Revised Document")) Not Yet 
+                                                                @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Signed Revised Document"))) Not Yet 
                                                                 @else Complete 
                                                                 @endif 
                                                             @else Not Yet 
@@ -558,11 +558,11 @@
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_finalized_document ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
-                                                                @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document") Not Yet 
+                                                                @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document")) Not Yet 
                                                                 @else Complete 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
-                                                                @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document")||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Finalized Document")) Not Yet 
+                                                                @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Finalized Document"))) Not Yet 
                                                                 @else Complete 
                                                                 @endif 
                                                             @else Not Yet 
