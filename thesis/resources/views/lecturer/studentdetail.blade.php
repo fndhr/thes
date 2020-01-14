@@ -33,7 +33,7 @@
             <div class="row py-2 mb-2">
                 <div class="col-3">Proposal</div>
                 <div class="col-5" for="ThesisProposal" name="ThesisProposal">:&nbsp;&nbsp;{{$student->documentUpload[0]->doc_name}}</div>
-                <div class="col-2"><a href="/downloadFile">Download</a></div>
+                <div class="col-2"><a href="/downloadFile">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
             @endif
@@ -41,7 +41,7 @@
             <div class="row py-2 mb-2">
                 <div class="col-3">Interim</div>
                 <div class="col-5" for="ThesisInterim" name="ThesisInterim">:&nbsp;&nbsp;{{$student->documentUpload[1]->doc_name}}</div>
-                <div class="col-2"><a href="/downloadFileInterim">Download</a></div>
+                <div class="col-2"><a href="/downloadFileInterim">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
             @endif
@@ -49,7 +49,7 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Draft</div>
                     <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;{{$student->documentUpload[2]->doc_name}}</div>
-                    <div class="col-2"><a href="/downloadFileFinalDraft">Download</a></div>
+                    <div class="col-2"><a href="/downloadFileFinalDraft">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                     <div class="col-1">&#10003;</div>
                 </div>
                 @if(!is_null($sts_title) && !is_null($student->lecturer))
@@ -64,17 +64,19 @@
             @if(count($student->documentUpload)>=4)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
-                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
-                    <div class="col-2">Download</div>
-                    <div class="col-1"></div>
+                    <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
+                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                    <div class="col-1">&#10003;</div>
                 </div>
             @endif
             @if(count($student->documentUpload)>=5)
                 <div class="row py-2 mb-2">
-                    <div class="col-3">Thesis .zip</div>
-                    <div class="col-5">:&nbsp;&nbsp;Not uploaded</div>
-                    <div class="col-2">Download</div>
-                    <div class="col-1"></div>
+                    <div class="col-3">Final Document</div>
+                    <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>
+                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                    <div class="col-1">&#10003;</div>
                 </div>
             @endif
             <div class="row py-2 mb-2">
