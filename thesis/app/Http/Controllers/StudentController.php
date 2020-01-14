@@ -7,6 +7,7 @@ use App\proposedTitle;
 use App\proposedAdvisor;
 use App\student;
 use App\documentUpload;
+use App\notification;
 use Validator;
 class StudentController extends Controller
 {

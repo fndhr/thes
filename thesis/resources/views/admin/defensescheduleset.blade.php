@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Chairman*</label>
-                    <select class="form-control col-3" for="chairman_id" name="chairman_id">
+                    <select class="form-control col-3 @error('chairman_id') is-invalid @enderror" for="chairman_id" name="chairman_id">
                         <option value="">Choose...</option>
                         @foreach($chairmans as $examiner)
                             @if(!is_null(old('chairman_id')))
@@ -68,10 +68,16 @@
                             @endif
                         @endforeach
                     </select>
+                    
+                    @error('chairman_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Examiner*</label>
-                    <select class="form-control col-3" for="examiner_id" name="examiner_id">
+                    <select class="form-control col-3 @error('examiner_id') is-invalid @enderror" for="examiner_id" name="examiner_id">
                         <option value="">Choose...</option>
                         @foreach($examiners as $examiner)
                             @if(!is_null(old('examiner_id')))
@@ -85,6 +91,11 @@
                             @endif
                         @endforeach
                     </select>
+                    @error('examiner_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
@@ -137,10 +148,15 @@
                             @endif
                         @endforeach
                     </select>
+                    @error('chairman_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group row">
                     <label class="col-3 col-form-label inputRequired">Examiner*</label>
-                    <select class="form-control col-3" name="examiner_id">
+                    <select class="form-control col-3 @error('examiner_id') is-invalid @enderror" name="examiner_id">
                         <option value="">Choose...</option>
                         @foreach($examiners as $examiner)
                             @if(!is_null(old('examiner_id')))
@@ -154,6 +170,11 @@
                             @endif
                         @endforeach
                     </select>
+                    @error('examiner_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>

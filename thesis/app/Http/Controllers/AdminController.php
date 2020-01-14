@@ -299,12 +299,15 @@ class AdminController extends Controller
         return redirect('admin/sessionSet')->with('alert','Successfully Edit Session '.request('session_id'));
     }
     public function submitSetDefenseSchedule(Request $request){
+        //dd($request->input());
         $validator = Validator::make($request->all(), [
             'date'=>'required|date',
             'time'=>['required','regex:/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/'],
             'room'=>'required',
-            'examiner_id'=>'required',
             'chairman_id'=>'required',
+            'examiner_id'=>'required|different:chairman_id',
+        ],[
+            '*.different'=>'Examiner and Chairman can not be the Same Person'
         ]
         );
         if ($validator->fails()) {
