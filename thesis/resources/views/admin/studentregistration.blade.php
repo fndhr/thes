@@ -105,8 +105,8 @@
         <table class="table table-bordered table-hover">
             <thead class="thead-dark text-center">
                 <tr>
-                    <th scope="col">Name</th>
                     <th scope="col">Student ID</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Major</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
@@ -116,8 +116,8 @@
                 @if(count($students)>0)
                 @foreach($students as $student)
                 <tr>
-                    <td>{{$student->user->first_name}} {{$student->user->last_name}}</td>
                     <td>{{$student->std_id}}</td>
+                    <td>{{$student->user->first_name}} {{$student->user->last_name}}</td>
                     <td>{{$student->major->major_name}}</td>
                     <td>{{$student->user->phone ?? '-'}}</td>
                     <td>{{$student->user->email ?? 'Please Fill The Email'}}</td>

@@ -86,14 +86,57 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center">
-                        <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: {{$student->session->title_adv_req_start}}</h5></div>
-                        <div class="col-3"><h5>End: {{$student->session->title_adv_req_end}}</h5></div>
-                        <div class="col-3"><h5>Status: null</h5></div>
+                    <div class="row my-4 text-center bg-light mx-5">
+                        <div class="col-4 pt-2"><h5>Session</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->title_adv_req_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="px-4">
-                        @if(is_null($title_name)&&$countNotApprovedTitle < 3)
+                        <form class="mt-5 mb-3 submitForm" action="" method="">
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label inputRequired">Title 1*</label>
+                                <input type="text" class="form-control col-9" for="title_name1" name="title_name1" placeholder="Title Name 1">
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Title 2</label>
+                                <input type="text" class="form-control col-9" for="title_name2" name="title_name2" placeholder="Title Name 2">
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Title 3</label>
+                                <input type="text" class="form-control col-9" for="title_name3" name="title_name3" placeholder="Title Name 3">
+                            </div>
+                            <div class="form-group row">
+                                <label for="majorStudent" class="col-3 col-form-label inputRequired">Advisor 1*</label>
+                                <select class="form-control col-4 @error('advisor1') is-invalid @enderror" for="advisor1" name="advisor1">
+                                    <option value="">Choose...</option>
+                                    @foreach($lecturers as $lecturer)
+                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <label for="majorStudent" class="col-3 col-form-label">Advisor 2</label>
+                                <select class="form-control col-4 @error('advisor2') is-invalid @enderror" for="advisor2" name="advisor2">
+                                    <option value="">Choose...</option>
+                                    @foreach($lecturers as $lecturer)
+                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <label for="majorStudent" class="col-3 col-form-label">Advisor 3</label>
+                                <select class="form-control col-4 @error('advisor3') is-invalid @enderror" for="advisor3" name="advisor3">
+                                    <option value="">Choose...</option>
+                                    @foreach($lecturers as $lecturer)
+                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
+                            </div>
+                        </form>
+                        <!-- @if(is_null($title_name)&&$countNotApprovedTitle < 3)
                         <form class="mt-5 mb-3 submitForm" action="/student/submitTitle" method="POST">
                             @csrf
                             <div class="form-group row">
@@ -181,7 +224,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @endif
+                        @endif -->
                     </div>
                 </div>
             </div>
@@ -194,11 +237,10 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center">
-                        <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: {{$student->session->thesis_proposal_start}}</h5></div>
-                        <div class="col-3"><h5>End: {{$student->session->thesis_proposal_end}}</h5></div>
-                        <div class="col-3"><h5>Status: null</h5></div>
+                    <div class="row my-4 text-center bg-light mx-5">
+                        <div class="col-4 pt-2"><h5>Session</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->thesis_proposal_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -262,11 +304,10 @@
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center">
-                        <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: {{$student->session->interim_report_start}}</h5></div>
-                        <div class="col-3"><h5>End: {{$student->session->interim_report_end}}</h5></div>
-                        <div class="col-3"><h5>Status: null</h5></div>
+                    <div class="row my-4 text-center bg-light mx-5">
+                        <div class="col-4 pt-2"><h5>Session</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->interim_report_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -326,11 +367,10 @@
             </div>
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center">
-                        <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: {{$student->session->final_draft_start}}</h5></div>
-                        <div class="col-3"><h5>End: {{$student->session->final_draft_end}}</h5></div>
-                        <div class="col-3"><h5>Status: null</h5></div>
+                    <div class="row my-4 text-center bg-light mx-5">
+                        <div class="col-4 pt-2"><h5>Session</h5></div>
+                        <div class="col-4 pt-2"><h5>End: {{$student->session->final_draft_end}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -367,7 +407,6 @@
                                         <button type="submit" class="btn btn-success px-5 my-3 btnSubmitFinalDraft">Submit</button>
                                     </div>
                                 @endif
-                                
                             </form>
                         </div>
                     </div>
@@ -439,11 +478,10 @@
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center">
-                        <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: {{$student->session->final_revised_document}}</h5></div>
-                        <div class="col-3"><h5>End: {{$student->session->final_revised_document}}</h5></div>
-                        <div class="col-3"><h5>Status: null</h5></div>
+                    <div class="row my-4 text-center bg-light mx-5">
+                        <div class="col-4 pt-2"><h5>Session</h5></div>
+                        <div class="col-4 pt-2"><h5>End: {{$student->session->final_revised_document}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -501,11 +539,10 @@
             </div>
             <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
                 <div class="card-body">
-                    <div class="row my-4 text-center">
-                        <div class="col-3"><h5>Session</h5></div>
-                        <div class="col-3"><h5>Start: {{$student->session->final_finalized_document}}</h5></div>
-                        <div class="col-3"><h5>End: {{$student->session->final_finalized_document}}</h5></div>
-                        <div class="col-3"><h5>Status: null</h5></div>
+                    <div class="row my-4 text-center bg-light mx-5">
+                        <div class="col-4 pt-2"><h5>Session</h5></div>
+                        <div class="col-4 pt-2"><h5>End: {{$student->session->final_finalized_document}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: null</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
