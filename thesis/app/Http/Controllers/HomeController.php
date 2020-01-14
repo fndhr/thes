@@ -86,7 +86,7 @@ class HomeController extends Controller
                 'proposedTitle' =>proposedTitle::whereStdId($student->std_id)->get(),
                 'lecturers' =>lecturer::whereNotIn('lec_id',proposedAdvisor::whereStdId($student->std_id)->get('lec_id'))->whereIsadv(1)->get(),
                 'proposedLecturers' =>proposedAdvisor::whereStdId($student->std_id)->get(),
-                'progressUpload' => documentUpload::whereStdId($student->std_id)->get(),
+                'progressUpload' => documentUpload::whereStdId($student->std_id)->orderBy('created_at')->get(),
                 'countNotApprovedLecturer' =>count(proposedAdvisor::whereStdId($student->std_id)->whereStsId(1)->get()),
                 'countNotApprovedTitle' =>count(proposedTitle::whereStdId($student->std_id)->whereStsId(1)->get()),
             ]);
