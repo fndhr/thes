@@ -89,7 +89,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->title_adv_req_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if($title_name && $student->lec) Not Yet @else Complete @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(is_null($title_name) && ($student->lec_id)) Not Yet @else Complete @endif</h5></div>
                     </div>
                     <div class="px-4">
                         <form class="mt-5 mb-3 submitForm" action="" method="">
