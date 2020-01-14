@@ -46,6 +46,53 @@ class StudentController extends Controller
 		return redirect()->back()->with('alert','Successfully Submit Advisor');
 	}
 
+	public function submitAdvisorTitle(Request $request){
+		$validator = Validator::make($request->all(), [
+			'advisor1' => 'required',
+			'title_name1' => 'required',
+        ],[
+			'advisor1.required' => 'please fill in at least one advisor at this column',
+			'title_name1.required' => 'please fill in at least one title at this column'
+		]);
+        if ($validator->fails()) {
+            $validator->validate();
+		}
+
+		$student = student::whereUsrId(auth()->id())->first();
+		$adv = new proposedAdvisor;
+		$adv->lec_id = request('advisor1');
+		$adv->std_id = $student->std_id;
+		$adv->save();
+		if(!is_null(request('advisor2'))){
+			$adv = new proposedAdvisor;
+			$adv->lec_id = request('advisor2');
+			$adv->std_id = $student->std_id;
+			$adv->save();
+		}
+		if(!is_null(request('advisor3'))){
+			$adv = new proposedAdvisor;
+			$adv->lec_id = request('advisor3');
+			$adv->std_id = $student->std_id;
+			$adv->save();
+		}
+		$title = new proposedTitle;
+		$title->title_name = request('title_name1');
+		$title->std_id = $student->std_id;
+		$title->save();
+		if(!is_null(request('title_name2'))){
+			$title = new proposedTitle;
+			$title->title_name = request('title_name2');
+			$title->std_id = $student->std_id;
+			$title->save();
+		}
+		if(!is_null(request('title_name2'))){
+			$title = new proposedTitle;
+			$title->title_name = request('title_name2');
+			$title->std_id = $student->std_id;
+			$title->save();
+		}
+		return redirect()->back()->with('alert','Successfully Request Title and Advisor');
+	}
 	public function uploadDocThesisProposal(Request $request){			
 
 		$validation = $request->validate([

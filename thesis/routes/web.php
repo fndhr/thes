@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function (){
 Route::prefix('student')->group(function(){
     Route::post('/submitTitle','StudentController@submitTitle');
     Route::post('/submitAdvisor','StudentController@submitAdvisor');
+    Route::post('/submitAdvisorTitle','StudentController@submitAdvisorTitle');
     Route::post('/uploadDocThesisProposal','StudentController@uploadDocThesisProposal');
     Route::post('/uploadDocThesisInterim','StudentController@uploadDocThesisInterim');
     Route::post('/uploadDocThesisFinalDraft','StudentController@uploadDocThesisFinalDraft');
