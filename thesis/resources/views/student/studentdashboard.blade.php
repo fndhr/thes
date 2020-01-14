@@ -543,7 +543,7 @@
                 <div class="card-body">
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_revised_document ?? '-'}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
                                                                 @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document")) Not Yet 
                                                                 @else Completed 
@@ -613,7 +613,7 @@
                 <div class="card-body">
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
-                        <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_finalized_document ?? '-'}}</h5></div>
+                        <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
                                                                 @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document")) Not Yet 
                                                                 @else Completed 
