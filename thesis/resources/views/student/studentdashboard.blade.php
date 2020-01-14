@@ -89,7 +89,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->title_adv_req_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(is_null($title_name) && ($student->lec_id)) Not Yet @else Complete @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(is_null($title_name) || is_null($student->lec_id)) Not Yet @else Completed @endif</h5></div>
                     </div>
                     <div class="px-4">
                         <form class="mt-5 mb-3 submitForm" action="" method="">
@@ -246,7 +246,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->thesis_proposal_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>0)@if($student->documentUpload[0]->sts_id == 3) Not Yet @else Complete @endif @else Not Yet @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>0)@if($student->documentUpload[0]->sts_id == 3) Not Yet @else Completed @endif @else Not Yet @endif</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -313,7 +313,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->interim_report_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>1)@if($student->documentUpload[1]->sts_id == 3) Not Yet @else Complete @endif @else Not Yet @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>1)@if($student->documentUpload[1]->sts_id == 3) Not Yet @else Completed @endif @else Not Yet @endif</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -376,7 +376,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_draft_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>2)@if($student->documentUpload[2]->sts_id == 3) Not Yet @else Complete @endif @else Not Yet @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>2)@if($student->documentUpload[2]->sts_id == 3) Not Yet @else Completed @endif @else Not Yet @endif</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -489,11 +489,11 @@
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_revised_document ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
                                                                 @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document")) Not Yet 
-                                                                @else Complete 
+                                                                @else Completed 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
                                                                 @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Signed Revised Document"))) Not Yet 
-                                                                @else Complete 
+                                                                @else Completed 
                                                                 @endif 
                                                             @else Not Yet 
                                                             @endif</h5></div>
@@ -559,11 +559,11 @@
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_finalized_document ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
                                                                 @if($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document")) Not Yet 
-                                                                @else Complete 
+                                                                @else Completed 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
                                                                 @if(($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))||($student->documentUpload[5]->sts_id == 3 && ($student->documentUpload[5]->doc_type_name == "Finalized Document"))) Not Yet 
-                                                                @else Complete 
+                                                                @else Completed 
                                                                 @endif 
                                                             @else Not Yet 
                                                             @endif</h5></div>
