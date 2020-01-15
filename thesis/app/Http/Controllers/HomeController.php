@@ -30,6 +30,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        date_default_timezone_set('Asia/Jakarta');
         $isStudent = count(student::whereUsrId(auth()->id())->get()) == 0 ? false : true;        
         $isLecturer = count(lecturer::whereUsrId(auth()->id())->get())== 0 ? false : true;
         if($isStudent){
@@ -60,7 +61,7 @@ class HomeController extends Controller
                 $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
                 $student->defense->time = $time[0].':'.$date[1];
                 $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
-                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));                
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
             }
             return view('student.studentdashboard',[
                 'role' => $this->role,

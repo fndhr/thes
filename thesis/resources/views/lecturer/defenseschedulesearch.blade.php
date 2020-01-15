@@ -21,7 +21,7 @@
                 </div>
             </form>
             @if(isset($defenses))
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-sm table-hover mt-5">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">No.</th>
