@@ -63,6 +63,10 @@ class HomeController extends Controller
                 $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
                 $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
             }
+            
+            foreach($student->proposedConsultations as $consult){
+                $consult->proposed_date = date('d F Y',strtotime($consult->proposed_date));
+            }
             return view('student.studentdashboard',[
                 'role' => $this->role,
                 'student' => $student,

@@ -11,6 +11,7 @@ use App\defense;
 use App\proposedTitle;
 use App\scoringTable;
 use App\documentUpload;
+use App\proposedConsultation;
 class LecturerController extends Controller
 {
     private $role = 2;
@@ -54,6 +55,9 @@ class LecturerController extends Controller
         if($student->defense){
             $student->defense->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
             $student->defense->time = date('h:i:s A',strtotime($student->defense->def_strt_dt));
+        }
+        foreach($student->proposedConsultations as $consult){
+            $consult->proposed_date = date('d F Y',strtotime($consult->proposed_date));
         }
         if(count($student->scoringTable) == 3){
             $a=0;$b=0;$c=0;
@@ -249,6 +253,18 @@ class LecturerController extends Controller
         $document = documentUpload::find(request('id'));
         $document->status = 3;
         $document->save();
-        return redirect()->back()->with('alert','successfully approve document');
+        return redirect()->back()->with('alert','successfully disapprove document');
+    }
+    public function approveConsultation(){
+        $document = proposedConsultation::find(request('id'));
+        $document->sts_id = 2;
+        $document->save();
+        return redirect()->back()->with('alert','successfully approve consultation');
+    }
+    public function disapproveConsultation(){
+        $document = proposedConsultation::find(request('id'));
+        $document->sts_id = 3;
+        $document->save();
+        return redirect()->back()->with('alert','successfully disapprove consultation');
     }
 }

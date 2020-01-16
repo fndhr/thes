@@ -109,13 +109,13 @@
                                         <th scope="col" style="width: 5%;">No.</th>
                                         <th scope="col" style="width: 20%;">Date</th>
                                         <th scope="col" style="width: 55%;">Topic</th>
-                                        <th scope="col" style="width: 20%;">Action</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php($proposed = 1)
                                     @foreach($student->proposedConsultations as $consultation)
-                                        @if($consultation->sts_id !=2)
+                                        @if($consultation->sts_id !=3)
                                         <tr>
                                             <td>{{$proposed}}.</td>
                                             <td>{{$consultation->proposed_date}}</td>
@@ -140,13 +140,13 @@
                                         <th scope="col" style="width: 5%;">No.</th>
                                         <th scope="col" style="width: 20%;">Date</th>
                                         <th scope="col" style="width: 55%;">Topic</th>
-                                        <th scope="col" style="width: 20%;">Action</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php($proposed = 1)
                                     @foreach($student->proposedConsultations as $consultation)
-                                        @if($consultation->sts_id ==2)
+                                        @if($consultation->sts_id ==3)
                                         <tr>
                                             <td>{{$proposed}}.</td>
                                             <td>{{$consultation->proposed_date}}</td>

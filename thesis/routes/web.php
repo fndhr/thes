@@ -75,4 +75,6 @@ Route::prefix('lecturer')->group(function(){
     Route::post('/submitScoring','LecturerController@submitScoring');
     Route::post('/approve/document','LecturerController@approveDocument');
     Route::post('/disapprove/document','LecturerController@disapproveDocument');
+    Route::post('/approve/consultation','LecturerController@approveConsultation');
+    Route::post('/disapprove/consultation','LecturerController@disapproveConsultation');
 });

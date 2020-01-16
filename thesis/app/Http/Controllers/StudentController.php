@@ -248,6 +248,7 @@ class StudentController extends Controller
 		}
 	}
 	public function submitConsultation(){
+		date_default_timezone_set('Asia/Jakarta');
 		$validator = Validator::make(request()->input(), [
 			'title_name2' => 'required',
         ],[
