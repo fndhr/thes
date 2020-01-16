@@ -141,8 +141,6 @@
                 @endif
             </tbody>
         </table>
-
-        {{$students->links()}}
     </div>
 </div>
 @endsection
