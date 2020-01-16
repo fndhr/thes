@@ -23,7 +23,7 @@ class AdminController extends Controller
         $this->middleware('auth');   
     }
     public function getStudents(){
-        return student::paginate(20);
+        return student::all();
     }
     public function getLecturers(){
         return lecturer::paginate(20);
@@ -129,9 +129,18 @@ class AdminController extends Controller
         if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
             return redirect('home');
         }
+        date_default_timezone_set('Asia/Jakarta');
+        //pepe janagn ilang
+        $students = $this->getStudents();
+        foreach($students as $student){
+            if(!is_null($student->defense)){
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+            }
+        }
         return view('admin.studentsearch',[
             'role' => $this->role,
-            'students' =>$this->getStudents()
+            'students' =>$students
         ]);
     }
     public function getDefenseScheduleDetail($param){
@@ -242,7 +251,14 @@ class AdminController extends Controller
                     ->orWhereIn('users.first_name',$fullname)->orWhereIn('users.last_name',$fullname)
                     ->leftJoin('students','users.id','=','students.usr_id')
                     ->get('id');
-
+        date_default_timezone_set('Asia/Jakarta');
+        //pepe janagn ilang
+        foreach($result as $student){
+            if(!is_null($student->defense)){
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+            }
+        }
         
         return view('admin.studentsearch',[
             'role' => $this->role,
