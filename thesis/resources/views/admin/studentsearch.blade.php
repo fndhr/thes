@@ -40,7 +40,18 @@
                             <td>{{$num}}.</td>
                             <td>{{$student->std_id}}</td>
                             <td><a href="/admin/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
-                            <td>@if(count($student->documentUpload)==0)
+                            <td>
+                            @if(is_null($student->lecturer) || is_null($student->title_name))
+                                @if(is_null($student->lecturer))
+                                    Lecturer
+                                @endif
+                                @if(is_null($student->lecturer) && is_null($student->title_name))
+                                    and Title
+                                @elseif(is_null($student->title_name))
+                                    Title
+                                @endif
+                                Hasn't been Set
+                            @elseif(count($student->documentUpload)==0)
                                 Proposal Document has not been Uploaded
                             @elseif(count($student->documentUpload)==1)
                                 Interim has not been Uploaded

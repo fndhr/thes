@@ -133,6 +133,10 @@ class AdminController extends Controller
         //pepe janagn ilang
         $students = $this->getStudents();
         foreach($students as $student){
+            foreach($student->proposedTitle as $title){
+                if($title->sts_id==2)
+                    $student->title_name = $title->title_name;
+            }
             if(!is_null($student->defense)){
                 $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
                 $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
@@ -255,6 +259,10 @@ class AdminController extends Controller
         //pepe janagn ilang
         $students = student::whereIn('usr_id',$result)->get();
         foreach($students as $student){
+            foreach($student->proposedTitle as $title){
+                if($title->sts_id==2)
+                    $student->title_name = $title->title_name;
+            }
             if(!is_null($student->defense)){
                 $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
                 $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
