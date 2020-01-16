@@ -15,7 +15,13 @@
             </div>
             <div class="row py-2 mb-2">
                 <div class="col-3">Consultation Sheet</div>
-                <div class="col-7">:&nbsp;&nbsp;Haven't Reach Minimum Requirement</div>
+                @php($consult = 0)
+                @foreach($student->proposedConsultations as $std)
+                    @if($std->sts_id == 2)
+                        @php($consult++)
+                    @endif
+                @endforeach
+                <div class="col-7">:&nbsp;&nbsp;@if($consult < $student->session->minimum_consultation)Haven't Reach Minimum Requirement @else Eligible to set thesis defense @endif</div>
                 <div class="col-1">@if(!is_null($student->lecturer))&#10003;@endif</div>
             </div>
             @php($sts_title = NULL)
@@ -136,7 +142,7 @@
                     <form id="viewFileFinalDraft" action="/viewFileFinalDraft" method="POST" style="display: none;">@csrf<input for="FinalDraft" name="FinalDraft" value="{{$student->documentUpload[2]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
-                @if(!is_null($sts_title) && !is_null($student->lecturer))
+                @if(!is_null($sts_title) && !is_null($student->lecturer) && ($consult >= $student->session->minimum_consultation))
                     <div class="row py-2 mb-2">
                         <div class="col-3">Defense Date</div>
                         <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->date}} {{$student->defense->time}}@endif</div>
