@@ -81,6 +81,80 @@
 
 
         <div class="card">
+            <div class="card-header" id="headingNine" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                <h4 class="text-black">Consultation Sheet</h4>
+            </div>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="px-4">
+                        <form class="mt-5 mb-3 submitForm" action="" method="post">
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Topic</label>
+                                <input type="text" class="form-control col-9" for="title_name2" name="title_name2" placeholder="" value="{{old('title_name2')}}">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>
+                            </div>
+                        </form>
+                        <div class="py-3">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Topic</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>25 January 2020</td>
+                                        <td>Talking about student registration</td>
+                                        <td>approved</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>29 January 2020</td>
+                                        <td>Talking about Session for each student</td>
+                                        <td>waiting for approval</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="py-3">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Topic</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>25 January 2020</td>
+                                        <td>Talking about President University</td>
+                                        <td>Rejected</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>29 January 2020</td>
+                                        <td>Talking about University Life</td>
+                                        <td>Rejected</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
             <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <h4 class="text-black">Title and Advisor Proposal</h4>
             </div>
@@ -192,96 +266,6 @@
                             </table>
                         </div>
                         @endif
-                        
-                        <!-- @if(is_null($title_name)&&$countNotApprovedTitle < 3)
-                        <form class="mt-5 mb-3 submitForm" action="/student/submitTitle" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label class="col-3 col-form-label">Title</label>
-                                <input type="text" class="form-control col-9" for="title_name" name="title_name" placeholder="Title Name">
-                            </div>
-                            @if($student->session->passed_adv_title_dt)
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-secondary px-5 my-3 btnSubmitTitle" disabled>Submit</button>
-                                </div>
-                            @else
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success px-5 my-3 btnSubmitTitle">Submit</button>
-                                </div>
-                            @endif                            
-                        </form>
-                        @endif
-                        @if(count($proposedTitle)>0)
-                        <div class="py-3">
-                            <table class="table table-sm table-bordered table-hover">
-                                <thead class="thead-dark text-center">
-                                    <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for($counter = 0 ; $counter < count($proposedTitle) ;$counter++)
-                                    <tr>
-                                        <td>{{$counter+1}}.</td>
-                                        <td>{{$proposedTitle[$counter]->title_name}}</td>
-                                        <td>{{$proposedTitle[$counter]->statuses->sts_name}}</td>
-                                    </tr>
-                                    @endfor
-                                </tbody>
-                            </table>
-                        </div>
-                        @endif
-                        @if(is_null($student->lecturer)&&$countNotApprovedLecturer < 3)
-                        <form class="mt-5 mb-3 submitForm" action="/student/submitAdvisor" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="majorStudent" class="col-3 col-form-label">Advisor</label>
-                                <select class="form-control col-9 @error('advisor') is-invalid @enderror" for="advisor" name="advisor">
-                                    <option value="">Choose...</option>
-                                    @foreach($lecturers as $lecturer)
-                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col-9 px-0">
-                                    @error('advisor')
-                                        <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success px-5 my-3 btnSubmit">Submit</button>
-                            </div>
-                        </form>
-                        @endif
-                        @if(count($proposedLecturers)>0)
-                        <div class="py-3">
-                            <table class="table table-sm table-bordered table-hover">
-                                <thead class="thead-dark text-center">
-                                    <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Advisor</th>
-                                    <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for($counter = 0 ; $counter < count($proposedLecturers) ;$counter++)
-                                    <tr>
-                                        <td>{{$counter+1}}.</td>
-                                        <td>{{$proposedLecturers[$counter]->lecturer->user->first_name}} {{$proposedLecturers[$counter]->lecturer->user->last_name}}</td>
-                                        <td>{{$proposedLecturers[$counter]->statuses->sts_name}}</td>
-                                    </tr>
-                                    @endfor
-                                </tbody>
-                            </table>
-                        </div>
-                        @endif -->
                     </div>
                 </div>
             </div>
