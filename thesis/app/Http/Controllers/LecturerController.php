@@ -30,9 +30,16 @@ class LecturerController extends Controller
         if(is_null($this->user)){
             return redirect('home');
         }
+        $students = $this->getStudents();
+        foreach($students as $student){
+            if(!is_null($student->defense)){
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+            }
+        }
         return view('lecturer.studentsearch',[
             'role' => $this->role,
-            'students' =>$this->getStudents(),
+            'students' =>$students,
             'lecturer' => $this->user
         ]);
     }
@@ -150,10 +157,16 @@ class LecturerController extends Controller
                     ->where('lec_id',$this->user->lec_id)
                     ->leftJoin('students','users.id','=','students.usr_id')
                     ->get('id');
-
+        $students = student::whereIn('usr_id',$result)->get();
+        foreach($students as $student){
+            if(!is_null($student->defense)){
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+            }
+        }
         return view('lecturer.studentsearch',[
             'role' => $this->role,
-            'students' =>student::whereIn('usr_id',$result)->get(),
+            'students' =>$students,
             'lecturer' => $this->user
         ]);        
     }

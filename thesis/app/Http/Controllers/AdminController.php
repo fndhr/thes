@@ -253,7 +253,8 @@ class AdminController extends Controller
                     ->get('id');
         date_default_timezone_set('Asia/Jakarta');
         //pepe janagn ilang
-        foreach($result as $student){
+        $students = student::whereIn('usr_id',$result)->get();
+        foreach($students as $student){
             if(!is_null($student->defense)){
                 $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
                 $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
@@ -262,7 +263,7 @@ class AdminController extends Controller
         
         return view('admin.studentsearch',[
             'role' => $this->role,
-            'students' =>student::whereIn('usr_id',$result)->get()
+            'students' =>$students
         ]);
         
     }
