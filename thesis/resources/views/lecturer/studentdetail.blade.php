@@ -30,12 +30,19 @@
                 <div class="col-1">@if(!is_null($student->lecturer))&#10003;@endif</div>
             </div>
             @if(count($student->documentUpload)>=1)
+            @if($student->documentUpload[0]->status==2)
             <div class="row py-2 mb-2">
                 <div class="col-3">Proposal</div>
                 <div class="col-5" for="ThesisProposal" name="ThesisProposal">:&nbsp;&nbsp;{{$student->documentUpload[0]->doc_name}}</div>
                 <div class="col-2"><a href="/downloadFile">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
+            @elseif($student->documentUpload[0]->status==1)
+            <div class="row py-2 mb-2">
+                <div class="col-3">Proposal</div>
+                <div class="col-5" for="ThesisProposal" name="ThesisProposal">:&nbsp;&nbsp;-</div>
+                <div class="col-2"><a href="/downloadFile">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
+            </div>
             <div class="row py-2 mb-2">
                 <div class="col">
                     <table class="table table-sm table-bordered table-hover">
@@ -51,21 +58,31 @@
                                 <td>1.</td>
                                 <td>Test.pdf</td>
                                 <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[0]->id}}').submit();">YES</span>&emsp;
+                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[0]->id}}').submit();">NO</span></td>
+                                    <form id="button-yes-{{$student->documentUpload[0]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[0]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no-{{$student->documentUpload[0]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[0]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             @endif
+            @endif
             @if(count($student->documentUpload)>=2)
+            @if($student->documentUpload[1]->status==2)
             <div class="row py-2 mb-2">
                 <div class="col-3">Interim</div>
                 <div class="col-5" for="ThesisInterim" name="ThesisInterim">:&nbsp;&nbsp;{{$student->documentUpload[1]->doc_name}}</div>
                 <div class="col-2"><a href="/downloadFileInterim">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 <div class="col-1">&#10003;</div>
             </div>
+            @elseif($student->documentUpload[1]->status==1)
+            <div class="row py-2 mb-2">
+                <div class="col-3">Interim</div>
+                <div class="col-5" for="ThesisInterim" name="ThesisInterim">:&nbsp;&nbsp;-</div>
+                <div class="col-2"><a href="/downloadFileInterim">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
+            </div>
             <div class="row py-2 mb-2">
                 <div class="col">
                     <table class="table table-sm table-bordered table-hover">
@@ -79,22 +96,32 @@
                         <tbody>
                             <tr>
                                 <td>1.</td>
-                                <td>Test.pdf</td>
+                                <td>{{$student->documentUpload[1]->doc_name}}</td>
                                 <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[1]->id}}').submit();">YES</span>&emsp;
+                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[1]->id}}').submit();">NO</span></td>
+                                    <form id="button-yes-{{$student->documentUpload[1]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[1]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no-{{$student->documentUpload[1]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[1]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             @endif
+            @endif
             @if(count($student->documentUpload)>=3)
+            @if($student->documentUpload[2]->status==2)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Draft</div>
                     <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;{{$student->documentUpload[2]->doc_name}}</div>
                     <div class="col-2"><a href="/downloadFileFinalDraft">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                     <div class="col-1">&#10003;</div>
+                </div>
+            @elseif($student->documentUpload[2]->status==1)
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Final Draft</div>
+                    <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;-</div>
+                    <div class="col-2"><a href="/downloadFileFinalDraft">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                 </div>
                 <div class="row py-2 mb-2">
                     <div class="col">
@@ -109,10 +136,12 @@
                             <tbody>
                                 <tr>
                                     <td>1.</td>
-                                    <td>Test.pdf</td>
+                                    <td>{{$student->documentUpload[2]->doc_name}}</td>
                                     <td>
-                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
-                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[2]->id}}').submit();">YES</span>&emsp;
+                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[2]->id}}').submit();">NO</span></td>
+                                    <form id="button-yes-{{$student->documentUpload[2]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[2]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no-{{$student->documentUpload[2]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[2]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                                 </tr>
                             </tbody>
                         </table>
@@ -127,7 +156,10 @@
                     </div>
                 @endif
             @endif
+            @endif
             @if(count($student->documentUpload)>=4)
+            @if($student->documentUpload[3]->status==2)
+                @if($student->documentUpload[3]->doc_type_name == 'Signed Revised Document')
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
                     <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
@@ -135,30 +167,7 @@
                     <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
-                <div class="row py-2 mb-2">
-                    <div class="col">
-                        <table class="table table-sm table-bordered table-hover">
-                            <thead class="thead-dark text-center">
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">File Name</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Test.pdf</td>
-                                    <td>
-                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
-                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            @endif
-            @if(count($student->documentUpload)>=5)
+                @else
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Document</div>
                     <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>
@@ -166,6 +175,23 @@
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
+                @endif
+            @elseif($student->documentUpload[3]->status==1)
+                @if($student->documentUpload[3]->doc_type_name == 'Signed Revised Document')
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Revision</div>
+                    <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;-</div>
+                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                </div>
+                @else
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Final Document</div>
+                    <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;-</div>
+                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                </div>
+                @endif
                 <div class="row py-2 mb-2">
                     <div class="col">
                         <table class="table table-sm table-bordered table-hover">
@@ -179,15 +205,80 @@
                             <tbody>
                                 <tr>
                                     <td>1.</td>
-                                    <td>Test.pdf</td>
+                                    <td>{{$student->documentUpload[2]->doc_name}}</td>
                                     <td>
-                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">YES</span>&emsp;
-                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('').submit();">NO</span></td>
+                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[3]->id}}').submit();">YES</span>&emsp;
+                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[3]->id}}').submit();">NO</span>
+                                    </td>
+                                    <form id="button-yes-{{$student->documentUpload[3]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[3]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no-{{$student->documentUpload[3]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[3]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+            @endif
+            @endif
+            @if(count($student->documentUpload)>=5)
+            @if($student->documentUpload[4]->status==2)
+                @if($student->documentUpload[4]->doc_type_name == 'Signed Revised Document')
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Revision</div>
+                    <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
+                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                    <div class="col-1">&#10003;</div>
+                </div>
+                @else
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Final Document</div>
+                    <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>
+                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                    <div class="col-1">&#10003;</div>
+                </div>
+                @endif
+            @elseif($student->documentUpload[4]->status==1)
+                @if($student->documentUpload[4]->doc_type_name == 'Signed Revised Document')
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Revision</div>
+                    <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;-</div>
+                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                </div>
+                @else
+                <div class="row py-2 mb-2">
+                    <div class="col-3">Final Document</div>
+                    <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;-</div>
+                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
+                </div>
+                @endif
+                <div class="row py-2 mb-2">
+                    <div class="col">
+                        <table class="table table-sm table-bordered table-hover">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">File Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>{{$student->documentUpload[3]->doc_name}}</td>
+                                    <td><span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[4]->id}}').submit();">YES</span>&emsp;
+                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[4]->id}}').submit();">NO</span>
+                                    </td>
+                                    <form id="button-yes-{{$student->documentUpload[4]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[4]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no-{{$student->documentUpload[4]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[4]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
             @endif
             <div class="row py-2 mb-2">
                 <div class="col-3">Final Score</div>

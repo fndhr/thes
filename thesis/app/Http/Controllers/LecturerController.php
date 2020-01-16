@@ -10,6 +10,7 @@ use App\proposedAdvisor;
 use App\defense;
 use App\proposedTitle;
 use App\scoringTable;
+use App\documentUpload;
 class LecturerController extends Controller
 {
     private $role = 2;
@@ -238,4 +239,16 @@ class LecturerController extends Controller
         return redirect('home')->with('alert','successfully submit live scoring');
     }
     
+    public function approveDocument(){
+        $document = documentUpload::find(request('id'));
+        $document->status = 2;
+        $document->save();
+        return redirect()->back()->with('alert','successfully approve document');
+    }
+    public function disapproveDocument(){
+        $document = documentUpload::find(request('id'));
+        $document->status = 3;
+        $document->save();
+        return redirect()->back()->with('alert','successfully approve document');
+    }
 }

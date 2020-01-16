@@ -73,4 +73,6 @@ Route::prefix('lecturer')->group(function(){
     Route::post('/studentSearch','LecturerController@studentSearchFilter');
     Route::post('/defenseSearchFilter','LecturerController@defenseSearchFilter');
     Route::post('/submitScoring','LecturerController@submitScoring');
+    Route::post('/approve/document','LecturerController@approveDocument');
+    Route::post('/disapprove/document','LecturerController@disapproveDocument');
 });
