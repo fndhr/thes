@@ -13,6 +13,11 @@
                 <div class="col-3">Name</div>
                 <div class="col-9">:&nbsp;&nbsp;{{$student->user->first_name}} {{$student->user->last_name}}</div>
             </div>
+            <div class="row py-2 mb-2">
+                <div class="col-3">Consultation Sheet</div>
+                <div class="col-7">:&nbsp;&nbsp;Haven't Reach Minimum Requirement</div>
+                <div class="col-1">@if(!is_null($student->lecturer))&#10003;@endif</div>
+            </div>
             @php($sts_title = NULL)
             @foreach($student->proposedTitle as $title)
                 @if($title->sts_id == 2)

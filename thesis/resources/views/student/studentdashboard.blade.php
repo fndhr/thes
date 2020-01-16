@@ -100,10 +100,10 @@
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Topic</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col" style="width: 5%;">No.</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                        <th scope="col" style="width: 55%;">Topic</th>
+                                        <th scope="col" style="width: 20%;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,10 +126,10 @@
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Topic</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col" style="width: 5%;">No.</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                        <th scope="col" style="width: 55%;">Topic</th>
+                                        <th scope="col" style="width: 20%;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -228,9 +228,9 @@
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col" style="width: 5%;">No.</th>
+                                        <th scope="col" style="width: 75%;">Title</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -249,9 +249,9 @@
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Advisor</th>
-                                    <th scope="col">Status</th>
+                                        <th scope="col" style="width: 5%;">No.</th>
+                                        <th scope="col" style="width: 75%;">Title</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
