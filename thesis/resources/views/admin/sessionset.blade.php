@@ -81,7 +81,7 @@
                     @enderror
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success px-5 my-4 btnSubmit">Save</button>
+                    <button type="submit" class="btn btn-success btn-pill px-5 my-4 btnSubmit">Save</button>
                 </div>
             </form>
         </div>
@@ -109,7 +109,7 @@
                     @endforeach
                     @else
                         <tr>
-                            <td colspan="3  " class="text-center">Records Not Found</td>
+                            <td colspan="3" class="text-center">Records Not Found</td>
                         </tr>
                     @endif
                 </tbody>
