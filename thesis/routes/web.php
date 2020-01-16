@@ -65,7 +65,7 @@ Route::prefix('student')->group(function(){
     Route::post('/uploadDocThesisFinalDraft','StudentController@uploadDocThesisFinalDraft');
     Route::post('/uploadSignedRevisedDoc','StudentController@uploadSignedRevisedDoc');
     Route::post('/uploadFinalizedDoc','StudentController@uploadFinalizedDoc');
-    
+    Route::post('/submitConsultation','StudentController@submitConsultation');
 });
 
 Route::prefix('lecturer')->group(function(){

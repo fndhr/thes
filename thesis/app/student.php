@@ -40,4 +40,7 @@ class student extends Model
     public function scoringTable(){
         return $this->hasMany('App\scoringTable','std_id','std_id');
     }
+    public function proposedConsultations(){
+        return $this->hasMany('App\proposedConsultation','std_id','std_id');
+    }
 }

@@ -21,10 +21,10 @@
 
                 <h4 class="mt-5">Consultation Sheet</h4>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label inputRequired">Maximum Consultation Sheet</label>
+                    <label class="col-3 col-form-label inputRequired">Minumum Consultation Sheet</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
-                    <input type="number" id="" class="form-control col-6 @error('') is-invalid @enderror" name="" placeholder="ex:10" value="">
-                    @error('')
+                    <input type="number" id="" class="form-control col-6 @error('minimum_consultation') is-invalid @enderror" name="minimum_consultation" placeholder="ex:10" value="{{old('minimum_consultation')??$session->minimum_consultation}}">
+                    @error('minimum_consultation')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
