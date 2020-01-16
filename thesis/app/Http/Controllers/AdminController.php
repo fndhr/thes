@@ -282,12 +282,14 @@ class AdminController extends Controller
             'end_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
             'end_date_interim'=>'required|date|after:end_date_signed_thesis',
             'end_date_final_draft'=>'required|date|after:end_date_interim',
+            'minimum_consultation'=>['required','regex:/^[0-9]/']
         ]
         );
         if ($validator->fails()) {
             $validator->validate();
         }
         $session = new session;
+        $session->minimum_consultation = request('minimum_consultation');
         $session->session_id = request('session_id');
         $date = explode('/',request('end_date_title_advisor'));
         $session->title_adv_req_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
@@ -306,12 +308,14 @@ class AdminController extends Controller
             'end_date_signed_thesis'=>'required|date|after:end_date_title_advisor',
             'end_date_interim'=>'required|date|after:end_date_signed_thesis',
             'end_date_final_draft'=>'required|date|after:end_date_interim',
+            'minimum_consultation'=>['required','regex:/^[0-9]/']
         ]
         );
         if ($validator->fails()) {
             $validator->validate();
         }
         $session = session::whereSessionId(request('session_id'))->first();
+        $session->minimum_consultation = request('minimum_consultation');
         $date = explode('/',request('end_date_title_advisor'));
         $session->title_adv_req_end = DateTime::createFromFormat('Y-m-d', $date[2].'-'.$date[0].'-'.$date[1]);
         $date = explode('/',request('end_date_signed_thesis'));

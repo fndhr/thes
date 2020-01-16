@@ -13,4 +13,8 @@ class status extends Model
     public function proposedAdvisor(){
         return $this->belongsTo('App\proposedAdvisor','sts_id','sts_id');
     }
+    
+    public function status(){
+        return $this->belongsTo('App\proposedConsultation','sts_id','sts_id');
+    }
 }

@@ -8,6 +8,7 @@ use App\proposedAdvisor;
 use App\student;
 use App\documentUpload;
 use App\notification;
+use App\proposedConsultation;
 use Validator;
 class StudentController extends Controller
 {
@@ -245,5 +246,22 @@ class StudentController extends Controller
 			$notification->save();
 			return redirect()->back()->with('alert','Successfull Submit Document');
 		}
+	}
+	public function submitConsultation(){
+		$validator = Validator::make(request()->input(), [
+			'title_name2' => 'required',
+        ],[
+			'title_name2.required'=>'topic field is required'
+		]);
+        if ($validator->fails()) {
+            $validator->validate();
+		}
+		$proposed = new proposedConsultation;
+		$proposed->topic_name = request('title_name2');
+		$proposed->sts_id = 1;
+		$proposed->std_id = student::whereUsrId(auth()->id())->first()->std_id;
+		$proposed->proposed_date = date('Y-m-d');
+		$proposed->save();
+		return redirect()->back()->with('alert','Successfull Submit Consultation');
 	}
 }
