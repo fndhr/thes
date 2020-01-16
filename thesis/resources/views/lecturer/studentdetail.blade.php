@@ -320,31 +320,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php($num = 1)
-                            @foreach($student->proposedTitle as $title)
-                            @if($title->sts_id == 1)
-                            <tr>
-                                <td>{{$num}}.</td>
-                                <td>{{$title->title_name}}</td>
-                                <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-title{{$title->title_id}}').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-title{{$title->title_id}}').submit();">NO</span>
-                                </td>    
-                                <form id="button-yes-title{{$title->title_id}}" action="/admin/approve/title" method="POST" style="display: none;">@csrf<input for="title" name="title" value="{{$title->title_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                <form id="button-no-title{{$title->title_id}}" action="/admin/disapprove/title" method="POST" style="display: none;">@csrf<input for="title" name="title" value="{{$title->title_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                @php($num++)
-                            </tr>
+                            @php($proposed = 1)
+                            @foreach($student->proposedConsultations as $consultation)
+                                @if($consultation->sts_id ==1)
+                                <tr>
+                                    <td>{{$proposed}}.</td>
+                                    <td>{{$consultation->proposed_date}}</td>
+                                    <td>{{$consultation->topic_name}}</td>
+                                    <td>
+                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes{{$consultation->id}}').submit();">YES</span>&emsp;
+                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no{{$consultation->id}}').submit();">NO</span>
+                                    </td>
+                                    <form id="button-yes{{$consultation->id}}" action="/lecturer/approve/consultation" method="POST" style="display: none;">@csrf<input for="title" name="id" value="{{$consultation->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <form id="button-no{{$consultation->id}}" action="/lecturer/disapprove/consultation" method="POST" style="display: none;">@csrf<input for="title" name="id" value="{{$consultation->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                
+                                </tr>
+                                @php($proposed++)
+                                @endif
+                            @endforeach     
+                            @if($proposed == 1)
+                                <tr>
+                                    <td colspan="4" class="text-center">Records Not Found</td>
+                                </tr>
                             @endif
-                            @endforeach
-                            <tr>
-                                <td>1.</td>
-                                <td>27 January 2020</td>
-                                <td>Talking about President University</td>
-                                <td>
-                                    <span class="text-success submitPropose">YES</span>&emsp;
-                                    <span class="text-danger submitPropose">NO</span>
-                                </td> 
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -358,56 +356,27 @@
                                 <th scope="col" style="width: 5%;">No.</th>
                                 <th scope="col" style="width: 20%;">Date</th>
                                 <th scope="col" style="width: 55%;">Topic</th>
-                                <th scope="col" style="width: 20%;">Action</th>
+                                <th scope="col" style="width: 20%;">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php($num = 1)
-                            @foreach($student->proposedTitle as $title)
-                            @if($title->sts_id == 1)
-                            <tr>
-                                <td>{{$num}}.</td>
-                                <td>{{$title->title_name}}</td>
-                                <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-title{{$title->title_id}}').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-title{{$title->title_id}}').submit();">NO</span>
-                                </td>    
-                                <form id="button-yes-title{{$title->title_id}}" action="/admin/approve/title" method="POST" style="display: none;">@csrf<input for="title" name="title" value="{{$title->title_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                <form id="button-no-title{{$title->title_id}}" action="/admin/disapprove/title" method="POST" style="display: none;">@csrf<input for="title" name="title" value="{{$title->title_id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                @php($num++)
-                            </tr>
+                            @php($proposed = 1)
+                            @foreach($student->proposedConsultations as $consultation)
+                                @if($consultation->sts_id !=1)
+                                <tr>
+                                    <td>{{$proposed}}.</td>
+                                    <td>{{$consultation->proposed_date}}</td>
+                                    <td>{{$consultation->topic_name}}</td>
+                                    <td>{{$consultation->status->sts_name}}</td>
+                                </tr>
+                                @php($proposed++)
+                                @endif
+                            @endforeach     
+                            @if($proposed == 1)
+                                <tr>
+                                    <td colspan="4" class="text-center">Records Not Found</td>
+                                </tr>
                             @endif
-                            @endforeach
-                            <tr>
-                                <td>1.</td>
-                                <td>23 January 2020</td>
-                                <td>Topic A</td>
-                                <td>Approved</td> 
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>25 January 2020</td>
-                                <td>Topic B</td>
-                                <td>Approved</td> 
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>27 January 2020</td>
-                                <td>Topic C</td>
-                                <td>Rejected</td> 
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>29 January 2020</td>
-                                <td>Topic D</td>
-                                <td>Approved</td> 
-                            </tr>
-                            <tr>
-                                <td>5.</td>
-                                <td>31 January 2020</td>
-                                <td>Topic E</td>
-                                <td>Rejected</td> 
-                            </tr>
                         </tbody>
                     </table>
                 </div>

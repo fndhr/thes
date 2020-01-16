@@ -87,10 +87,16 @@
             <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="px-4">
-                        <form class="mt-5 mb-3 submitForm" action="" method="post">
+                        <form class="mt-5 mb-3 submitForm" action="/student/submitConsultation" method="post">
+                            @csrf
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Topic</label>
-                                <input type="text" class="form-control col-9" for="title_name2" name="title_name2" placeholder="" value="{{old('title_name2')}}">
+                                <input type="text" class="form-control col-9 @error('title_name2') is-invalid @enderror" for="title_name2" name="title_name2" placeholder="" value="{{old('title_name2')}}">
+                                @error('title_name2')
+                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>
@@ -103,22 +109,27 @@
                                         <th scope="col" style="width: 5%;">No.</th>
                                         <th scope="col" style="width: 20%;">Date</th>
                                         <th scope="col" style="width: 55%;">Topic</th>
-                                        <th scope="col" style="width: 20%;">Action</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>25 January 2020</td>
-                                        <td>Talking about student registration</td>
-                                        <td>approved</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.</td>
-                                        <td>29 January 2020</td>
-                                        <td>Talking about Session for each student</td>
-                                        <td>waiting for approval</td>
-                                    </tr>
+                                    @php($proposed = 1)
+                                    @foreach($student->proposedConsultations as $consultation)
+                                        @if($consultation->sts_id !=3)
+                                        <tr>
+                                            <td>{{$proposed}}.</td>
+                                            <td>{{$consultation->proposed_date}}</td>
+                                            <td>{{$consultation->topic_name}}</td>
+                                            <td>{{$consultation->status->sts_name}}</td>
+                                        </tr>
+                                        @php($proposed++)
+                                        @endif
+                                    @endforeach
+                                    @if($proposed == 1)
+                                        <tr>
+                                            <td colspan="4" class="text-center">Records Not Found</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -129,22 +140,27 @@
                                         <th scope="col" style="width: 5%;">No.</th>
                                         <th scope="col" style="width: 20%;">Date</th>
                                         <th scope="col" style="width: 55%;">Topic</th>
-                                        <th scope="col" style="width: 20%;">Action</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>25 January 2020</td>
-                                        <td>Talking about President University</td>
-                                        <td>Rejected</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.</td>
-                                        <td>29 January 2020</td>
-                                        <td>Talking about University Life</td>
-                                        <td>Rejected</td>
-                                    </tr>
+                                    @php($proposed = 1)
+                                    @foreach($student->proposedConsultations as $consultation)
+                                        @if($consultation->sts_id ==3)
+                                        <tr>
+                                            <td>{{$proposed}}.</td>
+                                            <td>{{$consultation->proposed_date}}</td>
+                                            <td>{{$consultation->topic_name}}</td>
+                                            <td>{{$consultation->status->sts_name}}</td>
+                                        </tr>
+                                        @php($proposed++)
+                                        @endif
+                                    @endforeach
+                                    @if($proposed == 1)
+                                        <tr>
+                                            <td colspan="4" class="text-center">Records Not Found</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

@@ -22,6 +22,7 @@ class CreateSessionsTable extends Migration
             $table->dateTime('final_draft_end')->nullable();
             $table->dateTime('signed_revised_doc_end_date')->nullable();
             $table->dateTime('finalized_doc_end_date')->nullable();
+            $table->integer('minimum_consultation')->default(1);
 
             $table->timestamps();
         });

@@ -12,6 +12,8 @@ use App\documentUpload;
 use App\notification;
 use Validator;
 use App\session;
+use Storage;
+use Response;
 use DateTime;
 use date;
 class HomeController extends Controller
@@ -62,6 +64,10 @@ class HomeController extends Controller
                 $student->defense->time = $time[0].':'.$date[1];
                 $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
                 $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+            }
+            
+            foreach($student->proposedConsultations as $consult){
+                $consult->proposed_date = date('d F Y',strtotime($consult->proposed_date));
             }
             return view('student.studentdashboard',[
                 'role' => $this->role,
@@ -153,5 +159,45 @@ class HomeController extends Controller
         $file = request('signedRevisedDoc');
         
         return response()->download($path, $file);
+    }
+
+    public function viewFileProposal(Request $request){
+
+        $path = public_path("/uploads//".request('studentId').'//ThesisProposal//'.request('ThesisProposal'));
+        $file = request('ThesisProposal');
+
+        return response()->file($path);
+    }
+
+    public function viewFileInterim(Request $request){
+
+        $path = public_path("/uploads//".request('studentId').'//ThesisInterim//'.request('ThesisInterim'));
+        $file = request('ThesisInterim');
+
+        return response()->file($path);
+    }
+
+    public function viewFileFinalDraft(Request $request){
+
+        $path = public_path("/uploads//".request('studentId').'//ThesisFinalDraft//'.request('FinalDraft'));
+        $file = request('FinalDraft');
+
+        return response()->file($path);
+    }
+
+    public function viewFileFinalizedDoc(Request $request){
+
+        $path = public_path("/uploads//".request('studentId').'//uploadFinalizedDoc//'.request('finalizedDoc'));
+        $file = request('finalizedDoc');
+
+        return response()->file($path);
+    }
+
+    public function viewFileRevisedDoc(Request $request){
+
+        $path = public_path("/uploads//".request('studentId').'//uploadSignedRevisedDoc//'.request('signedRevisedDoc'));
+        $file = request('signedRevisedDoc');
+
+        return response()->file($path);
     }
 }

@@ -25,6 +25,11 @@ Route::post('/downloadFileInterim','HomeController@downloadFileInterim');
 Route::post('/downloadFileFinalDraft','HomeController@downloadFileFinalDraft');
 Route::post('/downloadFileFinalizedDoc','HomeController@downloadFileFinalizedDoc');
 Route::post('/downloadFileRevisedDoc','HomeController@downloadFileRevisedDoc');
+Route::post('/viewFileProposal','HomeController@viewFileProposal');
+Route::post('/viewFileInterim','HomeController@viewFileInterim');
+Route::post('/viewFileFinalDraft','HomeController@viewFileFinalDraft');
+Route::post('/viewFileFinalizedDoc','HomeController@viewFileFinalizedDoc');
+Route::post('/viewFileRevisedDoc','HomeController@viewFileRevisedDoc');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
@@ -60,7 +65,7 @@ Route::prefix('student')->group(function(){
     Route::post('/uploadDocThesisFinalDraft','StudentController@uploadDocThesisFinalDraft');
     Route::post('/uploadSignedRevisedDoc','StudentController@uploadSignedRevisedDoc');
     Route::post('/uploadFinalizedDoc','StudentController@uploadFinalizedDoc');
-    
+    Route::post('/submitConsultation','StudentController@submitConsultation');
 });
 
 Route::prefix('lecturer')->group(function(){
@@ -75,4 +80,6 @@ Route::prefix('lecturer')->group(function(){
     Route::post('/submitScoring','LecturerController@submitScoring');
     Route::post('/approve/document','LecturerController@approveDocument');
     Route::post('/disapprove/document','LecturerController@disapproveDocument');
+    Route::post('/approve/consultation','LecturerController@approveConsultation');
+    Route::post('/disapprove/consultation','LecturerController@disapproveConsultation');
 });
