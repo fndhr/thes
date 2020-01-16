@@ -25,6 +25,11 @@ Route::post('/downloadFileInterim','HomeController@downloadFileInterim');
 Route::post('/downloadFileFinalDraft','HomeController@downloadFileFinalDraft');
 Route::post('/downloadFileFinalizedDoc','HomeController@downloadFileFinalizedDoc');
 Route::post('/downloadFileRevisedDoc','HomeController@downloadFileRevisedDoc');
+Route::post('/viewFileProposal','HomeController@viewFileProposal');
+Route::post('/viewFileInterim','HomeController@viewFileInterim');
+Route::post('/viewFileFinalDraft','HomeController@viewFileFinalDraft');
+Route::post('/viewFileFinalizedDoc','HomeController@viewFileFinalizedDoc');
+Route::post('/viewFileRevisedDoc','HomeController@viewFileRevisedDoc');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
