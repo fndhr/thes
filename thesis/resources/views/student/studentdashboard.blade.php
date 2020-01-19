@@ -103,6 +103,7 @@
                             </div>
                         </form>
                         <div class="py-3">
+                            <h4>Consultation History</h4>
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>
@@ -134,6 +135,7 @@
                             </table>
                         </div>
                         <div class="py-3">
+                            <h4>Rejected List</h4>
                             <table class="table table-sm table-bordered table-hover">
                                 <thead class="thead-dark text-center">
                                     <tr>

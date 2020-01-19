@@ -22,6 +22,14 @@ $(document).ready(function() {
     $("#datepicker6").datepicker();
     $("#datepicker7").datepicker();
     $("#datepicker8").datepicker();
+
+    $(".myEye").mousedown(function(){
+        $("#password").prop('type','text')
+    });
+
+    $(".myEye").mouseup(function(){
+        $("#password").prop('type','password')
+    });
 });
 
 window.onbeforeunload = function () {

@@ -163,7 +163,7 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
                     <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
-                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
@@ -171,7 +171,7 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Document</div>
                     <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>
-                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
@@ -181,14 +181,14 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
                     <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;-</div>
-                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                 </div>
                 @else
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Document</div>
                     <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;-</div>
-                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                 </div>
                 @endif
@@ -225,7 +225,7 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
                     <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
-                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
@@ -233,7 +233,7 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Document</div>
                     <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>
-                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                     <div class="col-1">&#10003;</div>
                 </div>
@@ -243,14 +243,14 @@
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
                     <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;-</div>
-                    <div class="col-2"><span class="text-success downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileRevisedDoc" onclick="event.preventDefault(); document.getElementById('downloadFileRevisedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileRevisedDoc" action="/downloadFileRevisedDoc" method="POST" style="display: none;">@csrf<input for="signedRevisedDoc" name="signedRevisedDoc" value="{{$student->documentUpload[3]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                 </div>
                 @else
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Document</div>
                     <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;-</div>
-                    <div class="col-2"><span class="text-success downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
+                    <div class="col-2"><span class="text-primary downloadFileFinalDraft" onclick="event.preventDefault(); document.getElementById('downloadFileFinalizedDoc').submit();">Download</span>&nbsp;|&nbsp;<a href="">View</a></div>
                     <form id="downloadFileFinalizedDoc" action="/downloadFileFinalizedDoc" method="POST" style="display: none;">@csrf<input for="finalizedDoc" name="finalizedDoc" value="{{$student->documentUpload[4]->doc_name}}" style="display:none"><input for="studentId" name="studentId" value="{{$student->std_id}}"style="display:none"></form>
                 </div>
                 @endif
@@ -310,6 +310,7 @@
            
             <div class="row py-2 mb-2">
                 <div class="col">
+                    <h4>Waiting for Approval</h4>
                     <table class="table table-sm table-bordered table-hover">
                         <thead class="thead-dark text-center">
                             <tr>
@@ -350,6 +351,7 @@
 
             <div class="row py-2 mb-2">
                 <div class="col">
+                    <h4>Consultation History</h4>
                     <table class="table table-sm table-bordered table-hover">
                         <thead class="thead-dark text-center">
                             <tr>

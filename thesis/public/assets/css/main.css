@@ -49,10 +49,18 @@ a:hover {
     right: 10px;
 }
 
-.text-danger, .text-success, .messages{
+.text-danger, .text-success, .messages {
     cursor: pointer;
 }
 
 .session {
     border-radius: 20px;
+}
+
+.downloadFileProposal, .viewFileProposal {
+    cursor: pointer !important;
+}
+
+.myEye {
+    cursor: pointer;
 }

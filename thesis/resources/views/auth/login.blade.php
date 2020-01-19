@@ -15,29 +15,35 @@
                                 </div>
                                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
                                     <form method="post" action="{{ route('login') }}" class="form-box">
-                                    @csrf
+                                        @csrf
                                         <div class="text-center mb-5">
-                                            <img src="/assets/image/user_navbar.png" width="50" height="50" class="" alt="">
+                                            <img src="/assets/image/user_navbar.png" width="50" height="50" alt="">
                                             <h4 class="text-black">SIGN IN</h4>
                                         </div>
                                         <div class="form-group">
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Please Input Your Email" autofocus>
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Please Input Your Password" autocomplete="current-password">
+                                            <div class="input-group">
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Please Input Your Password" autocomplete="current-password">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text myEye"><em class="fas fa-eye"></em></span>
+                                                </div>
+                                            </div>
                                             @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                         <div class="form-group text-center mt-5">
-                                            <input type="submit" class="btn btn-success btn-pill px-5" value="Sign In"></input>
+                                            <input type="submit" class="btn btn-success btn-pill px-5"
+                                                value="Sign In"></input>
                                         </div>
                                     </form>
                                 </div>

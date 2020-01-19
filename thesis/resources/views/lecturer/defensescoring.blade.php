@@ -45,12 +45,12 @@
                 @csrf
                 <input type="text" name="student_id" value="{{$student->std_id}}" style="display:none">
                 <input type="text" name="lec_id" value="{{$lecturer->lec_id}}" style="display:none">
-                <table class="table table-bordered mt-5">
+                <table class="table table-sm table-bordered mt-5">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Final Report Evaluation (Refer to Grading Criteria for Final Report)</th>
-                            <th scope="col">Point (1-6)</th>
+                            <th scope="col" width="5%">No.</th>
+                            <th scope="col" width="80%">Final Report Evaluation (Refer to Grading Criteria for Final Report)</th>
+                            <th scope="col" width="10%">Point (1-6)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -204,12 +204,12 @@
                     <li>2 = Major Revision</li>
                     <li>1 = Unaccepted</li>
                 </ul>
-                <table class="table table-bordered mt-5">
+                <table class="table table-sm table-bordered mt-5">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Presentation Evaluation</th>
-                            <th scope="col">Point</th>
+                            <th scope="col" width="5%">No.</th>
+                            <th scope="col" width="80%">Presentation Evaluation</th>
+                            <th scope="col" width="10%">Point</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -331,12 +331,12 @@
                     <li>0 = Inadequate, Needs Improvement</li>
                 </ul>
                 @if($lecturer->lec_id == $student->lec_id)
-                <table class="table table-bordered mt-5">
+                <table class="table table-sm table-bordered mt-5">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Supervisory Evaluation (Advisor Only) (Refer to Grading Criteria for Advisor)</th>
-                            <th scope="col">Point</th>
+                            <th scope="col" width="5%">No.</th>
+                            <th scope="col" width="80%">Supervisory Evaluation (Advisor Only) (Refer to Grading Criteria for Advisor)</th>
+                            <th scope="col" width="10%">Point</th>
                         </tr>
                     </thead>
                     <tbody>
