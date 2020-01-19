@@ -41,7 +41,7 @@
                 <div class="col-3">Examiner</div>
                 <div class="col-9">:&nbsp;&nbsp;{{$student->defense->examiner_name->user->first_name}} {{$student->defense->examiner_name->user->last_name}}</div>
             </div>
-            @if($liveScoringHasNotSubmit)
+            @if($liveScoringHasNotSubmit && $student->isPostDefenseDate)
             <div class="text-center">
                 <a href="/lecturer/defensescoring/{{$student->std_id}}"><button type="submit" class="btn btn-primary px-5 my-4">Live Scoring</button></a>
             </div>

@@ -51,10 +51,13 @@ class StudentController extends Controller
 	public function submitAdvisorTitle(Request $request){
 		$validator = Validator::make($request->all(), [
 			'advisor1' => 'required',
+			'advisor2' => 'required|different:advisor3|different:advisor1',
+			'advisor3' => 'required|different:advisor2|different:advisor1',
+			
 			'title_name1' => 'required',
         ],[
-			'advisor1.required' => 'please fill in at least one advisor at this column',
-			'title_name1.required' => 'please fill in at least one title at this column'
+			'title_name1.required' => 'please fill in at least one title at this column',
+			'advisor*.different' => 'please select 3 different advisor'
 		]);
         if ($validator->fails()) {
             $validator->validate();
@@ -65,18 +68,15 @@ class StudentController extends Controller
 		$adv->lec_id = request('advisor1');
 		$adv->std_id = $student->std_id;
 		$adv->save();
-		if(!is_null(request('advisor2'))){
-			$adv = new proposedAdvisor;
-			$adv->lec_id = request('advisor2');
-			$adv->std_id = $student->std_id;
-			$adv->save();
-		}
-		if(!is_null(request('advisor3'))){
-			$adv = new proposedAdvisor;
-			$adv->lec_id = request('advisor3');
-			$adv->std_id = $student->std_id;
-			$adv->save();
-		}
+		$adv = new proposedAdvisor;
+		$adv->lec_id = request('advisor2');
+		$adv->std_id = $student->std_id;
+		$adv->save();
+		$adv = new proposedAdvisor;
+		$adv->lec_id = request('advisor3');
+		$adv->std_id = $student->std_id;
+		$adv->save();
+		
 		$title = new proposedTitle;
 		$title->title_name = request('title_name1');
 		$title->std_id = $student->std_id;

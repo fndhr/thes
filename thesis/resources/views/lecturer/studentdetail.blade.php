@@ -117,6 +117,15 @@
                     <div class="col-2"><a href="/downloadFileFinalDraft">Download</a>&nbsp;|&nbsp;<a href="">View</a></div>
                     <div class="col-1">&#10003;</div>
                 </div>
+                
+                @if(!is_null($sts_title) && !is_null($student->lecturer))
+                    <div class="row py-2 mb-2">
+                        <div class="col-3">Defense Date</div>
+                        <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->date}} {{$student->defense->time}}@endif</div>
+                        <div class="col-2">@if(!is_null($student->defense))<a href="/lecturer/getDefenseScheduleDetail/{{$student->std_id}}">View</a>@endif</div>
+                        <div class="col-1">@if(!is_null($student->defense))&#10003;@endif</div>
+                    </div>
+                @endif
             @elseif($student->documentUpload[2]->status==1)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Draft</div>
@@ -147,14 +156,6 @@
                         </table>
                     </div>
                 </div>
-                @if(!is_null($sts_title) && !is_null($student->lecturer))
-                    <div class="row py-2 mb-2">
-                        <div class="col-3">Defense Date</div>
-                        <div class="col-5">:&nbsp;&nbsp;@if(is_null($student->defense))Not Set @else{{$student->defense->date}} {{$student->defense->time}}@endif</div>
-                        <div class="col-2">@if(!is_null($student->defense))<a href="/lecturer/getDefenseScheduleDetail/{{$student->std_id}}">View</a>@endif</div>
-                        <div class="col-1">@if(!is_null($student->defense))&#10003;@endif</div>
-                    </div>
-                @endif
             @endif
             @endif
             @if(count($student->documentUpload)>=4)
@@ -305,7 +306,13 @@
         <div class="col-11">
             <div class="row py-2 mb-2">
                 <div class="col-3">Status</div>
-                <div class="col-9">:&nbsp;&nbsp;Haven't Reach Minimum Requirement // Eligible to set thesis defense</div>
+                @php($consult = 0)
+                @foreach($student->proposedConsultations as $std)
+                    @if($std->sts_id == 2)
+                        @php($consult++)
+                    @endif
+                @endforeach
+                <div class="col-7">:&nbsp;&nbsp;@if($consult < $student->session->minimum_consultation)Haven't Reach Minimum Requirement @else Eligible to set thesis defense @endif</div>    
             </div>
            
             <div class="row py-2 mb-2">
