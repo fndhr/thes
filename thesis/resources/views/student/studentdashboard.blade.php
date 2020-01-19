@@ -562,6 +562,28 @@
             </div>
         </div>
 
+        <div class="card">
+        @if(count($student->documentUpload)>=2)
+            <div class="card-header" id="headingTen" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                <h4 class="text-black">Your Suggestion and Correction</h4>
+        @else
+            <div class="card-header" id="headingTen" data-toggle="no-collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                <h4>Your Suggestion and Correction</h4>
+        @endif
+            </div>
+            <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row py-2">
+                        <div class="col-3">Suggestion</div>
+                        <div class="col-9">:&nbsp;&nbsp;-</div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-3">Correction</div>
+                        <div class="col-9">:&nbsp;&nbsp;-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="card">
         @if(!is_null($student->defense))

@@ -21,7 +21,7 @@
                         @php($consult++)
                     @endif
                 @endforeach
-                <div class="col-7">:&nbsp;&nbsp;@if($consult < $student->session->minimum_consultation)Haven't Reach Minimum Requirement @else Eligible to set thesis defense @endif</div>
+                <div class="col-7">:&nbsp;@if($consult < $student->session->minimum_consultation)Haven't Reach Minimum Requirement @else Eligible to set thesis defense @endif</div>
                 <div class="col-1">@if(!is_null($student->lecturer))&#10003;@endif</div>
             </div>
             @php($sts_title = NULL)
