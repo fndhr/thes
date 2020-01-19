@@ -520,7 +520,7 @@
 
 
         <div class="card">
-        @if(count($student->documentUpload)>=2)
+        @if(count($student->documentUpload)>=3)
             <div class="card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                 <h4 class="text-black">Your Defense Schedule</h4>
         @else
@@ -563,7 +563,7 @@
         </div>
 
         <div class="card">
-        @if(count($student->documentUpload)>=2)
+        @if(count($student->documentUpload)>=3)
             <div class="card-header" id="headingTen" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                 <h4 class="text-black">Your Suggestion and Correction</h4>
         @else
