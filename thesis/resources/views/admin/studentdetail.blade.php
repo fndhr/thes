@@ -110,7 +110,7 @@
                 <div class="col-3">NIK</div>
                 <div class="col-9" for="nik" name="nik">:&nbsp;&nbsp;{{$student->std_id}}</div>
             </div>
-            @if(count($student->documentUpload)>=1)
+            @if(count($student->documentUpload)>=1 && $student->documentUpload[0]->status==2)
             <div class="row py-2 mb-2">
                 <div class="col-3">Proposal</div>
                 <div class="col-5" for="ThesisProposal" name="ThesisProposal">:&nbsp;&nbsp;{{$student->documentUpload[0]->doc_name}}</div>
@@ -121,7 +121,7 @@
                 <div class="col-1">&#10003;</div>
             </div>
             @endif
-            @if(count($student->documentUpload)>=2)
+            @if(count($student->documentUpload)>=2 && $student->documentUpload[1]->status==2)
             <div class="row py-2 mb-2">
                 <div class="col-3">Interim</div>
                 <div class="col-5" for="ThesisInterim" name="ThesisInterim">:&nbsp;&nbsp;{{$student->documentUpload[1]->doc_name}}</div>
@@ -132,7 +132,7 @@
                 <div class="col-1">&#10003;</div>
             </div>
             @endif
-            @if(count($student->documentUpload)>=3)
+            @if(count($student->documentUpload)>=3 && $student->documentUpload[2]->status==2)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Draft</div>
                     <div class="col-5" for="FinalDraft" name="FinalDraft">:&nbsp;&nbsp;{{$student->documentUpload[2]->doc_name}}</div>
@@ -151,7 +151,7 @@
                     </div>
                 @endif
             @endif
-            @if(count($student->documentUpload)>=4)
+            @if(count($student->documentUpload)>=4  && $student->documentUpload[3]->status==2)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Revision</div>
                     <div class="col-5" for="signedRevisedDoc" name="signedRevisedDoc">:&nbsp;&nbsp;{{$student->documentUpload[3]->doc_name}}</div>
@@ -162,7 +162,7 @@
                     <div class="col-1">&#10003;</div>
                 </div>
             @endif
-            @if(count($student->documentUpload)>=5)
+            @if(count($student->documentUpload)>=5 && $student->documentUpload[4]->status==2)
                 <div class="row py-2 mb-2">
                     <div class="col-3">Final Document</div>
                     <div class="col-5" for="finalizedDoc" name="finalizedDoc">:&nbsp;&nbsp;{{$student->documentUpload[4]->doc_name}}</div>

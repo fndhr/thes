@@ -208,7 +208,15 @@
                                 <select class="form-control col-4 @error('advisor1') is-invalid @enderror" for="advisor1" name="advisor1">
                                     <option value="">Choose...</option>
                                     @foreach($lecturers as $lecturer)
-                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                        @if(is_null(old('advisor1')))
+                                            <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                        @else
+                                            @if(old('advisor1')==$lecturer->lec_id)
+                                            <option value="{{$lecturer->lec_id}}" selected>{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                            @else
+                                            <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                            @endif
+                                        @endif
                                     @endforeach
                                 </select>
                                 @error('advisor1')
@@ -222,18 +230,46 @@
                                 <select class="form-control col-4 @error('advisor2') is-invalid @enderror" for="advisor2" name="advisor2">
                                     <option value="">Choose...</option>
                                     @foreach($lecturers as $lecturer)
-                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                        @if(is_null(old('advisor2')))
+                                            <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                        @else
+                                            @if(old('advisor2')==$lecturer->lec_id)
+                                            <option value="{{$lecturer->lec_id}}" selected>{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                            @else
+                                            <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                            @endif
+                                        @endif
                                     @endforeach
                                 </select>
+                                
+                                @error('advisor2')
+                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group row">
                                 <label for="majorStudent" class="col-3 col-form-label">Advisor 3</label>
                                 <select class="form-control col-4 @error('advisor3') is-invalid @enderror" for="advisor3" name="advisor3">
                                     <option value="">Choose...</option>
                                     @foreach($lecturers as $lecturer)
-                                        <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                        @if(is_null(old('advisor3')))
+                                            <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                        @else
+                                            @if(old('advisor3')==$lecturer->lec_id)
+                                            <option value="{{$lecturer->lec_id}}" selected>{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                            @else
+                                            <option value="{{$lecturer->lec_id}}">{{$lecturer->user->first_name}} {{$lecturer->user->last_name}}</option>
+                                            @endif
+                                        @endif
                                     @endforeach
                                 </select>
+                                
+                                @error('advisor3')
+                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>

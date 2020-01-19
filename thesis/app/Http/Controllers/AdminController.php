@@ -80,7 +80,7 @@ class AdminController extends Controller
             $student->defense->date = $date[1].'/'.$date[2].'/'.$date[0];
             $student->defense->time = $time[0].':'.$date[1];
         }
-        $examiner = lecturer::whereIsexm(1)->get();
+        $examiner = lecturer::whereIsexm(1)->whereNotIn('lec_id',[$student->lec_id])->get();
         return view('admin.defensescheduleset',[
             'role' => $this->role,
             'student'=>$student,
