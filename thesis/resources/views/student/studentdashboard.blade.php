@@ -575,11 +575,27 @@
                 <div class="card-body">
                     <div class="row py-2">
                         <div class="col-3">Suggestion</div>
+                        @if(count($student->scoringTable)>0)
+                        <div>
+                            @foreach($student->scoringTable as $score)
+                                <div>{{$score->lecturer->user->first_name}} {{$score->lecturer->user->last_name}} : {{$score->suggestion}}</div>
+                            @endforeach
+                        </div>
+                        @else
                         <div class="col-9">:&nbsp;&nbsp;-</div>
+                        @endif
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Correction</div>
+                        @if(count($student->scoringTable)>0)
+                        <div>
+                            @foreach($student->scoringTable as $score)
+                                <div>{{$score->lecturer->user->first_name}} {{$score->lecturer->user->last_name}} : {{$score->correction}}</div>
+                            @endforeach
+                        </div>
+                        @else
                         <div class="col-9">:&nbsp;&nbsp;-</div>
+                        @endif
                     </div>
                 </div>
             </div>
