@@ -399,7 +399,7 @@
 
 
         <div class="card">
-        @if(count($student->documentUpload)>=1)
+        @if(count($student->documentUpload)>=1 && $student->documentUpload[0]->status==2)
             <div class="card-header" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                 <h4 class="text-black">Upload Your Signed Interim Report</h4>
         @else
@@ -462,7 +462,7 @@
 
 
         <div class="card">
-        @if(count($student->documentUpload)>=2)
+        @if(count($student->documentUpload)>=2 && $student->documentUpload[1]->status==2)
             <div class="card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                 <h4 class="text-black">Upload Your Signed Final Draft</h4>
         @else
@@ -524,7 +524,7 @@
 
 
         <div class="card">
-        @if(count($student->documentUpload)>=3)
+        @if(count($student->documentUpload)>=3 && $student->documentUpload[2]->status==2)
             <div class="card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                 <h4 class="text-black">Your Defense Schedule</h4>
         @else
@@ -683,7 +683,7 @@
 
         <div class="card">
         @if(!is_null($student->defense))
-            @if($student->defense->passed)
+            @if($student->defense->passed && $student->documentUpload[3]->status==2)
             <div class="card-header" id="headingEight" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                 <h4 class="text-black">Upload Your Finalized Documents</h4>
             @else
