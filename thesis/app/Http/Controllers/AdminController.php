@@ -12,6 +12,7 @@ use App\proposedTitle;
 use App\defense;
 use App\session;
 use App\notification;
+use App\questionScoringSheet;
 use DateTime;
 use date;
 use Validator;
@@ -177,7 +178,7 @@ class AdminController extends Controller
                 $b+=$personalscore->presentation_total;
                 $c+=$personalscore->supervisor_total;
             }
-            $student->scoringTable->totalScore = round(($a/3)+($b/3)+$c, 2);    
+            $student->scoringTable->totalScore = round(($a/2)+($b/2)+$c, 2);    
         }
         else if($student->defense){
             $pusher = [];
@@ -415,5 +416,54 @@ class AdminController extends Controller
             'role' => $this->role,
             'defenses' => $defenses
         ]);
+    }
+    public function scoringSheet(){
+        $report = questionScoringSheet::whereType('1')->get();
+        $presentation = questionScoringSheet::whereType('2')->get();
+        $advisor = questionScoringSheet::whereType('3')->get();
+        return view('admin.scoringsheet',[
+            'role' => $this->role,
+            'report'=>$report,
+            'presentation'=>$presentation,
+            'advisor'=>$advisor,
+        ]);
+    }
+    public function submitScoringSheet(){
+        $validator = Validator::make(request()->input(), [
+            'final_question.*'=>'required',
+            'pre_question.*'=>'required',
+            'super_question.*'=>'required',
+        ],[
+            'final_question.*.required' => 'final report question is mandatory field',
+            'pre_question.*.required' => 'final report question is mandatory field',
+            'super_question.*.required' => 'final report question is mandatory field'
+        ]
+        );
+        if ($validator->fails()) {
+            $validator->validate();
+        }
+        $datas = questionScoringSheet::all();
+        foreach($datas as $data){
+            $data->delete();
+        }
+        foreach(request('final_question') as $data){
+            $question = new questionScoringSheet;
+            $question->question = $data;
+            $question->type = 1;
+            $question->save();
+        }
+        foreach(request('pre_question') as $data){
+            $question = new questionScoringSheet;
+            $question->question = $data;
+            $question->type = 2;
+            $question->save();
+        }
+        foreach(request('super_question') as $data){
+            $question = new questionScoringSheet;
+            $question->question = $data;
+            $question->type = 3;
+            $question->save();
+        }
+        return redirect('home')->with('alert','Successfull set questions');
     }
 }

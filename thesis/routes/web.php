@@ -33,6 +33,8 @@ Route::post('/viewFileRevisedDoc','HomeController@viewFileRevisedDoc');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
+    Route::get('/scoringSheet','AdminController@scoringSheet');
+    Route::post('/submitScoringSheet','AdminController@submitScoringSheet');
     Route::get('/sessionSet/{id}','AdminController@sessionEdit');
     Route::get('/setDefenseSchedule/{id}','AdminController@setDefenseSchedule');
     Route::get('/getDefenseSchedule','AdminController@getDefenseSchedule');
