@@ -50,18 +50,21 @@
                             <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">File Name</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" style="width: 15%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1.</td>
-                                <td>Test.pdf</td>
-                                <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[0]->id}}').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[0]->id}}').submit();">NO</span></td>
-                                    <form id="button-yes-{{$student->documentUpload[0]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[0]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                    <form id="button-no-{{$student->documentUpload[0]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[0]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                <td>{{$student->documentUpload[0]->doc_name}}</td>
+                                <td style="display: flex; justify-content: space-around;">
+                                    <form id="button-yes-{{$student->documentUpload[0]->id}}" class="submitForm" action="/lecturer/approve/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[0]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                        <button type="submit" class="btn btn-outline-success btn-sm btn-pill btnSubmit py-2 px-3">YES</button>
+                                    </form>
+                                    <form id="button-no-{{$student->documentUpload[0]->id}}" class="submitForm" action="/lecturer/disapprove/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[0]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm btn-pill btnSubmit py-2 px-3">NO</button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,18 +93,21 @@
                             <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">File Name</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" style="width: 15%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1.</td>
                                 <td>{{$student->documentUpload[1]->doc_name}}</td>
-                                <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[1]->id}}').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[1]->id}}').submit();">NO</span></td>
-                                    <form id="button-yes-{{$student->documentUpload[1]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[1]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                    <form id="button-no-{{$student->documentUpload[1]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[1]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                <td style="display: flex; justify-content: space-around;">
+                                    <form id="button-yes-{{$student->documentUpload[1]->id}}" class="submitForm" action="/lecturer/approve/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[1]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                        <button type="submit" class="btn btn-outline-success btn-sm btn-pill btnSubmit py-2 px-3">YES</button>
+                                    </form>
+                                    <form id="button-no-{{$student->documentUpload[1]->id}}" class="submitForm" action="/lecturer/disapprove/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[1]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm btn-pill btnSubmit py-2 px-3">NO</button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -139,18 +145,21 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">File Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1.</td>
                                     <td>{{$student->documentUpload[2]->doc_name}}</td>
-                                    <td>
-                                    <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[2]->id}}').submit();">YES</span>&emsp;
-                                    <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[2]->id}}').submit();">NO</span></td>
-                                    <form id="button-yes-{{$student->documentUpload[2]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[2]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                    <form id="button-no-{{$student->documentUpload[2]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[2]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
+                                    <td style="display: flex; justify-content: space-around;">
+                                        <form id="button-yes-{{$student->documentUpload[2]->id}}" class="submitForm" action="/lecturer/approve/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[2]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-success btn-sm btn-pill btnSubmit py-2 px-3">YES</button>
+                                        </form>
+                                        <form id="button-no-{{$student->documentUpload[2]->id}}" class="submitForm" action="/lecturer/disapprove/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[2]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm btn-pill btnSubmit py-2 px-3">NO</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -200,19 +209,21 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">File Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1.</td>
-                                    <td>{{$student->documentUpload[2]->doc_name}}</td>
-                                    <td>
-                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[3]->id}}').submit();">YES</span>&emsp;
-                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[3]->id}}').submit();">NO</span>
+                                    <td>{{$student->documentUpload[3]->doc_name}}</td>
+                                    <td style="display: flex; justify-content: space-around;">
+                                        <form id="button-yes-{{$student->documentUpload[3]->id}}" class="submitForm" action="/lecturer/approve/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[3]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-success btn-sm btn-pill btnSubmit py-2 px-3">YES</button>
+                                        </form>
+                                        <form id="button-no-{{$student->documentUpload[3]->id}}" class="submitForm" action="/lecturer/disapprove/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[3]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm btn-pill btnSubmit py-2 px-3">NO</button>
+                                        </form>
                                     </td>
-                                    <form id="button-yes-{{$student->documentUpload[3]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[3]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                    <form id="button-no-{{$student->documentUpload[3]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[3]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                                 </tr>
                             </tbody>
                         </table>
@@ -262,18 +273,21 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">File Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1.</td>
-                                    <td>{{$student->documentUpload[3]->doc_name}}</td>
-                                    <td><span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes-{{$student->documentUpload[4]->id}}').submit();">YES</span>&emsp;
-                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no-{{$student->documentUpload[4]->id}}').submit();">NO</span>
+                                    <td>{{$student->documentUpload[4]->doc_name}}</td>
+                                    <td style="display: flex; justify-content: space-around;">
+                                        <form id="button-yes-{{$student->documentUpload[4]->id}}" class="submitForm" action="/lecturer/approve/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[4]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-success btn-sm btn-pill btnSubmit py-2 px-3">YES</button>
+                                        </form>
+                                        <form id="button-no-{{$student->documentUpload[4]->id}}" class="submitForm" action="/lecturer/disapprove/document" method="POST">@csrf<input name="id" value="{{$student->documentUpload[4]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm btn-pill btnSubmit py-2 px-3">NO</button>
+                                        </form>
                                     </td>
-                                    <form id="button-yes-{{$student->documentUpload[4]->id}}" action="/lecturer/approve/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[4]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                    <form id="button-no-{{$student->documentUpload[4]->id}}" action="/lecturer/disapprove/document" method="POST" style="display: none;">@csrf<input name="id" value="{{$student->documentUpload[4]->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
                                 </tr>
                             </tbody>
                         </table>
@@ -323,8 +337,8 @@
                             <tr>
                                 <th scope="col" style="width: 5%;">No.</th>
                                 <th scope="col" style="width: 20%;">Date</th>
-                                <th scope="col" style="width: 55%;">Topic</th>
-                                <th scope="col" style="width: 20%;">Action</th>
+                                <th scope="col" style="width: 60%;">Topic</th>
+                                <th scope="col" style="width: 15%;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -335,13 +349,14 @@
                                     <td>{{$proposed}}.</td>
                                     <td>{{$consultation->proposed_date}}</td>
                                     <td>{{$consultation->topic_name}}</td>
-                                    <td>
-                                        <span class="text-success submitPropose" onclick="event.preventDefault(); document.getElementById('button-yes{{$consultation->id}}').submit();">YES</span>&emsp;
-                                        <span class="text-danger submitPropose" onclick="event.preventDefault(); document.getElementById('button-no{{$consultation->id}}').submit();">NO</span>
+                                    <td style="display: flex; justify-content: space-around;">
+                                        <form id="button-yes{{$consultation->id}}" class="submitForm" action="/lecturer/approve/consultation" method="POST">@csrf<input for="title" name="id" value="{{$consultation->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-success btn-sm btn-pill btnSubmit py-2 px-3">YES</button>
+                                        </form>
+                                        <form id="button-no{{$consultation->id}}" class="submitForm" action="/lecturer/disapprove/consultation" method="POST">@csrf<input for="title" name="id" value="{{$consultation->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm btn-pill btnSubmit py-2 px-3">NO</button>
+                                        </form>
                                     </td>
-                                    <form id="button-yes{{$consultation->id}}" action="/lecturer/approve/consultation" method="POST" style="display: none;">@csrf<input for="title" name="id" value="{{$consultation->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                    <form id="button-no{{$consultation->id}}" action="/lecturer/disapprove/consultation" method="POST" style="display: none;">@csrf<input for="title" name="id" value="{{$consultation->id}}" style="display:none"><input for="std" name="std" value="{{$student->std_id}}" style="display:none"></form>
-                                
                                 </tr>
                                 @php($proposed++)
                                 @endif

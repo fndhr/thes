@@ -81,98 +81,6 @@
 
 
         <div class="card">
-            <div class="card-header" id="headingNine" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                <h4 class="text-black">Consultation Sheet</h4>
-            </div>
-            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="px-4">
-                        <form class="mt-5 mb-3 submitForm" action="/student/submitConsultation" method="post">
-                            @csrf
-                            <div class="form-group row">
-                                <label class="col-3 col-form-label">Topic</label>
-                                <input type="text" class="form-control col-9 @error('title_name2') is-invalid @enderror" for="title_name2" name="title_name2" placeholder="" value="{{old('title_name2')}}">
-                                @error('title_name2')
-                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>
-                            </div>
-                        </form>
-                        <div class="py-3">
-                            <h4>Consultation History</h4>
-                            <table class="table table-sm table-bordered table-hover">
-                                <thead class="thead-dark text-center">
-                                    <tr>
-                                        <th scope="col" style="width: 5%;">No.</th>
-                                        <th scope="col" style="width: 20%;">Date</th>
-                                        <th scope="col" style="width: 55%;">Topic</th>
-                                        <th scope="col" style="width: 20%;">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php($proposed = 1)
-                                    @foreach($student->proposedConsultations as $consultation)
-                                        @if($consultation->sts_id !=3)
-                                        <tr>
-                                            <td>{{$proposed}}.</td>
-                                            <td>{{$consultation->proposed_date}}</td>
-                                            <td>{{$consultation->topic_name}}</td>
-                                            <td>{{$consultation->status->sts_name}}</td>
-                                        </tr>
-                                        @php($proposed++)
-                                        @endif
-                                    @endforeach
-                                    @if($proposed == 1)
-                                        <tr>
-                                            <td colspan="4" class="text-center">Records Not Found</td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="py-3">
-                            <h4>Rejected List</h4>
-                            <table class="table table-sm table-bordered table-hover">
-                                <thead class="thead-dark text-center">
-                                    <tr>
-                                        <th scope="col" style="width: 5%;">No.</th>
-                                        <th scope="col" style="width: 20%;">Date</th>
-                                        <th scope="col" style="width: 55%;">Topic</th>
-                                        <th scope="col" style="width: 20%;">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php($proposed = 1)
-                                    @foreach($student->proposedConsultations as $consultation)
-                                        @if($consultation->sts_id ==3)
-                                        <tr>
-                                            <td>{{$proposed}}.</td>
-                                            <td>{{$consultation->proposed_date}}</td>
-                                            <td>{{$consultation->topic_name}}</td>
-                                            <td>{{$consultation->status->sts_name}}</td>
-                                        </tr>
-                                        @php($proposed++)
-                                        @endif
-                                    @endforeach
-                                    @if($proposed == 1)
-                                        <tr>
-                                            <td colspan="4" class="text-center">Records Not Found</td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card">
             <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <h4 class="text-black">Title and Advisor Proposal</h4>
             </div>
@@ -325,6 +233,102 @@
             </div>
         </div>
 
+        <div class="card">
+            @if(is_null($student->lecturer))
+                <div class="card-header" id="headingNine" data-toggle="no-collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    <h4>Consultation Sheet</h4>
+                </div>
+            @else
+                <div class="card-header" id="headingNine" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    <h4 class="text-black">Consultation Sheet</h4>
+                </div>
+            @endif
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="px-4">
+                        <form class="mt-5 mb-3 submitForm" action="/student/submitConsultation" method="post">
+                            @csrf
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Topic</label>
+                                <input type="text" class="form-control col-9 @error('title_name2') is-invalid @enderror" for="title_name2" name="title_name2" placeholder="" value="{{old('title_name2')}}">
+                                @error('title_name2')
+                                    <span class="invalid-feedback" role="alert" style="display:block; margin-top: -10px;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmit">Submit</button>
+                            </div>
+                        </form>
+                        <div class="py-3">
+                            <h4>Consultation History</h4>
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th scope="col" style="width: 5%;">No.</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                        <th scope="col" style="width: 55%;">Topic</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php($proposed = 1)
+                                    @foreach($student->proposedConsultations as $consultation)
+                                        @if($consultation->sts_id !=3)
+                                        <tr>
+                                            <td>{{$proposed}}.</td>
+                                            <td>{{$consultation->proposed_date}}</td>
+                                            <td>{{$consultation->topic_name}}</td>
+                                            <td>{{$consultation->status->sts_name}}</td>
+                                        </tr>
+                                        @php($proposed++)
+                                        @endif
+                                    @endforeach
+                                    @if($proposed == 1)
+                                        <tr>
+                                            <td colspan="4" class="text-center">Records Not Found</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="py-3">
+                            <h4>Rejected List</h4>
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th scope="col" style="width: 5%;">No.</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                        <th scope="col" style="width: 55%;">Topic</th>
+                                        <th scope="col" style="width: 20%;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php($proposed = 1)
+                                    @foreach($student->proposedConsultations as $consultation)
+                                        @if($consultation->sts_id ==3)
+                                        <tr>
+                                            <td>{{$proposed}}.</td>
+                                            <td>{{$consultation->proposed_date}}</td>
+                                            <td>{{$consultation->topic_name}}</td>
+                                            <td>{{$consultation->status->sts_name}}</td>
+                                        </tr>
+                                        @php($proposed++)
+                                        @endif
+                                    @endforeach
+                                    @if($proposed == 1)
+                                        <tr>
+                                            <td colspan="4" class="text-center">Records Not Found</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="card">
         @if(is_null($student->lecturer))
@@ -769,4 +773,15 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('select').on('change', function(event ) {
+    var prevValue = $(this).data('previous');
+    $('select').not(this).find('option[value="'+prevValue+'"]').show();    
+    var value = $(this).val();
+    $(this).data('previous',value); $('select').not(this).find('option[value="'+value+'"]').hide();
+    });
+});
+</script>
 @endsection
