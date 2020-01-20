@@ -228,7 +228,7 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
-                                <label for="majorStudent" class="col-3 col-form-label">Advisor 2</label>
+                                <label for="majorStudent" class="col-3 col-form-label inputRequired">Advisor 2*</label>
                                 <select class="form-control col-4 @error('advisor2') is-invalid @enderror" for="advisor2" name="advisor2">
                                     <option value="">Choose...</option>
                                     @foreach($lecturers as $lecturer)
@@ -251,7 +251,7 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
-                                <label for="majorStudent" class="col-3 col-form-label">Advisor 3</label>
+                                <label for="majorStudent" class="col-3 col-form-label inputRequired">Advisor 3*</label>
                                 <select class="form-control col-4 @error('advisor3') is-invalid @enderror" for="advisor3" name="advisor3">
                                     <option value="">Choose...</option>
                                     @foreach($lecturers as $lecturer)

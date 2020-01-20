@@ -45,6 +45,10 @@
             <div class="text-center">
                 <a href="/lecturer/defensescoring/{{$student->std_id}}"><button type="submit" class="btn btn-primary px-5 my-4">Live Scoring</button></a>
             </div>
+            @else
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary px-5 my-4" disabled>Live Scoring</button>
+            </div>
             @endif
         </div>
     </div>
