@@ -41,10 +41,12 @@
                 <div class="col-3">Examiner</div>
                 <div class="col-9">:&nbsp;&nbsp;{{$student->defense->examiner_name->user->first_name}} {{$student->defense->examiner_name->user->last_name}}</div>
             </div>
+            
             <form action="/lecturer/submitScoring" method="post" class="submitForm">
                 @csrf
                 <input type="text" name="student_id" value="{{$student->std_id}}" style="display:none">
                 <input type="text" name="lec_id" value="{{$lecturer->lec_id}}" style="display:none">
+                @if(!($lecturer->lec_id == $student->lec_id))
                 <table class="table table-sm table-bordered mt-5">
                     <thead class="thead-dark text-center">
                         <tr>
@@ -54,135 +56,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php($num=1)
+                        @foreach($reports as $question)
                         <tr>
-                            <td>1</td>
-                            <td>Did the report provide clear thesis statement and report outline?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal1" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Was overall organization of the report clear with appropriate transitions?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal2" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Did the report address important points of thesis problem with accurate and substantive understanding?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal3" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Did the report identify fundamental assumptions of thesis topic and respectfully engage the basic theories through the development of substantive counter-arguments?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal14" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Did the report profoundly problem important issue at stake in the report?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal5" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Ddid the report use graceful sentences with appropriate variety of structures?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal6" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Were there errors of spelling, grammer, punctuation, or usage?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal7" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Did the report follow the regulated format?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal8" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Did the report show a great deal of independent insight and originality?</td>
-                            <td>
-                                <select class="form-control" id="SelectFinal9" name="final_report[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Has the solution for thesis problem been proposed, verified, and implemented in some applications??</td>
+                            <td>{{$num}}</td>
+                            <td>{{$question->question}}</td>
                             <td>
                                 <select class="form-control" id="SelectFinal10" name="final_report[]">
                                     <option>1</option>
@@ -194,6 +72,8 @@
                                 </select>
                             </td>
                         </tr>
+                        @php($num++)
+                        @endforeach
                     </tbody>
                 </table>
                 <ul style="list-style-type:none">
@@ -213,108 +93,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php($num=1)
+                        @foreach($presentation as $question)
                         <tr>
-                            <td>1</td>
-                            <td>Does he/she show deep understanding or just on the surface?</td>
-                            <td>
-                                <select class="form-control" id="SelectPre1" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>How deep of explanation does the presenter provide?</td>
-                            <td>
-                                <select class="form-control" id="SelectPre2" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>How well are the substance structures?</td>
-                            <td>
-                                <select class="form-control" id="SelectPre3" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Does the substance show in-depth throughts of the subject?</td>
-                            <td>
-                                <select class="form-control" id="SelectPre4" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>How creative is the presentation</td>
-                            <td>
-                                <select class="form-control" id="SelectPre5" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Is the presenter able to capture the audience's attention</td>
-                            <td>
-                                <select class="form-control" id="SelectPre6" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Does the presenter clearly communicate the message? (English Skill)</td>
-                            <td>
-                                <select class="form-control" id="SelectPre7" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>How is non-verbal communication? (body language, gestures, eye contact, etc.)</td>
-                            <td>
-                                <select class="form-control" id="SelectPre8" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Ability to answer question</td>
-                            <td>
-                                <select class="form-control" id="SelectPre9" name="presentation[]">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Managing time allocated</td>
+                            <td>{{$num}}</td>
+                            <td>{{$question->question}}</td>
                             <td>
                                 <select class="form-control" id="SelectPre10" name="presentation[]">
                                     <option>0</option>
@@ -323,6 +106,8 @@
                                 </select>
                             </td>
                         </tr>
+                        @php($num++)
+                        @endforeach
                     </tbody>
                 </table>
                 <ul style="list-style-type:none">
@@ -330,7 +115,7 @@
                     <li>1 = Average, Adequate</li>
                     <li>0 = Inadequate, Needs Improvement</li>
                 </ul>
-                @if($lecturer->lec_id == $student->lec_id)
+                @else
                 <table class="table table-sm table-bordered mt-5">
                     <thead class="thead-dark text-center">
                         <tr>
@@ -340,48 +125,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php($num=1)
+                        @foreach($advisor as $question)
                         <tr>
-                            <td>1</td>
-                            <td>Did the candidate propose the subject by himself?</td>
-                            <td>
-                                <select class="form-control" id="SelectSuper1" name="advisor[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Did the candidate produce interim report that showed gradual progress with minor adjustment?</td>
-                            <td>
-                                <select class="form-control" id="SelectSuper2" name="advisor[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Was the candidate able to work independently?</td>
-                            <td>
-                                <select class="form-control" id="SelectSuper3" name="advisor[]">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Did the candidate consult with the advisor on regular basis and submit reports on time?</td>
+                            <td>{{$num}}</td>
+                            <td>{{$question->question}}</td>
                             <td>
                                 <select class="form-control" id="SelectSuper4" name="advisor[]">
                                     <option>1</option>
@@ -391,6 +139,9 @@
                                     <option>5</option>
                                 </select>
                             </td>
+                        </tr>
+                        @php($num++)
+                        @endforeach
                         </tr>
                     </tbody>
                 </table>

@@ -12,6 +12,7 @@ use App\proposedTitle;
 use App\scoringTable;
 use App\documentUpload;
 use App\proposedConsultation;
+use App\questionScoringSheet;
 class LecturerController extends Controller
 {
     private $role = 2;
@@ -66,7 +67,7 @@ class LecturerController extends Controller
                 $b+=$personalscore->presentation_total;
                 $c+=$personalscore->supervisor_total;
             }
-            $student->scoringTable->totalScore = round(($a/3)+($b/3)+$c, 2);    
+            $student->scoringTable->totalScore = round(($a/2)+($b/2)+$c, 2);    
         }
         else if($student->defense){
             $pusher = [];
@@ -143,9 +144,11 @@ class LecturerController extends Controller
         $student->title = $proposedTitle;
         $student->date = date('l, d F Y',strtotime($student->defense->def_strt_dt));
         $student->time = date('h:i:s A',strtotime($student->defense->def_strt_dt)).' - '. date('h:i:s A',strtotime($student->defense->def_end_dt));
-        
+        $report = questionScoringSheet::whereType('1')->get();
+        $presentation = questionScoringSheet::whereType('2')->get();
+        $advisor = questionScoringSheet::whereType('3')->get();
         return view('lecturer.defensescoring',['role' => $this->role,
-        'lecturer' => $this->user,'student' => $student]);
+        'lecturer' => $this->user,'student' => $student,'reports'=>$report,'presentation'=>$presentation,'advisor'=>$advisor]);
     }
     public function studentSearchFilter(Request $request){
         $this->validateLecturer();
@@ -215,14 +218,16 @@ class LecturerController extends Controller
 
     public function submitScoring(){
         $totalReport = 0; $totalPresentation = 0; $totalAdvisor = 0;
-        foreach(request('final_report') as $nilai){
-            $totalReport+=$nilai;
-        }
-        foreach(request('presentation') as $nilai){
-            $totalPresentation+=$nilai;
+        if(is_null(request('advisor'))){
+            foreach(request('final_report') as $nilai){
+                $totalReport+=$nilai;
+            }
+            foreach(request('presentation') as $nilai){
+                $totalPresentation+=$nilai;
+            }
         }
         if(!is_null(request('advisor'))){
-            foreach(request('presentation') as $nilai){
+            foreach(request('advisor') as $nilai){
                 $totalAdvisor+=$nilai;
             }
         }
