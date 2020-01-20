@@ -49,6 +49,7 @@
                 <a class="nav-item nav-link" href="/admin/sessionSet">Set Session</a>
                 <a class="nav-item nav-link" href="/admin/studentSearch">Student Search</a>
                 <a class="nav-item nav-link" href="/admin/getDefenseSchedule">Upcoming Defense Schedule</a>
+                <a class="nav-item nav-link" href="">Scoring Sheet</a>
             </div>
         </div>
         @elseif($role == 2)
