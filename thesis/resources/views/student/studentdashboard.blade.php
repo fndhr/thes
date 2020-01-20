@@ -24,6 +24,13 @@
                                 @endif
                             @endforeach
                             {{$title_name ?? '-'}}
+
+                            @php($numberConsultation = 0)
+                            @foreach($student->proposedConsultations as $consultation)
+                                @if($consultation->sts_id == 2)
+                                    @php($numberConsultation++)
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="row py-2">
@@ -51,7 +58,9 @@
                                 Interim has not been Uploaded
                             @elseif(count($progressUpload)==2)
                                 Final Draft has not been Uploaded
-                            @elseif(count($progressUpload)==3 && is_null($student->defense))
+                            @elseif(count($progressUpload)==3 && is_null($student->defense) && ($numberConsultation < $student->session->minimum_consultation))
+                                Haven't Reach Minimum Requirement Consultation
+                            @elseif(count($progressUpload)==3 && is_null($student->defense) && !($numberConsultation < $student->session->minimum_consultation))
                                 Waiting for Defense Date
                             @elseif(count($progressUpload)==3 && !is_null($student->defense))
                                 @if($student->defense->passed)

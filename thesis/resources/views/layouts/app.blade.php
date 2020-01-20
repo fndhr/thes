@@ -169,7 +169,8 @@
                 <div class="modal-body" style="padding: 0 !important;">
                     <div class="list-group">
                         @if(count(Auth::user()->notifications) > 0)
-                            @foreach(Auth::user()->notifications as $notif)
+                            @for($c=count(Auth::user()->notifications)-1;$c>=0 ;$c--)
+                            @php($notif = Auth::user()->notifications[$c])
                             <div class="list-group-item list-group-item-action">
                                 <p class="mb-1 font-weight-bold">{{$notif->message}}</p>
                                 <small>
@@ -182,7 +183,7 @@
                                 @endif
                                 </small>
                             </div>
-                            @endforeach
+                            @endfor
                         @else
                             <div class="list-group-item list-group-item-action text-center">
                                 <p class="mb-1 font-weight-bold">Empty</p>

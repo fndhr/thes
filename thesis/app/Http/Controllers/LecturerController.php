@@ -13,6 +13,7 @@ use App\scoringTable;
 use App\documentUpload;
 use App\proposedConsultation;
 use App\questionScoringSheet;
+use App\notification;
 class LecturerController extends Controller
 {
     private $role = 2;
@@ -253,6 +254,12 @@ class LecturerController extends Controller
         $document = documentUpload::find(request('id'));
         $document->status = 2;
         $document->save();
+        if($document->doc_type_name =="Thesis Final Draft"){
+            $notification = new notification;
+            $notification->message = "Hello, ".$document->student->user->first_name." ".$document->student->user->last_name.". Your final draft document has been approved, please make sure the number of consultation with your lecturer fulfill the minimum consultation sheet.";
+            $notification->usr_id =  $document->student->usr_id;
+            $notification->save();  
+        }
         return redirect()->back()->with('alert','successfully approve document');
     }
     public function disapproveDocument(){

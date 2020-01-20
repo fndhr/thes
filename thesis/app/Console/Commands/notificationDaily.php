@@ -8,6 +8,7 @@ use App\student;
 use App\lecturer;
 use App\session;
 use App\notification;
+use App\defense;
 use DateTime;
 use date;
 class notificationDaily extends Command
@@ -43,6 +44,7 @@ class notificationDaily extends Command
      */
     public function handle()
     {
+        
         $sessions = session::all();
         //session asu
         
@@ -117,39 +119,41 @@ class notificationDaily extends Command
                     }
                     
                 }
-                $defenses = defense::all();
-                foreach($defenses as $defense){
-                    $defense_deadline = date("Ymd",strtotime($defense->def_strt_dt." +14 days"));
-                    if(date("Ymd",strtotime($defense->def_strt_dt." +11 days")) <= date("Ymd") && date("Ymd") <= $defense_deadline) {
-                        if((int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d") == 0)
-                            $duration = "today";
-                        else
-                            $duration = (int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d"). " day(s)";
-                        if(count($defense->student->documentUpload)<4){
-                            $notification = new notification;
-                            $notification->message = "Hello, ".$defense->$student->user->first_name." ".$defense->$student->user->last_name."The submission for Signed Revised Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
-                            $notification->usr_id = $defense->$student->usr_id;
-                            $notification->save();
+                
+            }
 
-                            $notification = new notification;
-                            $notification->message = "Hello, ".$defense->$student->user->first_name." ".$defense->$student->user->last_name."The submission for Finalized Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
-                            $notification->usr_id = $defense->$student->usr_id;
-                            $notification->save();
-                        }
-                        else if(count($defense->student->documentUpload)<5){
-                            if($defense->student->documentUpload->doc_type_name == "Finalized Document"){
-                                $notification = new notification;
-                                $notification->message = "Hello, ".$defense->$student->user->first_name." ".$defense->$student->user->last_name."The submission for Signed Revised Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
-                                $notification->usr_id = $defense->$student->usr_id;
-                                $notification->save();
-                            }
-                            else{
-                                $notification = new notification;
-                                $notification->message = "Hello, ".$defense->$student->user->first_name." ".$defense->$student->user->last_name."The submission for Finalized Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
-                                $notification->usr_id = $defense->$student->usr_id;
-                                $notification->save();
-                            }
-                        }
+        }
+        $defenses = defense::all();
+        foreach($defenses as $defense){
+            $defense_deadline = date("Ymd",strtotime($defense->def_strt_dt." +14 days"));
+            if(date("Ymd",strtotime($defense->def_strt_dt." +11 days")) <= date("Ymd") && date("Ymd") <= $defense_deadline) {
+                if((int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d") == 0)
+                    $duration = "today";
+                else
+                    $duration = (int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d"). " day(s)";
+                if(count($defense->student->documentUpload)<4){
+                    $notification = new notification;
+                    $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Signed Revised Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                    $notification->usr_id = $defense->student->usr_id;
+                    $notification->save();
+
+                    $notification = new notification;
+                    $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Finalized Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                    $notification->usr_id = $defense->student->usr_id;
+                    $notification->save();
+                }
+                else if(count($defense->student->documentUpload)<5){
+                    if($defense->student->documentUpload->doc_type_name == "Finalized Document"){
+                        $notification = new notification;
+                        $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Signed Revised Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                        $notification->usr_id = $defense->student->usr_id;
+                        $notification->save();
+                    }
+                    else{
+                        $notification = new notification;
+                        $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Finalized Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                        $notification->usr_id = $defense->student->usr_id;
+                        $notification->save();
                     }
                 }
             }
