@@ -139,8 +139,8 @@ class AdminController extends Controller
                     $student->title_name = $title->title_name;
             }
             if(!is_null($student->defense)){
-                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
-                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->def_strt_dt));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->def_strt_dt));
             }
         }
         return view('admin.studentsearch',[
@@ -265,8 +265,8 @@ class AdminController extends Controller
                     $student->title_name = $title->title_name;
             }
             if(!is_null($student->defense)){
-                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
-                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->def_strt_dt));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->def_strt_dt));    
             }
         }
         

@@ -38,7 +38,7 @@
         data: {
             labels: ['Title', 'Proposal', 'Interim', 'Final Draft','Revised Document','Finalized Document'],
             datasets: [{
-                label: 'isApproved',
+                label: 'is Approved: ',
                 data: [<?php echo $title; ?>,
                        <?php echo $proposal; ?>,
                        <?php echo $interim; ?>,

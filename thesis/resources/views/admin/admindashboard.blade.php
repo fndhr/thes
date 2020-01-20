@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row my-5">
-        <div class="col-2">
+        <div class="col-6">
             <a href="/admin/sessionSet">
                 <div class="text-center mx-3">
                     <img src="/assets/image/admin_session.png" width="100" height="100" class="d-inline-block align-top my-4" alt="">
@@ -16,7 +16,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-2">
+        <div class="col-6">
             <a href="/admin/studentSearch">
                 <div class="text-center">
                     <img src="/assets/image/admin_studentsearch.png" width="100" height="100" class="d-inline-block align-top my-4" alt="">
@@ -24,7 +24,9 @@
                 </div>
             </a>
         </div>
-        <div class="col-3">
+    </div>
+    <div class="row my-5">
+        <div class="col-6">
             <a href="/admin/getDefenseSchedule">
                 <div class="text-center mx-3">
                     <img src="/assets/image/admin_searchschedule.png" width="100" height="100" class="d-inline-block align-top my-4" alt="">
@@ -32,8 +34,8 @@
                 </div>
             </a>
         </div>
-        <div class="col-5">
-            <canvas id="sessionChart"></canvas>
+        <div class="col-6">
+            <canvas id="sessionChart">asfas</canvas>
         </div>
     </div>
 </div>
@@ -46,7 +48,7 @@
         data: {
             labels: ['Title', 'Proposal', 'Interim', 'Final Draft','Revised Document','Finalized Document'],
             datasets: [{
-                label: 'isApproved',
+                label: 'is Approved: ',
                 data: [<?php echo $title; ?>,
                        <?php echo $proposal; ?>,
                        <?php echo $interim; ?>,

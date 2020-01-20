@@ -41,6 +41,12 @@
                             <td>{{$student->std_id}}</td>
                             <td><a href="/admin/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
                             <td>
+                            @php($numberConsultation = 0)
+                            @foreach($student->proposedConsultations as $consultation)
+                                @if($consultation->sts_id == 2)
+                                    @php($numberConsultation++)
+                                @endif
+                            @endforeach
                             @if(is_null($student->lecturer) || is_null($student->title_name))
                                 @if(is_null($student->lecturer))
                                     Lecturer
@@ -57,7 +63,9 @@
                                 Interim has not been Uploaded
                             @elseif(count($student->documentUpload)==2)
                                 Final Draft has not been Uploaded
-                            @elseif(count($student->documentUpload)==3 && is_null($student->defense))
+                            @elseif(count($student->documentUpload)==3 && is_null($student->defense) && ($numberConsultation < $student->session->minimum_consultation))
+                                Haven't Reach Minimum Requirement Consultation
+                            @elseif(count($student->documentUpload)==3 && is_null($student->defense) && !($numberConsultation < $student->session->minimum_consultation))
                                 Waiting for Defense Date
                             @elseif(count($student->documentUpload)==3 && !is_null($student->defense))
                                 @if($student->defense->passed)

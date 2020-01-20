@@ -31,14 +31,15 @@ class LecturerController extends Controller
 
     public function studentSearch(){
         $this->validateLecturer();
+        date_default_timezone_set('Asia/Jakarta');
         if(is_null($this->user)){
             return redirect('home');
         }
         $students = $this->getStudents();
         foreach($students as $student){
             if(!is_null($student->defense)){
-                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
-                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->def_strt_dt));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->def_strt_dt));    
             }
         }
         return view('lecturer.studentsearch',[
@@ -158,7 +159,7 @@ class LecturerController extends Controller
         }
         $nameSearch = request('std_name');
         $fullname = explode(' ',request('std_name'));
-
+        date_default_timezone_set('Asia/Jakarta');
         $result = User::where(function($q) {
                         $q->where('users.first_name','LIKE','%'.request('std_name').'%')
                         ->orWhere('users.last_name','LIKE','%'.request('std_name').'%')
@@ -170,8 +171,8 @@ class LecturerController extends Controller
         $students = student::whereIn('usr_id',$result)->get();
         foreach($students as $student){
             if(!is_null($student->defense)){
-                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->date));
-                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->date));    
+                $student->defense->isToday = date('Ymd') == date('Ymd',strtotime($student->defense->def_strt_dt));
+                $student->defense->passed = date('Ymd') > date('Ymd',strtotime($student->defense->def_strt_dt));    
             }
         }
         return view('lecturer.studentsearch',[

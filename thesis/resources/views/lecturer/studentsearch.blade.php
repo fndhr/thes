@@ -40,13 +40,22 @@
                         <td>{{$num}}.</td>
                         <td>{{$student->std_id}}</td>
                         <td><a href="/lecturer/studentDetail/{{$student->std_id}}">{{$student->user->first_name}} {{$student->user->last_name}}</a></td>
-                        <td>@if(count($student->documentUpload)==0)
+                        <td>
+                            @php($numberConsultation = 0)
+                            @foreach($student->proposedConsultations as $consultation)
+                                @if($consultation->sts_id == 2)
+                                    @php($numberConsultation++)
+                                @endif
+                            @endforeach
+                            @if(count($student->documentUpload)==0)
                                 Proposal Document has not been Uploaded
                             @elseif(count($student->documentUpload)==1)
                                 Interim has not been Uploaded
                             @elseif(count($student->documentUpload)==2)
                                 Final Draft has not been Uploaded
-                            @elseif(count($student->documentUpload)==3 && is_null($student->defense))
+                            @elseif(count($student->documentUpload)==3 && is_null($student->defense) && ($numberConsultation < $student->session->minimum_consultation))
+                                Haven't Reach Minimum Requirement Consultation
+                            @elseif(count($student->documentUpload)==3 && is_null($student->defense) && !($numberConsultation < $student->session->minimum_consultation))
                                 Waiting for Defense Date
                             @elseif(count($student->documentUpload)==3 && !is_null($student->defense))
                                 @if($student->defense->passed)
@@ -60,7 +69,8 @@
                                 Finalized document has not been Uploaded
                             @else
                                 Finished
-                            @endif</td>
+                            @endif
+                        </td>
                         <td>{{$student->lecturer ? $student->lecturer->user->first_name.' '.$student->lecturer->user->last_name : '-'}}</td>                        
                     </tr>
                     @php($num++)
