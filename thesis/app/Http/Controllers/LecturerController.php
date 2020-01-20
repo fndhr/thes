@@ -122,6 +122,7 @@ class LecturerController extends Controller
         if(is_null($this->user)){
             return redirect('home');
         }
+        date_default_timezone_set('Asia/Jakarta');
         $student = student::whereStdId($param)->first();
         $proposedTitle = proposedTitle::whereStdId($param)->whereStsId(2)->first();
         $student->title = $proposedTitle;

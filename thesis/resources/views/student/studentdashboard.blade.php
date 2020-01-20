@@ -692,7 +692,7 @@
 
         <div class="card">
         @if(!is_null($student->defense))
-            @if($student->defense->passed && $student->documentUpload[3]->status==2)
+            @if($student->defense->passed && count($student->documentUpload) > 3 && $student->documentUpload[3]->status==2)
             <div class="card-header" id="headingEight" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                 <h4 class="text-black">Upload Your Finalized Documents</h4>
             @else
