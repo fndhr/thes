@@ -93,6 +93,7 @@ class HomeController extends Controller
 
             return view('lecturer.dashboard',[
                 'role' => $this->role,
+                'lecturer' =>lecturer::whereUsrId(auth()->id())->first(),        
                 'title' => json_encode($title,JSON_NUMERIC_CHECK),
                 'proposal' => json_encode($proposal,JSON_NUMERIC_CHECK),
                 'interim' => json_encode($interim,JSON_NUMERIC_CHECK),
