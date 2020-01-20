@@ -44,10 +44,15 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Client 1', 'Client 2', 'Client 3'],
+            labels: ['Title', 'Proposal', 'Interim', 'Final Draft','Revised Document','Finalized Document'],
             datasets: [{
                 label: 'isApproved',
-                data: [12, 19, 3],
+                data: [<?php echo $title; ?>,
+                       <?php echo $proposal; ?>,
+                       <?php echo $interim; ?>,
+                       <?php echo $finalDraft; ?>,
+                       <?php echo $revisedDoc; ?>,
+                       <?php echo $finalDoc; ?>],
                 backgroundColor: 'rgba(54, 162, 235, 0.2)'
             }]
         },

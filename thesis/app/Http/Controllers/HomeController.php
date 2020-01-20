@@ -68,7 +68,8 @@ class HomeController extends Controller
             
             foreach($student->proposedConsultations as $consult){
                 $consult->proposed_date = date('d F Y',strtotime($consult->proposed_date));
-            }
+            }            
+
             return view('student.studentdashboard',[
                 'role' => $this->role,
                 'student' => $student,
@@ -82,15 +83,49 @@ class HomeController extends Controller
         }
         else if($isLecturer){
             $this->role = 2;
+
+            $status = count(proposedTitle::where('sts_id','=','2')->get());
+            
+            // $click = Click::select(DB::raw("SUM(numberofclick) as count"))
+            //     ->orderBy("created_at")
+            //     ->groupBy(DB::raw("year(created_at)"))
+            //     ->get()->toArray();
+            // $click = array_column($click, 'count');
+        
+            dd($status);
+
             return view('lecturer.dashboard',[
                 'role' => $this->role,
-                'lecturer' =>lecturer::whereUsrId(auth()->id())->first()
+                'lecturer' =>lecturer::whereUsrId(auth()->id())->first(),        
+                'status' => json_encode($status,JSON_NUMERIC_CHECK),
             ]);
         }
         else{
             $this->role = 1;
+            
+            $title = count(proposedTitle::where('sts_id','=','2')->get());
+            $proposal = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Proposal')->get());
+            $interim = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Interim')->get());
+            $finalDraft = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Final Draft')->get());
+            $revisedDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Signed Revised Document')->get());
+            $finalDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Finalized Document')->get());
+
+            // $status = array_column($status, 'count');
+            
+            // $click = Click::select(DB::raw("SUM(numberofclick) as count"))
+            //     ->orderBy("created_at")
+            //     ->groupBy(DB::raw("year(created_at)"))
+            //     ->get()->toArray();
+            // $click = array_column($click, 'count');        
+
             return view('admin.admindashboard',[
-                'role'=> $this->role
+                'role'=> $this->role,
+                'title' => json_encode($title,JSON_NUMERIC_CHECK),
+                'proposal' => json_encode($proposal,JSON_NUMERIC_CHECK),
+                'interim' => json_encode($interim,JSON_NUMERIC_CHECK),
+                'finalDraft' => json_encode($finalDraft,JSON_NUMERIC_CHECK),
+                'revisedDoc' => json_encode($revisedDoc,JSON_NUMERIC_CHECK),
+                'finalDoc' => json_encode($finalDoc,JSON_NUMERIC_CHECK),
             ]);
         }   
     }
