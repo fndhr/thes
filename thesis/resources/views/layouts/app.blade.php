@@ -50,6 +50,16 @@
                 <a class="nav-item nav-link" href="/admin/studentSearch">Student Search</a>
                 <a class="nav-item nav-link" href="/admin/getDefenseSchedule">Upcoming Defense Schedule</a>
                 <a class="nav-item nav-link" href="/admin/scoringSheet">Scoring Sheet</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Import
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="">Import User Student</a>
+                        <a class="dropdown-item" href="">Import User Lecturer</a>
+                    </div>
+                </div>
             </div>
         </div>
         @elseif($role == 2)

@@ -35,7 +35,7 @@
             </a>
         </div>
         <div class="col-6">
-            <canvas id="sessionChart">asfas</canvas>
+            <canvas id="sessionChart"></canvas>
         </div>
     </div>
 </div>
