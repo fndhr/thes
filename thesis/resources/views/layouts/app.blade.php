@@ -56,8 +56,8 @@
                         Import
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="nav-item nav-link" href="/admin/importStudent">Import User Student</a>                       
-                        <a class="nav-item nav-link" href="/admin/importLecturer">Import User Lecturer</a>
+                        <a class="dropdown-item" href="/admin/importStudent">Import User Student</a>                       
+                        <a class="dropdown-item" href="/admin/importLecturer">Import User Lecturer</a>
                     </div>
                 </div>
                 <a class="nav-item nav-link" href="/admin/reportAdmin">Report</a>
