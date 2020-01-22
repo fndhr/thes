@@ -31,6 +31,7 @@ Route::post('/viewFileFinalDraft','HomeController@viewFileFinalDraft');
 Route::post('/viewFileFinalizedDoc','HomeController@viewFileFinalizedDoc');
 Route::post('/viewFileRevisedDoc','HomeController@viewFileRevisedDoc');
 Route::post('/home', 'HomeController@uploadCsv');
+Route::post('/home', 'HomeController@uploadCsvLecturer');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
