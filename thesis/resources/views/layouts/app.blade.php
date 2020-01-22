@@ -68,6 +68,7 @@
                         </form>
                     </div>
                 </div>
+                <a class="nav-item nav-link" href="">Report</a>
             </div>
         </div>
         @elseif($role == 2)
@@ -79,6 +80,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/lecturer/studentSearch">Student Search</a>
                 <a class="nav-item nav-link" href="/lecturer/defenseScheduleSearch">Upcoming Defense Schedule</a>
+                <a class="nav-item nav-link" href="">Report</a>
             </div>
         </div>
         @else
