@@ -9,15 +9,11 @@
     </div>
     <div class="row py-2">
         <div class="col-12 text-center">
-            <form class="text-center submitForm" action="" method="POST" enctype="multipart/form-data">
-                <div class="form-group row justify-content-center">
-                    <input type="hidden" name="" value="">
-                    <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-success btn-pill px-5 my-3 btnSubmitProposal">Submit</button>
-                </div>
-            </form>
+            <form method='post' action='/home' enctype='multipart/form-data' >
+                {{ csrf_field() }}
+                <input type="file" class="dropdown-item" name = "file">Import User Student</a>
+                <input type='submit' name='submit' value='Import'>
+            </form>            
         </div>
     </div>
 </div>

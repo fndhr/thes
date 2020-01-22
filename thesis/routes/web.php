@@ -45,6 +45,9 @@ Route::prefix('admin')->group(function (){
     Route::get('/studentSearch','AdminController@studentSearch');
     Route::get('/getDefenseScheduleDetail/{id}','AdminController@getDefenseScheduleDetail');
     Route::get('/studentDetail/{id}','AdminController@studentDetail');
+    Route::get('/importStudent','AdminController@importStudent');
+    Route::get('/importLeceturer','AdminController@importLecturer');
+    Route::get('/reportAdmin','HomeController@reportAdmin');
 
     Route::post('/register/student','UserController@studentRegister');
     Route::post('/register/lecturer','UserController@lecturerRegister');
@@ -78,6 +81,7 @@ Route::prefix('lecturer')->group(function(){
     Route::get('/defenseScheduleSearch','LecturerController@defenseScheduleSearch');
     Route::get('/getDefenseScheduleDetail/{id}','LecturerController@getDefenseScheduleDetail');
     Route::get('/defensescoring/{id}','LecturerController@defenseScoring');
+    Route::get('/reportLecturer','HomeController@reportLecturer');
 
     Route::post('/studentSearch','LecturerController@studentSearchFilter');
     Route::post('/defenseSearchFilter','LecturerController@defenseSearchFilter');

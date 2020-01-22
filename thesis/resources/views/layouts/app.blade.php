@@ -56,19 +56,11 @@
                         Import
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <form method='post' action='/home' enctype='multipart/form-data' >
-                        {{ csrf_field() }}
-                            <input type="file" class="dropdown-item" name = "file">Import User Student</a>
-                            <input type='submit' name='submit' value='Import'>
-                        </form>
-                        <form method='post' action='/home' enctype='multipart/form-data' >
-                        {{ csrf_field() }}
-                            <input type="file" class="dropdown-item" name = "file">Import User Lecturer</a>
-                            <input type='submit' name='submit' value='Import'>
-                        </form>
+                        <a class="nav-item nav-link" href="/admin/importStudent">Import User Student</a>                       
+                        <a class="nav-item nav-link" href="/admin/importLecturer">Import User Lecturer</a>
                     </div>
                 </div>
-                <a class="nav-item nav-link" href="">Report</a>
+                <a class="nav-item nav-link" href="/admin/reportAdmin">Report</a>
             </div>
         </div>
         @elseif($role == 2)
@@ -80,7 +72,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/lecturer/studentSearch">Student Search</a>
                 <a class="nav-item nav-link" href="/lecturer/defenseScheduleSearch">Upcoming Defense Schedule</a>
-                <a class="nav-item nav-link" href="">Report</a>
+                <a class="nav-item nav-link" href="/lecturer/reportLecturer">Report</a>
             </div>
         </div>
         @else
