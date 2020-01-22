@@ -466,4 +466,22 @@ class AdminController extends Controller
         }
         return redirect('home')->with('alert','Successfull set questions');
     }
+
+    public function importStudent(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
+        return view('admin.importstudent',[
+            'role' => $this->role
+        ]);
+    }
+
+    public function importLecturer(){
+        if(!is_null(User::find(auth()->id())->lecturer) ||!is_null(User::find(auth()->id())->student)){
+            return redirect('home');
+        }
+        return view('admin.importlecturer',[
+            'role' => $this->role
+        ]);
+    }    
 }
