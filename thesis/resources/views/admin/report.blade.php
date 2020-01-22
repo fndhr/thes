@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row my-5">
         <div class="col-12 text-center">
-            <h1>Import User Student</h1>
+            <h1>Report User Student</h1>
         </div>
     </div>
     <div class="row py-2">

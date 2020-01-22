@@ -103,31 +103,34 @@ class HomeController extends Controller
       
         $this->role = 2;
         
-        $queryku= documentUpload::whereStdId('')->whereHas('student',function($query){$query->where('lec_id','');})->get();
-
         $title = count(proposedTitle::where('sts_id','=','2')
-                ->where('students.lec_id','=',auth()->id())
+                ->where('students.usr_id','=',auth()->id())
                 ->join('students','proposed_titles.std_id','=','students.std_id')
                 ->get());
         $proposal = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Proposal')
-                ->where('students.lec_id','=',auth()->id())
+                ->where('lecturers.usr_id','=',auth()->id())
                 ->join('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
                 ->get());
         $interim = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Interim')
-        ->where('students.lec_id','=',auth()->id())
+        ->where('lecturers.usr_id','=',auth()->id())
         ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+        ->join('lecturers','students.lec_id','=','lecturers.lec_id')
         ->get());
         $finalDraft = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Final Draft')
-        ->where('students.lec_id','=',auth()->id())
+        ->where('lecturers.usr_id','=',auth()->id())
                 ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
                 ->get());
             $revisedDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Signed Revised Document')
-            ->where('students.lec_id','=',auth()->id())
+            ->where('lecturers.usr_id','=',auth()->id())
                 ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
                 ->get());
             $finalDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Finalized Document')
-            ->where('students.lec_id','=',auth()->id())
+            ->where('lecturers.usr_id','=',auth()->id())
                 ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
                 ->get());
 
         return view('lecturer.report',[
