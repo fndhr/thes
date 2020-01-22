@@ -355,7 +355,7 @@ class HomeController extends Controller
         }
     
         // Redirect to index
-        return redirect()->back()->with('alert','Successfully Import CSV');
+        return redirect()->back()->with('alert','Successfully Import Student CSV');
       }
 
       public function uploadCsvLecturer(Request $request){
@@ -438,6 +438,6 @@ class HomeController extends Controller
         }
     
         // Redirect to index
-        return redirect()->back()->with('alert','Successfully Import CSV');
+        return redirect()->back()->with('alert','Successfully Import Lecturer CSV');
       }
 }
