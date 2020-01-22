@@ -85,7 +85,6 @@ class HomeController extends Controller
         else if($isLecturer){
             $this->role = 2;
 
-
             return view('lecturer.dashboard',[
                 'role' => $this->role,
                 'lecturer' =>lecturer::whereUsrId(auth()->id())->first(),     
