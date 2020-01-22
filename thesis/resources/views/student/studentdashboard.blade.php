@@ -387,7 +387,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                @if($student->session->passed_proposal_dt || count($student->documentUpload)>=1 || $student->documentUpload[0]->status!=3)
+                                @if($student->session->passed_proposal_dt || (count($student->documentUpload)>=1 && $student->documentUpload[0]->status != 3))
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitProposal" disabled>Submit</button>
                                     </div>
@@ -449,7 +449,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                @if($student->session->passed_interim_dt || count($student->documentUpload)>=2)
+                                @if($student->session->passed_interim_dt || (count($student->documentUpload)>=2 && $student->documentUpload[1]->status != 3)))
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitInterim" disabled>Submit</button>
                                     </div>
@@ -512,7 +512,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                @if($student->session->passed_final_draft_dt || count($student->documentUpload)>=3)
+                                @if($student->session->passed_final_draft_dt || (count($student->documentUpload)>=3 && $student->documentUpload[2]->status != 3) ))
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitFinalDraft" disabled>Submit</button>
                                     </div>
@@ -751,7 +751,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="file" class="col-3 form-control-file" id="file" for="file" name="file">
                                 </div>
-                                @if(count($student->documentUpload)>=5)
+                                @if(count($student->documentUpload)>=5 && $student->documentUpload[4]->status != 3))
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitFinalized" disabled>Submit</button>
                                     </div>                            
