@@ -87,20 +87,33 @@ class HomeController extends Controller
 
             $title = count(proposedTitle::where('sts_id','=','2')
                             ->where('students.lec_id','=',auth()->id())
-                            ->leftJoin('students','proposed_title.std_id','=','students.std_id')
+                            ->leftJoin('students','proposed_titles.std_id','=','students.std_id')
                             ->get());
-            $proposal = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Proposal')
+            $proposal = count(documentUpload::where('status','=','2')
+                            ->where('doc_type_name','=','Thesis Proposal')
                             ->where('students.lec_id','=',auth()->id())
-                            ->leftJoin('students','proposed_title.std_id','=','students.std_id')->get());
-            $interim = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Interim')
-                ->where('students.lec_id','=',auth()->id())
-                            ->leftJoin('students','proposed_title.std_id','=','students.std_id')->get());
-            $finalDraft = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Final Draft')->where('students.lec_id','=',auth()->id())
-            ->leftJoin('students','proposed_title.std_id','=','students.std_id')->get());
-            $revisedDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Signed Revised Document')->where('students.lec_id','=',auth()->id())
-            ->leftJoin('students','proposed_title.std_id','=','students.std_id')->get());
-            $finalDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Finalized Document')->where('students.lec_id','=',auth()->id())
-            ->leftJoin('students','proposed_title.std_id','=','students.std_id')->get());
+                            ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                            ->get());
+            $interim = count(documentUpload::where('status','=','2')
+                            ->where('doc_type_name','=','Thesis Interim')
+                            ->where('students.lec_id','=',auth()->id())
+                            ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                            ->get());
+            $finalDraft = count(documentUpload::where('status','=','2')
+                            ->where('doc_type_name','=','Thesis Final Draft')
+                            ->where('students.lec_id','=',auth()->id())
+                            ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                            ->get());
+            $revisedDoc = count(documentUpload::where('status','=','2')
+                            ->where('doc_type_name','=','Signed Revised Document')
+                            ->where('students.lec_id','=',auth()->id())
+                            ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                            ->get());
+            $finalDoc = count(documentUpload::where('status','=','2')
+                            ->where('doc_type_name','=','Finalized Document')
+                            ->where('students.lec_id','=',auth()->id())
+                            ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                            ->get());
 
             return view('lecturer.dashboard',[
                 'role' => $this->role,
