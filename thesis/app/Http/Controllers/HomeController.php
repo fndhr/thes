@@ -12,6 +12,7 @@ use App\documentUpload;
 use App\notification;
 use Validator;
 use App\session;
+use App\Page;
 use Storage;
 use Response;
 use DateTime;
@@ -239,4 +240,118 @@ class HomeController extends Controller
 
         return response()->file($path);
     }
+
+    public static function insertDataCsv($data){
+
+            $user = new User;
+            $user->password = $data['password'];
+            $user->first_name = $data['first_name'];
+            $user->last_name = $data['last_name'];
+            $user->email = $data['email'];
+            $user->phone = $data['phone'];
+            $user->save();
+            $student = new student;
+            $student->std_id = request('std_id');
+            $student->usr_id = $user->id;
+            $student->major_id = $data['major_id'];
+            $student->session_id = $data['session_id'];
+            $student->save();
+        
+     }
+  
+
+    public function uploadCsv(Request $request){
+
+        if ($request->input('submit') != null ){
+    
+          $file = $request->file('file');
+    
+          // File Details 
+          $filename = $file->getClientOriginalName();
+          $extension = $file->getClientOriginalExtension();
+          $tempPath = $file->getRealPath();
+          $fileSize = $file->getSize();
+          $mimeType = $file->getMimeType();
+    
+          // Valid File Extensions
+          $valid_extension = array("csv");
+    
+          // 2MB in Bytes
+          $maxFileSize = 2097152; 
+    
+          // Check file extension
+          if(in_array(strtolower($extension),$valid_extension)){
+    
+            // Check file size
+            if($fileSize <= $maxFileSize){
+    
+              // File upload location
+              $location = 'uploads';
+    
+              // Upload file
+              $file->move($location,$filename);
+    
+              // Import CSV to Database
+              $filepath = public_path($location."/".$filename);
+    
+              // Reading file
+              $file = fopen($filepath,"r");
+    
+              $importData_arr = array();
+              $i = 0;
+    
+              while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+                 $num = count($filedata);
+                 
+                 // Skip first row (Remove below comment if you want to skip the first row)
+                 if($i == 0){
+                    $i++;
+                    continue; 
+                 }
+                 for ($c=0; $c < $num; $c++) {
+                    $importData_arr[$i][] = $filedata [$c];
+                 }
+                 $i++;
+              }
+              fclose($file);
+        
+              // Insert to MySQL database
+              foreach($importData_arr as $importData){
+    
+                $user = new User;
+                $user->first_name = $importData[2];
+                $user->last_name = $importData[3];
+                $user->password = bcrypt($importData[2].$importData[3].'1234');
+                $user->email = $importData[0];
+                $user->phone = $importData[4];
+                $user->save();
+                $student = new student;
+                $student->std_id = $importData[1];
+                $student->usr_id = $user->id;
+                $student->major_id = $importData[5];
+                $student->session_id = $importData[6];
+                $student->save();
+
+                // $insertData = array(
+                //    "email"=>$importData[0],
+                //    "student_id"=>$importData[1],
+                //    "first_name"=>$importData[2],
+                //    "last_name"=>$importData[3],
+                //    "phone"=>$importData[4],
+                //    "major_id"=>$importData[5],
+                //    "session_id"=>$importData[6],
+                //    "password"=>bcrypt($importData[2].$importData[3].'1234'));
+                // insertDataCsv($insertData);
+    
+              }
+    
+            }
+    
+          }
+    
+        }
+    
+        // Redirect to index
+        return redirect()->back()->with('alert','Successfully Import CSV');
+      }
 }
