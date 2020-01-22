@@ -98,7 +98,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->title_adv_req_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(is_null($title_name) || is_null($student->lec_id)) Not Yet @else Completed @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->proposedTitle)==0) Not Yet @elseif(is_null($title_name) || is_null($student->lec_id)) Waiting For Approval @else Completed @endif</h5></div>
                     </div>
                     <div class="px-4">
                         @if(count($proposedTitle)==0)
@@ -354,7 +354,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->thesis_proposal_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>0)@if($student->documentUpload[0]->sts_id == 3) Not Yet @else Completed @endif @else Not Yet @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>0)@if($student->documentUpload[0]->status == 3) Not Yet @elseif($student->documentUpload[0]->status == 1) Waiting For Approval @else Completed @endif @else Not Yet @endif</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -421,7 +421,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->interim_report_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>1)@if($student->documentUpload[1]->sts_id == 3) Not Yet @else Completed @endif @else Not Yet @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>1)@if($student->documentUpload[1]->status == 3) Not Yet @elseif($student->documentUpload[1]->status == 1) Waiting For Approval @else Completed @endif @else Not Yet @endif</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -484,7 +484,7 @@
                     <div class="row my-4 text-center bg-light mx-5 session">
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->session->final_draft_end ?? '-'}}</h5></div>
-                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>2)@if($student->documentUpload[2]->sts_id == 3) Not Yet @else Completed @endif @else Not Yet @endif</h5></div>
+                        <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)>2)@if($student->documentUpload[2]->status == 3) Not Yet @elseif($student->documentUpload[2]->status == 1) Waiting For Approval  @else Completed @endif @else Not Yet @endif</h5></div>
                     </div>
                     <div class="row py-2">
                         <div class="col-3">Title</div>
@@ -634,11 +634,13 @@
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
-                                                                @if($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document")) Not Yet 
+                                                                @if($student->documentUpload[3]->status == 3 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document")) Not Yet 
+                                                                @elseif($student->documentUpload[3]->status == 1 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document")) Waiting For Approval
                                                                 @else Completed 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
-                                                                @if(($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))) Not Yet 
+                                                                @if(($student->documentUpload[3]->status == 3 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[4]->status == 3 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))) Not Yet 
+                                                                @elseif(($student->documentUpload[3]->status == 1 && ($student->documentUpload[3]->doc_type_name == "Signed Revised Document"))||($student->documentUpload[4]->status == 1 && ($student->documentUpload[4]->doc_type_name == "Signed Revised Document"))) Waiting For Approval
                                                                 @else Completed 
                                                                 @endif 
                                                             @else Not Yet 
@@ -710,11 +712,13 @@
                         <div class="col-4 pt-2"><h5>Session</h5></div>
                         <div class="col-4 pt-2"><h5>Deadline: {{$student->defense->twoWeeksAfter ?? '-'}}</h5></div>
                         <div class="col-4 pt-2"><h5>Status: @if(count($student->documentUpload)==4)
-                                                                @if($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Finalized Document")) Not Yet 
+                                                                @if($student->documentUpload[3]->status == 3 && ($student->documentUpload[3]->doc_type_name == "Finalized Document")) Not Yet 
+                                                                @elseif($student->documentUpload[3]->status == 1 && ($student->documentUpload[3]->doc_type_name == "Finalized Document")) Waiting For Approval
                                                                 @else Completed 
                                                                 @endif 
                                                             @elseif(count($student->documentUpload)>4)
-                                                                @if(($student->documentUpload[3]->sts_id == 3 && ($student->documentUpload[3]->doc_type_name == "Finalized Document"))||($student->documentUpload[4]->sts_id == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))) Not Yet 
+                                                                @if(($student->documentUpload[3]->status == 3 && ($student->documentUpload[3]->doc_type_name == "Finalized Document"))||($student->documentUpload[4]->status == 3 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))) Not Yet 
+                                                                @elseif(($student->documentUpload[3]->status == 1 && ($student->documentUpload[3]->doc_type_name == "Finalized Document"))||($student->documentUpload[4]->status == 1 && ($student->documentUpload[4]->doc_type_name == "Finalized Document"))) Waiting For Approval 
                                                                 @else Completed 
                                                                 @endif 
                                                             @else Not Yet 
