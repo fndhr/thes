@@ -387,7 +387,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                @if($student->session->passed_proposal_dt || count($student->documentUpload)>=1)
+                                @if($student->session->passed_proposal_dt || count($student->documentUpload)>=1 || $student->documentUpload[0]->status!=3)
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-secondary btn-pill px-5 my-3 btnSubmitProposal" disabled>Submit</button>
                                     </div>

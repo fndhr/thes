@@ -9,9 +9,9 @@
     </div>
     <div class="row py-2">
         <div class="col-12 text-center">
-            <form method='post' action='/home' enctype='multipart/form-data' >
+            <form method='post' action='/importLecturer' enctype='multipart/form-data' >
                 {{ csrf_field() }}
-                <input type="file" class="dropdown-item" name = "file">Import User Student</a>
+                <input type="file" class="dropdown-item" name = "file">Import User Lecturer</a>
                 <input type='submit' name='submit' value='Import'>
             </form>            
         </div>

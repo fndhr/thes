@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 Route::post('/homeChangePass','HomeController@changePassword') ->name('home');
-//Route::post('/downloadFile','HomeController@downloadFile');
 Route::post('/downloadFileProposal','HomeController@downloadFileProposal');
 Route::post('/downloadFileInterim','HomeController@downloadFileInterim');
 Route::post('/downloadFileFinalDraft','HomeController@downloadFileFinalDraft');
@@ -30,8 +29,8 @@ Route::post('/viewFileInterim','HomeController@viewFileInterim');
 Route::post('/viewFileFinalDraft','HomeController@viewFileFinalDraft');
 Route::post('/viewFileFinalizedDoc','HomeController@viewFileFinalizedDoc');
 Route::post('/viewFileRevisedDoc','HomeController@viewFileRevisedDoc');
-Route::post('/home', 'HomeController@uploadCsv');
-Route::post('/home', 'HomeController@uploadCsvLecturer');
+Route::post('/importStudent', 'HomeController@uploadCsvStudent');
+Route::post('/importLecturer', 'HomeController@uploadCsvLecturer');
 
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
@@ -46,7 +45,7 @@ Route::prefix('admin')->group(function (){
     Route::get('/getDefenseScheduleDetail/{id}','AdminController@getDefenseScheduleDetail');
     Route::get('/studentDetail/{id}','AdminController@studentDetail');
     Route::get('/importStudent','AdminController@importStudent');
-    Route::get('/importLeceturer','AdminController@importLecturer');
+    Route::get('/importLecturer','AdminController@importLecturer');
     Route::get('/reportAdmin','HomeController@reportAdmin');
 
     Route::post('/register/student','UserController@studentRegister');

@@ -103,6 +103,8 @@ class HomeController extends Controller
       
         $this->role = 2;
         
+        $queryku= documentUpload::whereStdId('')->whereHas('student',function($query){$query->where('lec_id','');})->get();
+
         $title = count(proposedTitle::where('sts_id','=','2')
                 ->where('students.lec_id','=',auth()->id())
                 ->join('students','proposed_titles.std_id','=','students.std_id')
@@ -113,19 +115,19 @@ class HomeController extends Controller
                 ->get());
         $interim = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Interim')
         ->where('students.lec_id','=',auth()->id())
-        ->join('students','document_uploads.std_id','=','students.std_id')
+        ->leftJoin('students','document_uploads.std_id','=','students.std_id')
         ->get());
         $finalDraft = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Final Draft')
         ->where('students.lec_id','=',auth()->id())
-                ->join('students','document_uploads.std_id','=','students.std_id')
+                ->leftJoin('students','document_uploads.std_id','=','students.std_id')
                 ->get());
             $revisedDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Signed Revised Document')
             ->where('students.lec_id','=',auth()->id())
-                ->join('students','document_uploads.std_id','=','students.std_id')
+                ->leftJoin('students','document_uploads.std_id','=','students.std_id')
                 ->get());
             $finalDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Finalized Document')
             ->where('students.lec_id','=',auth()->id())
-                ->join('students','document_uploads.std_id','=','students.std_id')
+                ->leftJoin('students','document_uploads.std_id','=','students.std_id')
                 ->get());
 
         return view('lecturer.report',[
@@ -273,7 +275,7 @@ class HomeController extends Controller
         return response()->file($path);
     }
 
-    public function uploadCsv(Request $request){
+    public function uploadCsvStudent(Request $request){
 
         if ($request->input('submit') != null ){
     
