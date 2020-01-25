@@ -51,7 +51,7 @@ class notificationDaily extends Command
         date_default_timezone_set('Asia/Jakarta');
         foreach($sessions as $session){
             $maximumdeadline=" -3 days";
-            if(date($session->title_adv_req_start)<date("Ymd") && date("Ymd")<date($session->final_draft_end)){
+            if(date("Ymd",strtotime($session->title_adv_req_start))<date("Ymd") && date("Ymd")<date("Ymd",strtotime($session->final_draft_end))){
                 //masi valid sessionnya
                 $flag = 0;
                 $message = "";
