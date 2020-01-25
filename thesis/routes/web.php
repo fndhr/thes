@@ -80,7 +80,7 @@ Route::prefix('lecturer')->group(function(){
     Route::get('/defenseScheduleSearch','LecturerController@defenseScheduleSearch');
     Route::get('/getDefenseScheduleDetail/{id}','LecturerController@getDefenseScheduleDetail');
     Route::get('/defensescoring/{id}','LecturerController@defenseScoring');
-    Route::get('/reportLecturer','HomeController@reportLecturer');
+    Route::get('/reportLecturer','LecturerController@reportLecturer');
 
     Route::post('/studentSearch','LecturerController@studentSearchFilter');
     Route::post('/defenseSearchFilter','LecturerController@defenseSearchFilter');

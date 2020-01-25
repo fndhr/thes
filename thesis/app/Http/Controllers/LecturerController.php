@@ -267,7 +267,7 @@ class LecturerController extends Controller
     public function disapproveDocument(){
         $document = documentUpload::find(request('id'));
         $document->status = 3;
-        $document->save();
+        $document->findOrFail(request('id'))->delete();
         return redirect()->back()->with('alert','successfully disapprove document');
     }
     public function approveConsultation(){
@@ -281,5 +281,61 @@ class LecturerController extends Controller
         $document->sts_id = 3;
         $document->save();
         return redirect()->back()->with('alert','successfully disapprove consultation');
+    }
+    public function reportLecturer(){
+      
+        $this->validateLecturer();
+        
+        $title = count(proposedTitle::where('sts_id','=','2')
+                ->where('students.usr_id','=',auth()->id())
+                ->join('students','proposed_titles.std_id','=','students.std_id')
+                ->get());
+        $proposal = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Proposal')
+                ->where('lecturers.usr_id','=',auth()->id())
+                ->join('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
+                ->get());
+        $interim = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Interim')
+        ->where('lecturers.usr_id','=',auth()->id())
+        ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+        ->join('lecturers','students.lec_id','=','lecturers.lec_id')
+        ->get());
+        $finalDraft = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Final Draft')
+        ->where('lecturers.usr_id','=',auth()->id())
+                ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
+                ->get());
+            $revisedDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Signed Revised Document')
+            ->where('lecturers.usr_id','=',auth()->id())
+                ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
+                ->get());
+            $finalDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Finalized Document')
+            ->where('lecturers.usr_id','=',auth()->id())
+                ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                ->join('lecturers','students.lec_id','=','lecturers.lec_id')
+                ->get());
+
+            $students = student::where('lec_id',$this->user->lec_id)
+                        ->leftJoin('users','students.usr_id','=','users.id')->get('users.first_name');
+                // dd($students->toArray());
+        return view('lecturer.report',[
+            'role' => $this->role,   
+            'lecturer' =>lecturer::whereUsrId(auth()->id())->first(),  
+                'title' => json_encode($title,JSON_NUMERIC_CHECK),
+                'proposal' => json_encode($proposal,JSON_NUMERIC_CHECK),
+                'interim' => json_encode($interim,JSON_NUMERIC_CHECK),
+                'finalDraft' => json_encode($finalDraft,JSON_NUMERIC_CHECK),
+                'revisedDoc' => json_encode($revisedDoc,JSON_NUMERIC_CHECK),
+                'finalDoc' => json_encode($finalDoc,JSON_NUMERIC_CHECK),
+                'students' => json_encode($students->toArray()),
+                'txtTitle' => json_encode('Title'),
+                'txtProposal' => json_encode('Proposal'),
+                'txtInterim' => json_encode('Interim'),
+                'txtFinalDraft' => json_encode('Final Draft'),
+                'txtRevDoc' => json_encode('Revised Document'),
+                'txtFinalDoc' => json_encode('Finalized Document'),
+            ]);       
+        
     }
 }
