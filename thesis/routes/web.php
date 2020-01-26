@@ -32,6 +32,8 @@ Route::post('/viewFileRevisedDoc','HomeController@viewFileRevisedDoc');
 Route::post('/importStudent', 'HomeController@uploadCsvStudent');
 Route::post('/importLecturer', 'HomeController@uploadCsvLecturer');
 
+Route::get('/test', 'UserController@notif');
+
 Route::prefix('admin')->group(function (){
     Route::get('/sessionSet','AdminController@sessionSet');
     Route::get('/scoringSheet','AdminController@scoringSheet');

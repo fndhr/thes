@@ -10,7 +10,7 @@ use App\student;
 use App\lecturer;
 use App\session;
 use App\notification;
-
+use App\defense;
 class UserController extends Controller
 {
     public function studentRegister(Request $request){
@@ -73,16 +73,17 @@ class UserController extends Controller
     }    
 
     public function notif(){
-        
         $sessions = session::all();
         //session asu
+        
+        date_default_timezone_set('Asia/Jakarta');
         foreach($sessions as $session){
             $maximumdeadline=" -3 days";
-            if(date($session->title_adv_req_start)<date("Y-m-d") && date("Y-m-d")<date($session->final_draft_end)){
+            if(date("Ymd",strtotime($session->title_adv_req_start))<date("Ymd") && date("Ymd")<date("Ymd",strtotime($session->final_draft_end))){
                 //masi valid sessionnya
                 $flag = 0;
                 $message = "";
-                if(date("Y-m-d",strtotime($session->title_adv_req_end.$maximumdeadline))<=date("Y-m-d") && date("Y-m-d")<=date("Y-m-d",strtotime($session->title_adv_req_end))){    
+                if(date("Ymd",strtotime($session->title_adv_req_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->title_adv_req_end))){    
                     if((int)date_diff(date_create(),date_create($session->title_adv_req_end))->format("%d") == 0)
                             $duration = "today";
                     else
@@ -90,7 +91,7 @@ class UserController extends Controller
                     $flag = 1;
                     $message = " The submission for thesis proposal is due in ".$duration.". Please submit your document no longer than ".$session->title_adv_req_end;
                 }
-                else if(date("Y-m-d",strtotime($session->thesis_proposal_end.$maximumdeadline))<=date("Y-m-d") && date("Y-m-d")<=date($session->thesis_proposal_end)){    
+                else if(date("Ymd",strtotime($session->thesis_proposal_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->thesis_proposal_end))){    
                     if((int)date_diff(date_create(),date_create($session->thesis_proposal_end))->format("%d") == 0)
                         $duration = "today";
                     else
@@ -98,7 +99,7 @@ class UserController extends Controller
                     $flag = 2;
                     $message = " The submission for thesis proposal is due in ".$duration.". Please submit your document no longer than ".$session->thesis_proposal_end;
                 }
-                else if(date("Y-m-d",strtotime($session->interim_report_end.$maximumdeadline))<=date("Y-m-d") && date("Y-m-d")<=date($session->interim_report_end)){    
+                else if(date("Ymd",strtotime($session->interim_report_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->interim_report_end))){    
                     if((int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d") == 0)
                         $duration = "today";
                     else
@@ -106,7 +107,7 @@ class UserController extends Controller
                     $flag = 3;
                     $message = " The submission for interim report is due in ".$duration.". Please submit your document no longer than ".$session->interim_report_end;
                 }
-                else if(date("Y-m-d",strtotime($session->final_draft_end.$maximumdeadline))<=date("Y-m-d") && date("Y-m-d")<=date($session->final_draft_end)){    
+                else if(date("Ymd",strtotime($session->final_draft_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->final_draft_end))){    
                     if((int)date_diff(date_create(),date_create($session->final_draft_end))->format("%d") == 0)    
                         $duration = "today";
                     else
@@ -125,7 +126,7 @@ class UserController extends Controller
                             }
                         }
                         else{
-                            if(count($student->documentUpload) <= ($flag-1)){
+                            if(count($student->documentUpload) < ($flag-1)){
                                 $notification = new notification;
                                 $notification->message = "Hello, ".$student->user->first_name." ".$student->user->last_name.".".$message;
                                 $notification->usr_id = $student->usr_id;
@@ -142,6 +143,44 @@ class UserController extends Controller
                             $notification->usr_id = $lecturer->usr_id;
                             $notification->save();
                         }
+                    }
+                    
+                }
+                
+            }
+
+        }
+        $defenses = defense::all();
+        foreach($defenses as $defense){
+            $defense_deadline = date("Ymd",strtotime($defense->def_strt_dt." +14 days"));
+            if(date("Ymd",strtotime($defense->def_strt_dt." +11 days")) <= date("Ymd") && date("Ymd") <= $defense_deadline) {
+                if((int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d") == 0)
+                    $duration = "today";
+                else
+                    $duration = (int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d"). " day(s)";
+                if(count($defense->student->documentUpload)<4){
+                    $notification = new notification;
+                    $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Signed Revised Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                    $notification->usr_id = $defense->student->usr_id;
+                    $notification->save();
+
+                    $notification = new notification;
+                    $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Finalized Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                    $notification->usr_id = $defense->student->usr_id;
+                    $notification->save();
+                }
+                else if(count($defense->student->documentUpload)<5){
+                    if($defense->student->documentUpload->doc_type_name == "Finalized Document"){
+                        $notification = new notification;
+                        $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Signed Revised Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                        $notification->usr_id = $defense->student->usr_id;
+                        $notification->save();
+                    }
+                    else{
+                        $notification = new notification;
+                        $notification->message = "Hello, ".$defense->student->user->first_name." ".$defense->student->user->last_name."The submission for Finalized Document is due in ".$duration.". Please submit your document no longer than ".$defense_deadline;
+                        $notification->usr_id = $defense->student->usr_id;
+                        $notification->save();
                     }
                 }
             }
