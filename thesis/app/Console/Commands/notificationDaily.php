@@ -44,14 +44,13 @@ class notificationDaily extends Command
      */
     public function handle()
     {
-        
         $sessions = session::all();
         //session asu
         
         date_default_timezone_set('Asia/Jakarta');
         foreach($sessions as $session){
             $maximumdeadline=" -3 days";
-            if(date("Ymd",strtotime($session->title_adv_req_start))<date("Ymd") && date("Ymd")<date("Ymd",strtotime($session->final_draft_end))){
+            if(date("Ymd")<date("Ymd",strtotime($session->final_draft_end))){
                 //masi valid sessionnya
                 $flag = 0;
                 $message = "";
@@ -63,7 +62,7 @@ class notificationDaily extends Command
                     $flag = 1;
                     $message = " The submission for thesis proposal is due in ".$duration.". Please submit your document no longer than ".$session->title_adv_req_end;
                 }
-                else if(date("Ymd",strtotime($session->thesis_proposal_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date($session->thesis_proposal_end)){    
+                else if(date("Ymd",strtotime($session->thesis_proposal_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->thesis_proposal_end))){    
                     if((int)date_diff(date_create(),date_create($session->thesis_proposal_end))->format("%d") == 0)
                         $duration = "today";
                     else
@@ -71,7 +70,7 @@ class notificationDaily extends Command
                     $flag = 2;
                     $message = " The submission for thesis proposal is due in ".$duration.". Please submit your document no longer than ".$session->thesis_proposal_end;
                 }
-                else if(date("Ymd",strtotime($session->interim_report_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date($session->interim_report_end)){    
+                else if(date("Ymd",strtotime($session->interim_report_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->interim_report_end))){    
                     if((int)date_diff(date_create(),date_create($session->interim_report_end))->format("%d") == 0)
                         $duration = "today";
                     else
@@ -79,7 +78,7 @@ class notificationDaily extends Command
                     $flag = 3;
                     $message = " The submission for interim report is due in ".$duration.". Please submit your document no longer than ".$session->interim_report_end;
                 }
-                else if(date("Ymd",strtotime($session->final_draft_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date($session->final_draft_end)){    
+                else if(date("Ymd",strtotime($session->final_draft_end.$maximumdeadline))<=date("Ymd") && date("Ymd")<=date("Ymd",strtotime($session->final_draft_end))){    
                     if((int)date_diff(date_create(),date_create($session->final_draft_end))->format("%d") == 0)    
                         $duration = "today";
                     else
@@ -87,7 +86,6 @@ class notificationDaily extends Command
                     $flag = 4;      
                     $message = " The submission for final draft is due in ".$duration.". Please submit your document no longer than ".$session->final_draft_end;
                 }
-                
                 if($flag != 0){
                     $lec_id = [];
                     foreach($session->students as $student){
