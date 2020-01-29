@@ -316,17 +316,11 @@ class LecturerController extends Controller
                 ->join('lecturers','students.lec_id','=','lecturers.lec_id')
                 ->get());
 
-            $students = student::where('lec_id',$this->user->lec_id)
-                        ->leftJoin('users','students.usr_id','=','users.id')->get('users.first_name');
-            
                         $is = count(student::where('major_id','=','1')->where('lec_id',$this->user->lec_id)
-                        ->leftJoin('users','students.usr_id','=','users.id')->get('users.first_name')
                         ->get());
                         $it = count(student::where('major_id','=','2')->where('lec_id',$this->user->lec_id)
-                        ->leftJoin('users','students.usr_id','=','users.id')->get('users.first_name')
                         ->get());
                         $vcd = count(student::where('major_id','=','3')->where('lec_id',$this->user->lec_id)
-                        ->leftJoin('users','students.usr_id','=','users.id')->get('users.first_name')
                         ->get());
 
 
@@ -339,7 +333,6 @@ class LecturerController extends Controller
                 'finalDraft' => json_encode($finalDraft,JSON_NUMERIC_CHECK),
                 'revisedDoc' => json_encode($revisedDoc,JSON_NUMERIC_CHECK),
                 'finalDoc' => json_encode($finalDoc,JSON_NUMERIC_CHECK),
-                'students' => json_encode($students->toArray()),
                 'is' => json_encode($is,JSON_NUMERIC_CHECK),
                 'it' => json_encode($it,JSON_NUMERIC_CHECK),
                 'vcd' => json_encode($vcd,JSON_NUMERIC_CHECK),
