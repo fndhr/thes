@@ -113,6 +113,9 @@ class HomeController extends Controller
         $finalDraft = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Thesis Final Draft')->get());
         $revisedDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Signed Revised Document')->get());
         $finalDoc = count(documentUpload::where('status','=','2')->where('doc_type_name','=','Finalized Document')->get());
+        $is = count(student::where('major_id','=','1')->get());
+        $it = count(student::where('major_id','=','2')->get());
+        $vcd = count(student::where('major_id','=','3')->get());
 
         return view('admin.report',[
             'role' => $this->role,
@@ -122,6 +125,9 @@ class HomeController extends Controller
             'finalDraft' => json_encode($finalDraft,JSON_NUMERIC_CHECK),
             'revisedDoc' => json_encode($revisedDoc,JSON_NUMERIC_CHECK),
             'finalDoc' => json_encode($finalDoc,JSON_NUMERIC_CHECK),
+            'is' => json_encode($is,JSON_NUMERIC_CHECK),
+            'it' => json_encode($it,JSON_NUMERIC_CHECK),
+            'vcd' => json_encode($vcd,JSON_NUMERIC_CHECK),
         ]);
     }
 

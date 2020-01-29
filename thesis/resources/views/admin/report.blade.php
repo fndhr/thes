@@ -12,6 +12,16 @@
             <canvas id="sessionChart"></canvas>
         </div>
     </div>
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <h1>Report Major Student</h1>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col-6 text-center">
+            <canvas id="majorChart"></canvas>
+        </div>
+    </div>
 </div>
 
 <script src="/assets/js/chartjs.min.js"></script>
@@ -42,5 +52,30 @@
             }
         }
     });
+   
+    var ctxMajor = document.getElementById('majorChart').getContext('2d');
+    var majorChart = new Chart(ctxMajor, {
+        type: 'bar',
+        data: {
+            labels: ['Information System', 'Information Technology', 'Visual Communication and Design'],
+            datasets: [{
+                label: 'Total: ',
+                data: [<?php echo $is; ?>,
+                       <?php echo $it; ?>,
+                       <?php echo $vcd; ?>],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
 </script>
 @endsection
