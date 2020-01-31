@@ -7,9 +7,19 @@
             <h1>Report User Student</h1>
         </div>
     </div>
-    <div class="row py-2">
-        <div class="col-6 text-center">
+    <div class="row py-2 justify-content-center">
+        <div class="col-10">
             <canvas id="sessionChart"></canvas>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <h1>Report Progress Student</h1>
+        </div>
+    </div>
+    <div class="row py-2 justify-content-center">
+        <div class="col-10">
+            <canvas id="progressChart"></canvas>
         </div>
     </div>
     <div class="row my-5">
@@ -17,8 +27,8 @@
             <h1>Report Major Student</h1>
         </div>
     </div>
-    <div class="row py-2">
-        <div class="col-6 text-center">
+    <div class="row py-2 justify-content-center">
+        <div class="col-10">
             <canvas id="majorChart"></canvas>
         </div>
     </div>
