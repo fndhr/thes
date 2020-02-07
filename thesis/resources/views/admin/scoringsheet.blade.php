@@ -14,7 +14,7 @@
                 @csrf
                 <h4>Final Report Evaluation</h4>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 1</label>
+                    <label class="col-2 col-form-label inputRequired">Question 1*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.0') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.0')}}">
                     @error('final_question.0')
@@ -24,7 +24,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 2</label>
+                    <label class="col-2 col-form-label inputRequired">Question 2*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.1') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.1')}}">
                     @error('final_question.1')
@@ -34,7 +34,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 3</label>
+                    <label class="col-2 col-form-label inputRequired">Question 3*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.2') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.2')}}">
                     @error('final_question.2')
@@ -44,7 +44,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 4</label>
+                    <label class="col-2 col-form-label inputRequired">Question 4*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.3') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.3')}}">
                     @error('final_question.3')
@@ -54,7 +54,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 5</label>
+                    <label class="col-2 col-form-label inputRequired">Question 5*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.4') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.4')}}">
                     @error('final_question.4')
@@ -64,7 +64,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 6</label>
+                    <label class="col-2 col-form-label inputRequired">Question 6*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.5') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.5')}}">
                     @error('final_question.5')
@@ -74,7 +74,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 7</label>
+                    <label class="col-2 col-form-label inputRequired">Question 7*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.6') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.6')}}">
                     @error('final_question.6')
@@ -84,7 +84,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 8</label>
+                    <label class="col-2 col-form-label inputRequired">Question 8*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.7') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.7')}}">
                     @error('final_question.7')
@@ -94,7 +94,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 9</label>
+                    <label class="col-2 col-form-label inputRequired">Question 9*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.8') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.8')}}">
                     @error('final_question.8')
@@ -104,7 +104,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 10</label>
+                    <label class="col-2 col-form-label inputRequired">Question 10*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.9') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.9')}}">
                     @error('final_question.9')
@@ -116,7 +116,7 @@
 
                 <h4 class=" mt-5">Presentation Evaluation</h4>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 1</label>
+                    <label class="col-2 col-form-label inputRequired">Question 1*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.0') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.0')}}">
                     @error('pre_question.0')
@@ -126,7 +126,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 2</label>
+                    <label class="col-2 col-form-label inputRequired">Question 2*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.1') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.1')}}">
                     @error('pre_question.1')
@@ -136,7 +136,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 3</label>
+                    <label class="col-2 col-form-label inputRequired">Question 3*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.2') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.2')}}">
                     @error('pre_question.2')
@@ -146,7 +146,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 4</label>
+                    <label class="col-2 col-form-label inputRequired">Question 4*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.3') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.3')}}">
                     @error('pre_question.3')
@@ -156,7 +156,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 5</label>
+                    <label class="col-2 col-form-label inputRequired">Question 5*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.4') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.4')}}">
                     @error('pre_question.4')
@@ -166,7 +166,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 6</label>
+                    <label class="col-2 col-form-label inputRequired">Question 6*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.5') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.5')}}">
                     @error('pre_question.5')
@@ -176,7 +176,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 7</label>
+                    <label class="col-2 col-form-label inputRequired">Question 7*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.6') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.6')}}">
                     @error('pre_question.6')
@@ -186,7 +186,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 8</label>
+                    <label class="col-2 col-form-label inputRequired">Question 8*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.7') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.7')}}">
                     @error('pre_question.7')
@@ -196,7 +196,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 9</label>
+                    <label class="col-2 col-form-label inputRequired">Question 9*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.8') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.8')}}">
                     @error('pre_question.8')
@@ -206,7 +206,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 10</label>
+                    <label class="col-2 col-form-label inputRequired">Question 10*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.9') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.9')}}">
                     @error('pre_question.9')
@@ -218,7 +218,7 @@
 
                 <h4 class=" mt-5">Supervisior Evaluation</h4>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 1</label>
+                    <label class="col-2 col-form-label inputRequired">Question 1*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.0') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.0')}}">
                     @error('super_question.0')
@@ -228,7 +228,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 2</label>
+                    <label class="col-2 col-form-label inputRequired">Question 2*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.1') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.1')}}">
                     @error('super_question.1')
@@ -238,7 +238,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 3</label>
+                    <label class="col-2 col-form-label inputRequired">Question 3*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.2') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.2')}}">
                     @error('super_question.2')
@@ -248,7 +248,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 4</label>
+                    <label class="col-2 col-form-label inputRequired">Question 4*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.3') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.3')}}">
                     @error('super_question.3')
@@ -266,7 +266,7 @@
                 @csrf
                 <h4>Final Report Evaluation</h4>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 1</label>
+                    <label class="col-2 col-form-label inputRequired">Question 1*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.0') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.0') ?? $report[0]->question}}">
                     @error('final_question.0')
@@ -276,7 +276,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 2</label>
+                    <label class="col-2 col-form-label inputRequired">Question 2*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.1') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.1')??$report[1]->question}}">
                     @error('final_question.1')
@@ -286,7 +286,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 3</label>
+                    <label class="col-2 col-form-label inputRequired">Question 3*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.2') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.2')?? $report[2]->question}}">
                     @error('final_question.2')
@@ -296,7 +296,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 4</label>
+                    <label class="col-2 col-form-label inputRequired">Question 4*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.3') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.3')?? $report[3]->question}}">
                     @error('final_question.3')
@@ -306,7 +306,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 5</label>
+                    <label class="col-2 col-form-label inputRequired">Question 5*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.4') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.4')?? $report[4]->question}}">
                     @error('final_question.4')
@@ -316,7 +316,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 6</label>
+                    <label class="col-2 col-form-label inputRequired">Question 6*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.5') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.5')?? $report[5]->question}}">
                     @error('final_question.5')
@@ -326,7 +326,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 7</label>
+                    <label class="col-2 col-form-label inputRequired">Question 7*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.6') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.6')?? $report[6]->question}}">
                     @error('final_question.6')
@@ -336,7 +336,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 8</label>
+                    <label class="col-2 col-form-label inputRequired">Question 8*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.7') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.7')?? $report[7]->question}}">
                     @error('final_question.7')
@@ -346,7 +346,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 9</label>
+                    <label class="col-2 col-form-label inputRequired">Question 9*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.8') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.8')?? $report[8]->question}}">
                     @error('final_question.8')
@@ -356,7 +356,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 10</label>
+                    <label class="col-2 col-form-label inputRequired">Question 10*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('final_question.9') is-invalid @enderror" name="final_question[]" placeholder="" value="{{old('final_question.9')?? $report[9]->question}}">
                     @error('final_question.9')
@@ -368,7 +368,7 @@
 
                 <h4 class=" mt-5">Presentation Evaluation</h4>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 1</label>
+                    <label class="col-2 col-form-label inputRequired">Question 1*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.0') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.0')??$presentation[0]->question}}">
                     @error('pre_question.0')
@@ -378,7 +378,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 2</label>
+                    <label class="col-2 col-form-label inputRequired">Question 2*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.1') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.1')??$presentation[1]->question}}">
                     @error('pre_question.1')
@@ -388,7 +388,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 3</label>
+                    <label class="col-2 col-form-label inputRequired">Question 3*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.2') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.2')??$presentation[2]->question}}">
                     @error('pre_question.2')
@@ -398,7 +398,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 4</label>
+                    <label class="col-2 col-form-label inputRequired">Question 4*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.3') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.3')??$presentation[3]->question}}">
                     @error('pre_question.3')
@@ -408,7 +408,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 5</label>
+                    <label class="col-2 col-form-label inputRequired">Question 5*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.4') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.4')??$presentation[4]->question}}">
                     @error('pre_question.4')
@@ -418,7 +418,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 6</label>
+                    <label class="col-2 col-form-label inputRequired">Question 6*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.5') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.5')??$presentation[5]->question}}">
                     @error('pre_question.5')
@@ -428,7 +428,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 7</label>
+                    <label class="col-2 col-form-label inputRequired">Question 7*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.6') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.6')??$presentation[6]->question}}">
                     @error('pre_question.6')
@@ -438,7 +438,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 8</label>
+                    <label class="col-2 col-form-label inputRequired">Question 8*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.7') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.7')??$presentation[7]->question}}">
                     @error('pre_question.7')
@@ -448,7 +448,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 9</label>
+                    <label class="col-2 col-form-label inputRequired">Question 9*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.8') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.8')??$presentation[8]->question}}">
                     @error('pre_question.8')
@@ -458,7 +458,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 10</label>
+                    <label class="col-2 col-form-label inputRequired">Question 10*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('pre_question.9') is-invalid @enderror" name="pre_question[]" placeholder="" value="{{old('pre_question.9')??$presentation[9]->question}}">
                     @error('pre_question.9')
@@ -470,7 +470,7 @@
 
                 <h4 class=" mt-5">Supervisior Evaluation</h4>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 1</label>
+                    <label class="col-2 col-form-label inputRequired">Question 1*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.0') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.0')??$advisor[0]->question}}">
                     @error('super_question.0')
@@ -480,7 +480,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 2</label>
+                    <label class="col-2 col-form-label inputRequired">Question 2*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.1') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.1')??$advisor[1]->question}}">
                     @error('super_question.1')
@@ -490,7 +490,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 3</label>
+                    <label class="col-2 col-form-label inputRequired">Question 3*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.2') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.2')??$advisor[2]->question}}">
                     @error('super_question.2')
@@ -500,7 +500,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Question 4</label>
+                    <label class="col-2 col-form-label inputRequired">Question 4*</label>
                     <label class="col-1 col-form-label">:&nbsp;&nbsp;</label>
                     <input type="text" class="form-control col-9 @error('super_question.3') is-invalid @enderror" name="super_question[]" placeholder="" value="{{old('super_question.3')??$advisor[3]->question}}">
                     @error('super_question.3')
