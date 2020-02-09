@@ -14,6 +14,7 @@ use App\documentUpload;
 use App\proposedConsultation;
 use App\questionScoringSheet;
 use App\notification;
+use DB;
 class LecturerController extends Controller
 {
     private $role = 2;
@@ -323,6 +324,16 @@ class LecturerController extends Controller
                         $vcd = count(student::where('major_id','=','3')->where('lec_id',$this->user->lec_id)
                         ->get());
 
+            $progress = documentUpload::select('document_uploads.std_id',DB::raw("(CASE WHEN doc_type_name = 'Thesis Proposal' THEN 1
+                        WHEN doc_type_name = 'Thesis Interim' THEN 2
+                        WHEN doc_type_name = 'Thesis Final Draft' THEN 3
+                        WHEN doc_type_name = 'Signed Revised Document' THEN 4
+                        WHEN doc_type_name = 'Finalized Document' THEN 5 END) as progress"))->
+                    where('status','=','2')
+                    ->leftJoin('students','document_uploads.std_id','=','students.std_id')
+                    ->join('lecturers','students.lec_id','=','lecturers.lec_id')->orderBy('document_uploads.created_at','DESC')->get()->unique('document_uploads.std_id');
+
+        $students = $this->getStudents();
 
         return view('lecturer.report',[
             'role' => $this->role,   
@@ -336,6 +347,8 @@ class LecturerController extends Controller
                 'is' => json_encode($is,JSON_NUMERIC_CHECK),
                 'it' => json_encode($it,JSON_NUMERIC_CHECK),
                 'vcd' => json_encode($vcd,JSON_NUMERIC_CHECK),
+                'students' => json_encode($students),
+                'progress' => json_encode($progress),
             ]);       
         
     }

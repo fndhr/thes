@@ -16,6 +16,11 @@
         <div class="col-12 text-center">
             <h1>Report Progress Student</h1>
         </div>
+        <a>Proposal = 1</a>
+        <a>Interim = 2</a>
+        <a>Final Draft = 3</a>
+        <a>Revised Document = 4</a>
+        <a>Final Document = 5</a>
     </div>
     <div class="row py-2 justify-content-center">
         <div class="col-6">
@@ -49,6 +54,51 @@
                        <?php echo $finalDraft; ?>,
                        <?php echo $revisedDoc; ?>,
                        <?php echo $finalDoc; ?>],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    Data = <?php echo $students; ?>;
+    var LabelResult = [];
+    for(var i = 0;i<Data.length;i++){
+        LabelResult.push(Object.values(Data[i]));
+    }
+
+    // console.log(<?php echo $students; ?>);
+
+    asd = <?php echo $progress; ?>;
+    // console.log(asd["0"].std_id);
+    var stdId = [];
+    var progress = [];
+
+    for(var i = 0;i<Data.length;i++){
+        if(asd[i] != undefined){
+            stdId.push(asd[i].std_id);
+            progress.push(asd[i].progress);
+        }
+    }
+
+    // console.log(stdId);
+    // console.log(progress);
+
+    var ctx = document.getElementById('progressChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: stdId,
+            datasets: [{
+                label: 'Progress: ',
+                data: progress,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)'
             }]
         },

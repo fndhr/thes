@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row py-2 justify-content-center">
-        <div class="col-10">
+        <div class="col-6">
             <canvas id="sessionChart"></canvas>
         </div>
     </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="row py-2 justify-content-center">
-        <div class="col-10">
+        <div class="col-6">
             <canvas id="progressChart"></canvas>
         </div>
     </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row py-2 justify-content-center">
-        <div class="col-10">
+        <div class="col-6">
             <canvas id="majorChart"></canvas>
         </div>
     </div>
@@ -36,8 +36,8 @@
 
 <script src="/assets/js/chartjs.min.js"></script>
 <script>
-    var ctx = document.getElementById('sessionChart').getContext('2d');
-    var myChart = new Chart(ctx, {
+    var ctxSession = document.getElementById('sessionChart').getContext('2d');
+    var sessionChart = new Chart(ctxSession, {
         type: 'bar',
         data: {
             labels: ['Title', 'Proposal', 'Interim', 'Final Draft','Revised Document','Finalized Document'],
@@ -63,6 +63,51 @@
         }
     });
    
+    Data = <?php echo $students; ?>;
+    var LabelResult = [];
+    for(var i = 0;i<Data.length;i++){
+        LabelResult.push(Object.values(Data[i]));
+    }
+
+    // console.log(<?php echo $students; ?>);
+
+    asd = <?php echo $progress; ?>;
+    // console.log(asd["0"].std_id);
+    var stdId = [];
+    var progress = [];
+
+    for(var i = 0;i<Data.length;i++){
+        if(asd[i] != undefined){
+            stdId.push(asd[i].std_id);
+            progress.push(asd[i].progress);
+        }
+    }
+
+    // console.log(stdId);
+    // console.log(progress);
+
+    var ctx = document.getElementById('progressChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: stdId,
+            datasets: [{
+                label: 'Progress: ',
+                data: progress,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
     var ctxMajor = document.getElementById('majorChart').getContext('2d');
     var majorChart = new Chart(ctxMajor, {
         type: 'bar',
@@ -86,6 +131,6 @@
             }
         }
     });
-
+    
 </script>
 @endsection

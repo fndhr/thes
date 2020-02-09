@@ -13,6 +13,8 @@ use App\notification;
 use Validator;
 use App\session;
 use App\Page;
+use raw;
+use DB;
 use Storage;
 use Response;
 use DateTime;
@@ -117,6 +119,15 @@ class HomeController extends Controller
         $it = count(student::where('major_id','=','2')->get());
         $vcd = count(student::where('major_id','=','3')->get());
 
+        $progress = documentUpload::select('std_id',DB::raw("(CASE WHEN doc_type_name = 'Thesis Proposal' THEN 1
+                                                    WHEN doc_type_name = 'Thesis Interim' THEN 2
+                                                    WHEN doc_type_name = 'Thesis Final Draft' THEN 3
+                                                    WHEN doc_type_name = 'Signed Revised Document' THEN 4
+                                                    WHEN doc_type_name = 'Finalized Document' THEN 5 END) as progress"))->
+                where('status','=','2')->orderBy('created_at','DESC')->get()->unique('std_id');
+        // dd($progress);
+        $students = $this->getStudents();
+        
         return view('admin.report',[
             'role' => $this->role,
             'title' => json_encode($title,JSON_NUMERIC_CHECK),
@@ -128,7 +139,13 @@ class HomeController extends Controller
             'is' => json_encode($is,JSON_NUMERIC_CHECK),
             'it' => json_encode($it,JSON_NUMERIC_CHECK),
             'vcd' => json_encode($vcd,JSON_NUMERIC_CHECK),
+            'students' => json_encode($students),
+            'progress' => json_encode($progress),
         ]);
+    }
+
+    public function getStudents(){
+        return student::get('std_id');
     }
 
     public function changePassword(Request $request){
