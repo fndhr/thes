@@ -15,18 +15,20 @@
     <div class="row my-5">
         <div class="col-12 text-center">
             <h1>Report Progress Student</h1>
-        </div>
-        <a>Proposal = 1</a>
-        <a>Interim = 2</a>
-        <a>Final Draft = 3</a>
-        <a>Revised Document = 4</a>
-        <a>Final Document = 5</a>
+        </div>        
     </div>
     <div class="row py-2 justify-content-center">
         <div class="col-6">
             <canvas id="progressChart"></canvas>
         </div>
     </div>
+    <ul>
+        <li><a>Thesis Proposal = 1</a></li>
+        <li><a>Thesis Interim = 2</a></li>
+        <li><a>Thesis Final Draft = 3</a></li>
+        <li><a>Thesis Revised Document = 4</a></li>
+        <li><a>Thesis Final Document = 5</a></li>
+    </ul>
     <div class="row my-5">
         <div class="col-12 text-center">
             <h1>Report Major Student</h1>
