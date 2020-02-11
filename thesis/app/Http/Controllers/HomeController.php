@@ -119,15 +119,27 @@ class HomeController extends Controller
         $it = count(student::where('major_id','=','2')->get());
         $vcd = count(student::where('major_id','=','3')->get());
 
-        $progress = documentUpload::select('std_id',DB::raw("(CASE WHEN doc_type_name = 'Thesis Proposal' THEN 1
+        $progress = documentUpload::select('users.first_name','users.last_name','document_uploads.std_id',DB::raw("(CASE WHEN doc_type_name = 'Thesis Proposal' THEN 1
                                                     WHEN doc_type_name = 'Thesis Interim' THEN 2
                                                     WHEN doc_type_name = 'Thesis Final Draft' THEN 3
                                                     WHEN doc_type_name = 'Signed Revised Document' THEN 4
                                                     WHEN doc_type_name = 'Finalized Document' THEN 5 END) as progress"))->
-                where('status','=','2')->orderBy('created_at','DESC')->get()->unique('std_id');
-        // dd($progress);
-        $students = $this->getStudents();
+                                                    leftJoin('students','document_uploads.std_id','=','students.std_id')->
+                                                    leftJoin('users','students.usr_id','=','users.id')->
+                where('status','=','2')->orderBy('document_uploads.created_at','DESC')->get()->unique('document_uploads.std_id');
         
+//                 $progress = documentUpload::select('document_uploads.std_id',DB::raw("(CASE WHEN doc_type_name = 'Thesis Proposal' THEN 1
+//                 WHEN doc_type_name = 'Thesis Interim' THEN 2
+//                 WHEN doc_type_name = 'Thesis Final Draft' THEN 3
+//                 WHEN doc_type_name = 'Signed Revised Document' THEN 4
+//                 WHEN doc_type_name = 'Finalized Document' THEN 5 END) as progress"))->                                                    
+// // leftJoin('students','document_uploads.std_id','=','students.std_id')->
+// // leftJoin('users','students.usr_id','=','users.id')->
+// where('document_uploads.status','=','2')->orderBy('document_uploads.created_at','DESC')->get()->unique('document_uploads.std_id');
+
+
+        $students = $this->getStudents();
+        // dd($progress);
         return view('admin.report',[
             'role' => $this->role,
             'title' => json_encode($title,JSON_NUMERIC_CHECK),
@@ -145,7 +157,7 @@ class HomeController extends Controller
     }
 
     public function getStudents(){
-        return student::get('std_id');
+        return User::join('students','students.usr_id','=','users.id')->get('first_name');
     }
 
     public function changePassword(Request $request){

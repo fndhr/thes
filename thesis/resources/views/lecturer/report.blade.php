@@ -85,7 +85,7 @@
 
     for(var i = 0;i<Data.length;i++){
         if(asd[i] != undefined){
-            stdId.push(asd[i].std_id);
+            stdId.push(asd[i].first_name + ' ' + asd[i].last_name);
             progress.push(asd[i].progress);
         }
     }
